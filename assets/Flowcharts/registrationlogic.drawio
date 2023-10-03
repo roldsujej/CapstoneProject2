@@ -1,0 +1,65 @@
+<mxfile host="app.diagrams.net" modified="2023-10-02T00:18:28.202Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36" etag="q63FFPMOimigk8mOULji" version="22.0.0" type="device">
+  <diagram name="Page-1" id="tia6B6spB_7np-wUOJ3u">
+    <mxGraphModel dx="594" dy="1640" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="V9fKAsGY6CTHip-vL8i0-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="V9fKAsGY6CTHip-vL8i0-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="315" y="210" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="V9fKAsGY6CTHip-vL8i0-1" value="OTP Verification" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="260" y="90" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="V9fKAsGY6CTHip-vL8i0-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="V9fKAsGY6CTHip-vL8i0-2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="310" y="340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="V9fKAsGY6CTHip-vL8i0-2" value="Send otp to email&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="210" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="V9fKAsGY6CTHip-vL8i0-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="V9fKAsGY6CTHip-vL8i0-6">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="140" y="450" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="V9fKAsGY6CTHip-vL8i0-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="V9fKAsGY6CTHip-vL8i0-6">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="490" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="V9fKAsGY6CTHip-vL8i0-6" value="verify otp" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="270" y="340" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="V9fKAsGY6CTHip-vL8i0-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="V9fKAsGY6CTHip-vL8i0-9">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="140" y="610" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="V9fKAsGY6CTHip-vL8i0-9" value="Status = 1&lt;br&gt;user_role = 1" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="450" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="V9fKAsGY6CTHip-vL8i0-10" value="Applicant default" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="20" y="460" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="V9fKAsGY6CTHip-vL8i0-11" value="Please enter a valid otp" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="425" y="440" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="V9fKAsGY6CTHip-vL8i0-13" value="Access to applicant dashboard where the applicant can submit requirements" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="610" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="V9fKAsGY6CTHip-vL8i0-14" value="VALID" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="160" y="350" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="V9fKAsGY6CTHip-vL8i0-15" value="INVALID" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="405" y="350" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="V9fKAsGY6CTHip-vL8i0-16" value="So by default the account status will be 0 (applicant) after registering and verifying otp code&lt;br&gt;&lt;br&gt;Magiging member lang tong applicant kapag nakapagpasa na ng requirements and nareview na ng admin&amp;nbsp;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="10" y="30" width="200" height="110" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,109 @@
+<mxfile host="app.diagrams.net" modified="2023-08-21T06:34:33.220Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36" etag="gbMvtvvjbCCUkD-Mk1rw" version="21.6.6" type="device">
+  <diagram name="Page-1" id="3hcsr95_NY0yPPyxCVzE">
+    <mxGraphModel dx="594" dy="1640" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="3j3x7EzOEK6tl7pDZ-qv-1" value="&lt;font style=&quot;font-size: 17px;&quot;&gt;Membership Registration&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="215" y="128" width="210" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="3j3x7EzOEK6tl7pDZ-qv-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="3j3x7EzOEK6tl7pDZ-qv-2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="310" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3j3x7EzOEK6tl7pDZ-qv-2" value="Fill Up Registration Form" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="180" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="3j3x7EzOEK6tl7pDZ-qv-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="3j3x7EzOEK6tl7pDZ-qv-4">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="310" y="430" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3j3x7EzOEK6tl7pDZ-qv-4" value="Activate account by verifying email" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="300" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="3j3x7EzOEK6tl7pDZ-qv-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="3j3x7EzOEK6tl7pDZ-qv-6">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="310" y="550" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3j3x7EzOEK6tl7pDZ-qv-6" value="Activate account by verifying email or by OTP" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="430" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="3j3x7EzOEK6tl7pDZ-qv-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="3j3x7EzOEK6tl7pDZ-qv-8">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="310" y="680" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3j3x7EzOEK6tl7pDZ-qv-8" value="Wait for officer notification" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="550" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="3j3x7EzOEK6tl7pDZ-qv-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="3j3x7EzOEK6tl7pDZ-qv-14">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="310" y="800" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3j3x7EzOEK6tl7pDZ-qv-14" value="Applicant can now access the member dashboard with restriction" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="680" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="3j3x7EzOEK6tl7pDZ-qv-15" value="Account status: Applicant" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="370" y="690" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="3j3x7EzOEK6tl7pDZ-qv-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="3j3x7EzOEK6tl7pDZ-qv-17">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="310" y="920" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3j3x7EzOEK6tl7pDZ-qv-17" value="Applicant can now submit required documents" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="800" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="3j3x7EzOEK6tl7pDZ-qv-18" value="&lt;font color=&quot;#ff1717&quot;&gt;Required docs: NBI clearance, brgy clearance, 2pcs 2x2 id picture&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="380" y="810" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="3j3x7EzOEK6tl7pDZ-qv-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="3j3x7EzOEK6tl7pDZ-qv-20">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="310" y="1030" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3j3x7EzOEK6tl7pDZ-qv-20" value="Officer will check the submitted document via admin dashboard" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="920" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="3j3x7EzOEK6tl7pDZ-qv-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="3j3x7EzOEK6tl7pDZ-qv-22" target="3j3x7EzOEK6tl7pDZ-qv-24">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="3j3x7EzOEK6tl7pDZ-qv-22" value="Once the submitted docs are verified and complete applicant can now proceed to payment&lt;br&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="1030" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="3j3x7EzOEK6tl7pDZ-qv-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="3j3x7EzOEK6tl7pDZ-qv-24">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="310" y="1320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3j3x7EzOEK6tl7pDZ-qv-24" value="After settling payment the applicant status will be updated" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="1170" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="3j3x7EzOEK6tl7pDZ-qv-25" value="&lt;font color=&quot;#1c1cff&quot;&gt;Status: Member&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="380" y="1200" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="3j3x7EzOEK6tl7pDZ-qv-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="3j3x7EzOEK6tl7pDZ-qv-28">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="300" y="1500" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3j3x7EzOEK6tl7pDZ-qv-28" value="The member will now wait for the release of id or card" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="1320" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="3j3x7EzOEK6tl7pDZ-qv-30" value="Registration Complete" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="1640" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="3j3x7EzOEK6tl7pDZ-qv-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="3j3x7EzOEK6tl7pDZ-qv-31" target="3j3x7EzOEK6tl7pDZ-qv-30">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="3j3x7EzOEK6tl7pDZ-qv-31" value="The member will now have full access to member dashboard" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="1500" width="120" height="90" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

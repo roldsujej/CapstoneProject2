@@ -1,0 +1,87 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;700&family=Nunito:wght@300;400;500;700&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+h1 {
+  margin: 0;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  font-family: "Nunito", sans-serif;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #19376d;
+  /* background-image: url("../images/logo.jpg"); */
+
+  background-size: cover;
+  height: 100vh;
+}
+
+form {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.otp-card {
+  text-align: center;
+  background-color: white;
+  border-radius: 20px;
+  padding: 3rem;
+  box-shadow: 0 10px 40px -20px black;
+}
+
+.otp-card-inputs {
+  margin: 30px 0;
+  display: grid;
+  gap: 30px;
+  justify-content: center;
+  grid-template-columns: repeat(6, auto);
+}
+
+.otp-card-inputs input {
+  width: 60px;
+  height: 70px;
+  font-size: 35px;
+  text-align: center;
+  border-radius: 20px;
+  border: 1px solid black;
+}
+
+.otp-card-inputs input:focus {
+  outline: 1px solid #19376d;
+}
+
+.otp-card button {
+  background-color: #19376d;
+  border: none;
+  padding: 15px 50px;
+  font-size: 18px;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+.otp-card button:hover {
+  opacity: 0.9;
+}
+
+.otp-card button[disabled] {
+  opacity: 0.6;
+  cursor: default;
+}
+
+/* Media query for smaller screens */
+@media screen and (max-width: 768px) {
+  .otp-card-inputs input {
+    width: 50px; /* Adjust the input width for smaller screens */
+    font-size: 30px; /* Adjust the font size for smaller screens */
+  }
+}
