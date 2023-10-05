@@ -16,6 +16,7 @@ require "session.php"
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin Dashboard</title>
   <link rel="stylesheet" href="../css/admin/adminApp.css" />
+  <link rel="stylesheet" href="../script/ADMIN/global.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
@@ -227,12 +228,6 @@ require "session.php"
           </div>
         </div>
 
-        <?php
-        $sql = mysqli_query($conn, "SELECT * from account_profiles ORDER BY id ASC") or die(mysqli_error($conn));
-        // $query_run1 = mysqli_query($conn, $query1);
-
-        ?>
-
         <table class="applications-table">
           <thead>
             <tr>
@@ -247,6 +242,7 @@ require "session.php"
 
           <tbody>
             <?php
+            $sql = mysqli_query($conn, "SELECT * from account_profiles ORDER BY id ASC") or die(mysqli_error($conn));
 
             if (mysqli_num_rows($sql) > 0) {
               while ($row = mysqli_fetch_array($sql)) {
@@ -269,7 +265,7 @@ require "session.php"
                             ?></td> -->
                   <td>
                     <div class="action-buttons">
-                      <button type="button" class="action-button editBtn" data-applicant-id="<?php echo $id; ?>">
+                      <button type="button" class="action-button editBtn modal-trigger" data-modal-id="<?php echo 'user'.$id; ?>">
                         <ion-icon name="open-outline"></ion-icon>
                       </button>
                       <!-- Add a delete button with an onclick event -->
@@ -277,7 +273,7 @@ require "session.php"
                         <ion-icon name="trash-outline"></ion-icon>
                       </button>
 
-                      <button type="button" class="action-button viewBtn" data-applicant-id="<?php echo $row['id']; ?>"> <!-- Replace "123" with the actual applicant ID -->
+                      <button type="button" class="action-button viewBtn" data-applicant-id="<?php echo 'view'. $id; ?>"> <!-- Replace "123" with the actual applicant ID -->
                         <ion-icon name="eye-outline"></ion-icon>
                       </button>
 
@@ -287,7 +283,7 @@ require "session.php"
 
                 </tr>
             <?php
-                include('modals/edit_modal.php');
+                include('modals/edit_modal1.php');
               }
             } else {
               echo "Record not Found";
@@ -303,7 +299,8 @@ require "session.php"
   </div>
 
   <!---------------SCRIPT--------------------------->
-  <script src="../script/ADMIN/adminManageApplication.js"></script>
+  <!-- <script src="../script/ADMIN/adminManageApplication.js"></script> -->
+  <script src="../script/ADMIN/modal.js"></script>
   <!---------ICONS----------------------------------->
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
