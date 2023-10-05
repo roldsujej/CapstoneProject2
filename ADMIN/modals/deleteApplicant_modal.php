@@ -1,9 +1,10 @@
   <!------------------DELETE MODAL---------------------------------------->
-  <div class="modal-container hidden">
+  <div class="modal-overlay" id="<?php echo 'deleteApplicantModal' . $id; ?>">
       <!-- Modal content -->
-      <div class="modal" data-modal-id="<?php echo 'delete' . $id; ?>">
+      <div class=" modal">
           <div class=" modal-header">
               <h2>Delete Applicant Profile</h2>
+              <span class="modal-exit" data-modal-id="<?php echo 'deleteApplicantModal' . $id   ?>">
           </div>
           <div class="modal-body">
               <div class="card">

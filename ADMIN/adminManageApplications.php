@@ -1,7 +1,7 @@
 <?php
 
 require "../database/config.php";
-require "adminAddApplicant_process.php";
+//require "adminAddApplicant_process.php";
 require "session.php"
 //include "fetchAdditionalInfo.php";
 
@@ -132,9 +132,8 @@ require "session.php"
         <div class="applicationHeader">
           <h2>Manage Membership Applications</h2>
           <div class="button-container">
-
-            <a href="#" class="btn modal-trigger" data-modal-id="<?php echo 'add' . $id; ?>"><ion-icon name="add"></ion-icon></a>
-
+            <!-- button to trigger the add applicant modal -->
+            <a href="#" class="btn modal-trigger" data-modal-id="<?php echo 'addApplicantModal' ?>"><ion-icon name="add"></ion-icon></a>
             <?php
             include('modals/addapplicant_modal.php');
             ?>
@@ -166,6 +165,7 @@ require "session.php"
                 $address = $row['address'];
                 $email = $row['email'];
                 $status = $row['status'] == 1 ? 'Verified' : 'Pending Verification';
+                $password = $row['password'];
                 $user_role = $row['user_role'];
 
             ?>
@@ -182,7 +182,7 @@ require "session.php"
                         <ion-icon name="open-outline"></ion-icon>
                       </button>
                       <!-- Add a delete button with an onclick event -->
-                      <button type="button" class="action-button deleteBtn modal-trigger" data-modal-id="<?php echo 'delete' . $id; ?>" data-applicant-name="<?php echo $row['firstName'] . ' ' . $row['lastName']; ?>">
+                      <button type="button" class="action-button deleteBtn modal-trigger" data-modal-id="<?php echo 'deleteApplicantModal' . $id ?>" data-applicant-name="<?php echo $row['firstName'] . ' ' . $row['lastName']; ?>">
                         <ion-icon name="trash-outline"></ion-icon>
                       </button>
                       <?php
@@ -212,6 +212,7 @@ require "session.php"
 
   <!---------------SCRIPT--------------------------->
   <!-- <script src="../script/ADMIN/adminManageApplication.js"></script> -->
+  <script src="../script/ADMIN/adminManageApplication.js"></script>
   <script src="../script/ADMIN/modal.js"></script>
   <!---------ICONS----------------------------------->
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -254,6 +255,33 @@ require "session.php"
         passwordInputEdit.placeholder = "Generate temporary password"; // Restore the placeholder text
       }
     }
+  </script>
+
+  <script>
+    // Function to generate a random password for the add applicant modal
+    function generatePasswordForAdd() {
+      // Generate a random password using your existing function
+      const generatedPassword = generateRandomPassword(8);
+
+      // Find the generated password input field
+      const passwordInput = document.getElementById("passwordInput");
+
+      // Update the password input field with the generated value
+      passwordInput.value = generatedPassword;
+
+      // Change the input type to "text" to temporarily reveal the password
+      passwordInput.type = "text";
+
+      // Automatically hide the password after 3 seconds (adjust the time as needed)
+      setTimeout(function() {
+        passwordInput.type = "password";
+      }, 3000); // 3000 milliseconds (3 seconds)
+    }
+
+    // Add an event listener to the "Generate Password" button in the add applicant modal
+    document
+      .getElementById("generatePasswordButton")
+      .addEventListener("click", generatePasswordForAdd);
   </script>
 
   <!-- SweetAlert Script -->

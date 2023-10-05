@@ -21,5 +21,6 @@ if (isset($_SESSION['applicant'])) {
         $cpNumber = $row['cpNum'];
         $address = $row['address'];
         $email = $row['email'];
+        $password = $row['password'];
     }
 }

@@ -50,7 +50,7 @@
                     <div class=" form-group">
                         <label class="label" for="">Temporary Password</label>
                         <div class="password-input-container">
-                            <input type="text" class="form-control" id="passwordInputEdit" name="password" placeholder="Generate temporary password" required>
+                            <input type="text" class="form-control" id="passwordInputEdit" name="password" value="<?php echo ($password); ?>" required>
                             <span id="togglePasswordEdit" class="toggle-password" onclick="togglePasswordVisibilityEdit()">
                                 <ion-icon name="eye"></ion-icon>
                             </span>
@@ -69,23 +69,23 @@
         </div>
     </div>
 </div>
-</div>
-<?php
-if (isset($_POST['update_user'])) {
-    $id = mysqli_real_escape_string($connection, $_POST['user_id']);
-    $acc_status = mysqli_real_escape_string($connection, $_POST['acc_status']);
 
-    // Update user account status using prepared statement
-    $insertQuery = $connection->prepare("UPDATE tbl_user SET account_validation = ? WHERE user_id = ?");
-    $insertQuery->bind_param("si", $acc_status, $id);
-    if ($insertQuery->execute()) {
-        echo
-        '<script>
-                    alert("' . ucfirst($fname) . ' ' . ucfirst($lname) . ' account is ' . $acc_status . '");
-                    window.location.href = "userAccounts.php";
-                </script>';
-    } else {
-        echo $insertQuery->error;
-    }
-}
+<?php
+// if (isset($_POST['update_user'])) {
+//     $id = mysqli_real_escape_string($conn, $_POST['user_id']);
+//     $acc_status = mysqli_real_escape_string($conn, $_POST['acc_status']);
+
+//     // Update user account status using prepared statement
+//     $insertQuery = $connection->prepare("UPDATE account_profiles SET account_validation = ? WHERE user_id = ?");
+//     $insertQuery->bind_param("si", $acc_status, $id);
+//     if ($insertQuery->execute()) {
+//         echo
+//         '<script>
+//                     alert("' . ucfirst($fname) . ' ' . ucfirst($lname) . ' account is ' . $acc_status . '");
+//                     window.location.href = "userAccounts.php";
+//                 </script>';
+//     } else {
+//         echo $insertQuery->error;
+//     }
+// }
 ?>
