@@ -91,95 +91,6 @@ require "session.php"
     </div>
 
 
-    <!-- Add a class "hidden" to hide the modal initially -->
-
-    <!-- Create the modal container -->
-    <div class="modal-container hidden" id="modalContainer">
-      <!-- Modal content -->
-      <div class="modal" id="<?php echo $id; ?>">
-        <div class="modal-header">
-          <h2>Add New Applicant</h2>
-        </div>
-        <div class="modal-body">
-          <div class="card">
-
-            <form id="addApplicantForm" action="adminAddApplicant_process.php" method="POST">
-
-              <div class="form-body">
-                <div class="form-group">
-                  <label class="label" for="">First Name</label>
-                  <input type="text" class="form-control" name="firstName" placeholder="Enter first name" required>
-                  <span class="validation-message"></span>
-                </div>
-
-                <div class="form-group">
-                  <label class="label" for="">Last Name</label>
-                  <input type="text" class="form-control" name="lastName" placeholder="Enter last name" required>
-                  <span class="error-message hidden"></span>
-                </div>
-
-                <div class="form-group">
-                  <label class="label" for="">Contact Number</label>
-                  <div class="phone-input">
-                    <input type="text" class="form-control" name="cpNum" value="+63" required>
-                  </div>
-                  <div id="phoneNumberError" class="error-message hidden">Avoid entering numeric characters.</div>
-                </div>
-
-                <div class="form-group">
-                  <label class="label" for="">Address</label>
-                  <input type="text" class="form-control" name="address" placeholder=" Blk, Lot, St, Brgy, Municipality, Province" required>
-                </div>
-
-                <div class="form-group">
-                  <label class="label" for="">Email</label>
-                  <input type="email" class="form-control" name="email" placeholder="Enter email" required>
-                </div>
-
-                <div class="form-group">
-                  <label class="label" for=""> Temporary Password</label>
-                  <div class="password-input-container">
-                    <input type="password" class="form-control" id="passwordInput" name="password" placeholder="Generate temporary password" readonly required>
-                    <span id="togglePassword" class="toggle-password" onclick="togglePasswordVisibility()">
-                      <ion-icon name="eye"></ion-icon>
-                    </span>
-                  </div>
-                  <button type="button" class="generate-password-button" id="generatePasswordButton">Generate Password</button>
-                </div>
-
-
-
-                <!-- <div class="form-group">
-                  <label class="label" for="">Re-enter Temporary Password</label>
-                  <input type="password" class="form-control" name="confirmPassword" placeholder="Re-type password" required>
-                </div> -->
-
-              </div>
-
-          </div>
-          <div class="modal-footer">
-            <button type="submit" class="modalBtn" id="submitButton" name="addApplicant">Submit</button>
-
-            <button type="button" class="modalBtn" id="closeModalButton">Close</button>
-
-          </div>
-
-
-
-          </form>
-        </div>
-
-
-
-
-
-
-
-      </div>
-    </div>
-
-
-
 
 
 
@@ -215,16 +126,18 @@ require "session.php"
 
 
 
-
-
     <!----------------------------------------SECTION--------------------------------------------------->
     <div class="details">
       <div class="recentApplications">
         <div class="applicationHeader">
           <h2>Manage Membership Applications</h2>
           <div class="button-container">
-            <!-- <a href="#" class="btn">View All</a> -->
-            <a href="#" class="btn" id="openModalButton"><ion-icon name="add"></ion-icon></a> <!----modal trigger--->
+
+            <a href="#" class="btn modal-trigger" data-modal-id="<?php echo 'add' . $id; ?>"><ion-icon name="add"></ion-icon></a>
+
+            <?php
+            include('modals/addapplicant_modal.php');
+            ?>
           </div>
         </div>
 
@@ -265,19 +178,18 @@ require "session.php"
                             ?></td> -->
                   <td>
                     <div class="action-buttons">
-                      <button type="button" class="action-button editBtn modal-trigger" data-modal-id="<?php echo 'user'.$id; ?>">
+                      <button type="button" class="action-button editBtn modal-trigger" data-modal-id="<?php echo 'user' . $id; ?>">
                         <ion-icon name="open-outline"></ion-icon>
                       </button>
                       <!-- Add a delete button with an onclick event -->
-                      <button type="button" class="action-button deleteBtn" data-applicant-id="<?php echo $row['id']; ?>" data-applicant-name="<?php echo $row['firstName'] . ' ' . $row['lastName']; ?>">
+                      <button type="button" class="action-button deleteBtn modal-trigger" data-modal-id="<?php echo 'delete' . $id; ?>" data-applicant-name="<?php echo $row['firstName'] . ' ' . $row['lastName']; ?>">
                         <ion-icon name="trash-outline"></ion-icon>
                       </button>
+                      <?php
+                      include('modals/deleteApplicant_modal.php'); ?>
 
-                      <button type="button" class="action-button viewBtn" data-applicant-id="<?php echo 'view'. $id; ?>"> <!-- Replace "123" with the actual applicant ID -->
-                        <ion-icon name="eye-outline"></ion-icon>
-                      </button>
 
-                      <!-- pwede ako mag add ng mata na action button tas dun ko nalang ishow ibang info ng applicant via modal para di siksikan table -->
+
                     </div>
                   </td>
 
