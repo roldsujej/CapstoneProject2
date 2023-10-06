@@ -181,7 +181,7 @@ require "session.php"
                       <button type="button" class="action-button editBtn modal-trigger" data-modal-id="<?php echo 'user' . $id; ?>">
                         <ion-icon name="open-outline"></ion-icon>
                       </button>
-                      
+
                       <!-- Add a delete button with an onclick event -->
                       <button type="button" class="action-button deleteBtn modal-trigger" data-modal-id="<?php echo 'deleteApplicantModal' . $id ?>" data-applicant-name="<?php echo $row['firstName'] . ' ' . $row['lastName']; ?>">
                         <ion-icon name="trash-outline"></ion-icon>
@@ -190,24 +190,21 @@ require "session.php"
                       include('modals/deleteApplicant_modal.php'); ?>
 
 
-<<<<<<< HEAD
-                      <button type="button" class="action-button viewBtn modal-trigger" data-modal-id="<?php echo 'view'.$id; ?>"> <!-- Replace "123" with the actual applicant ID -->
-                        <ion-icon name="eye-outline"></ion-icon>
-                      </button>
-                      
-                      <!-- pwede ako mag add ng mata na action button tas dun ko nalang ishow ibang info ng applicant via modal para di siksikan table -->
-=======
 
->>>>>>> c3bf972f6f44960161eb8a744b5e2ef830bbb861
+
+                      <!-- pwede ako mag add ng mata na action button tas dun ko nalang ishow ibang info ng applicant via modal para di siksikan table -->
+
+
+
                     </div>
-                    <?php include('modals/edit_modal1.php');?>
-                  <?php include('modals/view_modal1.php');?>
+                    <?php include('modals/edit_modal1.php'); ?>
+                    <?php include('modals/view_modal1.php'); ?>
                   </td>
-                  
+
                 </tr>
-                
+
             <?php
-                
+
               }
             } else {
               echo "Record not Found";
