@@ -693,6 +693,11 @@
   overflow-x: hidden;
   z-index: 12 !important;
 }
+/* Change font color of h3 in delete modal to black */
+.modal-container h3.deleteMessage {
+  color: #000; /* Black color */
+  text-align: center;
+}
 .modal-img {
   position: relative;
   max-height: 90%; /* Adjust the maximum height as needed */
