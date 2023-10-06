@@ -4,8 +4,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin Dashboard</title>
-  <link rel="stylesheet" href="/css/admin/adminManageAcc.css" />
+  <title>Admin Manage Submitted Requirements</title>
+  <link rel="stylesheet" href="../css/admin/adminManageAcc.css ">
+  <link rel="stylesheet" href="../script/ADMIN/global.css"> <!---dont forget to fix the path of this css ------>
+  <link rel="stylesheet" href="../css/admin/tables.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
 </head>
 
 <body>
@@ -38,10 +41,10 @@
           </a>
         </li>
         <li>
-          <a href="adminManageAccounts.php">
+          <a href="adminManageRequirements.php">
             <span class="icon"><ion-icon name="settings-outline"></ion-icon>
             </span>
-            <span class="title">Manage Accounts</span>
+            <span class="title">Manage Requirements</span>
           </a>
         </li>
         <li>
@@ -82,17 +85,21 @@
     <div class="details">
       <div class="recentApplications">
         <div class="applicationHeader">
-          <h2>Manage Accounts Applications</h2>
-          <a href="#" class="btn">View All</a>
+          <h2>Manage Requirements</h2>
+          <a href="#" class="btn modal-trigger" data-modal-id="<?php echo 'addRequirementModal' ?>">Add New Document</a>
         </div>
 
-        <table>
+        <p>In this page you can add the required documents that needs to be passed by the applicants in order to continue the applicant process</p>
+
+        <table id="myTable" class="applications-table">
           <thead>
             <tr>
-              <td>Name</td>
-              <td>Address</td>
-              <td>Age</td>
-              <td>Status</td>
+              <th>Document ID</td>
+              <th>Document Name</th>
+              <th>Description</th>
+              <th>Document Category</td>
+              <th>Date of Creation</td>
+              <th>Date of Update</td>
             </tr>
           </thead>
           <tbody>
@@ -101,42 +108,41 @@
               <td>Sample Address</td>
               <td>23</td>
               <td><span class="status pending">Pending</span></td>
+              <td>23</td>
+              <td>23</td>
+
             </tr>
-            <tr>
-              <td>Name</td>
-              <td>Address</td>
-              <td>32</td>
-              <td><span class="status approved">Approved</span></td>
-            </tr>
-            <tr>
-              <td>Name</td>
-              <td>Address</td>
-              <td>17</td>
-              <td><span class="status denied">Denied</span></td>
-            </tr>
-            <tr>
-              <td>Name</td>
-              <td>Address</td>
-              <td>26</td>
-              <td><span class="status denied">Denied</span></td>
-            </tr>
-            <tr>
-              <td>Name</td>
-              <td>Address</td>
-              <td>55</td>
-              <td><span class="status approved">Approved</span></td>
-            </tr>
+
+
+
+
           </tbody>
         </table>
       </div>
+
+
+
     </div>
+
   </div>
+
 
   <!---------------SCRIPT--------------------------->
   <script src="/script/admindashboard.js"></script>
   <!---------ICONS----------------------------------->
+  <script src="../script/ADMIN/adminManageApplication.js"></script>
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="../script/ADMIN/modal.js"></script>
+
 </body>
+
+<script>
+  $(document).ready(function() {
+    $('#myTable').DataTable();
+  });
+</script>
 
 </html>

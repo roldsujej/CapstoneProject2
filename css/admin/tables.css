@@ -1,0 +1,128 @@
+/* table designs i added it here so i can reuse its design */
+
+/* Adjust table cell padding and text alignment */
+.details table thead td,
+.details .recentApplications table tbody tr td {
+  padding: 12px 15px; /* Adjust cell padding */
+  text-align: left; /* Set text alignment to left for all cells */
+  vertical-align: middle;
+}
+
+.details table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-size: 16px;
+  background-color: var(--white);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* border-spacing: 0; */
+}
+
+.details table thead th {
+  font-weight: 600;
+  text-align: left;
+  padding: 10px 15px;
+  background-color: var(--gray);
+}
+
+.details .recentApplications table tr {
+  color: var(--black1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease;
+}
+
+.details .recentApplications table tbody tr:hover {
+  background: var(--dBlue);
+  color: var(--white);
+}
+
+.details .recentApplications table tr:last-child {
+  border-bottom: none;
+}
+
+.details .recentApplications table tbody tr:hover {
+  background: var(--dBlue);
+  color: var(--white);
+}
+
+.details .recentApplications table tr td {
+  padding: 12px 15px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.applications-table {
+  width: 100%;
+  border-collapse: collapse; /* This removes the spacing between table cells */
+  table-layout: fixed; /* Add this line to enable fixed layout */
+}
+
+.applications-table th,
+.applications-table td {
+  border: 1px solid #ddd; /* Add borders to table header and data cells */
+  padding: 8px; /* Add some padding for better spacing */
+  text-align: left; /* Align text to the left within cells */
+  width: 20%; /* Adjust the width as needed for each column */
+}
+
+.applicant-table th {
+  background-color: #c6bcbc; /* Background color for table headers */
+  font-weight: bold; /* Bold text for table headers */
+}
+
+/* Adjust table cell padding and font size */
+.details table thead td,
+.details .recentApplications table tr td {
+  padding: 8px 12px;
+  font-size: 14px;
+}
+
+/* Table Styles provided by gpt di ko pa ginagamit rn */
+.dataTables_wrapper {
+  padding: 20px;
+}
+
+/* Adjust table cell padding and text alignment */
+.details table thead td,
+.details .recentApplications table tbody tr td,
+.dataTables_wrapper table th,
+.dataTables_wrapper table td {
+  padding: 12px 15px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.dataTables_wrapper table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-size: 16px;
+  background-color: var(--white);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dataTables_wrapper table thead th {
+  font-weight: 600;
+  text-align: left;
+  padding: 10px 15px;
+  background-color: var(--gray);
+}
+
+.dataTables_wrapper table tbody tr {
+  color: var(--black1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease;
+}
+
+.dataTables_wrapper table tbody tr:hover {
+  background: var(--dBlue);
+  color: var(--white);
+}
+
+.dataTables_wrapper table tbody tr:last-child {
+  border-bottom: none;
+}
