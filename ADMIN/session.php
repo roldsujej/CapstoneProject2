@@ -24,3 +24,26 @@ if (isset($_SESSION['applicant'])) {
         $password = $row['password'];
     }
 }
+
+
+// if (isset($_SESSION['admin'])) {
+//     // admin logged in, retrieve user data
+//     $user = $_SESSION['admin'];
+//     $id = $user['admin_id'];
+//     $query = $connection->prepare("SELECT * FROM required_documents WHERE document_id = ?");
+//     $query->bind_param("i", $id);
+//     $query->execute();
+//     $queryResult = $query->get_result();
+//     $row = $queryResult->fetch_assoc();
+//     /* values from fetch from variable $row
+//         transfered to another variable for general usage*/
+//     if ($row) {
+
+//         $document_id = $row['document_id'];
+//         $document_name = $row['document_name'];
+//         $document_description = $row['document_description'];
+//         $document_status = $row['is_required'];
+//         $creation_date = $row['created_at'];
+//         $update_date = $row['updated_at'];
+//     }
+// }

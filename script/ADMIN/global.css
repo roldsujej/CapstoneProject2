@@ -939,7 +939,7 @@
   color: #3a3e41d8;
 }
 .form-control:read-only {
-  background-color: #f8ffbdba;
+  background-color: #d8e8f993;
 }
 
 .form-control:focus {
@@ -1096,7 +1096,18 @@
   border-color: #c3e6cb;
   color: #155724;
 }
+.status {
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
 
+/* i can reuse this i need some design with red background and white font just add the class */
+.status.required {
+  background: #eb2b2bfc;
+  color: white;
+}
 .alert-danger {
   background-color: #f8d7da;
   border-color: #f5c6cb;

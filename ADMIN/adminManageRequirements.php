@@ -1,67 +1,32 @@
+<?php
+
+require "../database/config.php";
+//require "adminAddApplicant_process.php";
+//require "session.php"
+//include "fetchAdditionalInfo.php";
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin Manage Submitted Requirements</title>
-  <link rel="stylesheet" href="../css/admin/adminManageAcc.css ">
-  <link rel="stylesheet" href="../script/ADMIN/global.css"> <!---dont forget to fix the path of this css ------>
-  <link rel="stylesheet" href="../css/admin/tables.css">
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="../css/admin/adminManageRequirements.css" />
+  <link rel="stylesheet" href="../script/ADMIN/global.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
 </head>
 
 <body>
-  <!-----------------------------NAVIGATION-------------------------------------------------->
-  <div class="container">
-    <div class="navigation">
-      <ul>
-        <li>
-          <a href="">
-            <span class="icon"><ion-icon name="car-outline"></ion-icon></span>
-            <span class="title">CAPEDA</span>
-          </a>
-        </li>
-        <li>
-          <a href="admindashboard.php">
-            <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
-            <span class="title">Dashboard</span>
-          </a>
-        </li>
-        <li>
-          <a href="adminManageApplications.php">
-            <span class="icon"><ion-icon name="bar-chart-outline"></ion-icon></span>
-            <span class="title">Manage Applications</span>
-          </a>
-        </li>
-        <li>
-          <a href="adminManageMembers.php">
-            <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
-            <span class="title">Manage Members</span>
-          </a>
-        </li>
-        <li>
-          <a href="adminManageRequirements.php">
-            <span class="icon"><ion-icon name="settings-outline"></ion-icon>
-            </span>
-            <span class="title">Manage Requirements</span>
-          </a>
-        </li>
-        <li>
-          <a href="adminManageNewsAndAlerts.php">
-            <span class="icon"><ion-icon name="alert-outline"></ion-icon></span>
-            <span class="title">News and Alerts</span>
-          </a>
-        </li>
-        <li>
-          <a href="">
-            <span class="icon"><ion-icon name="exit-outline"></ion-icon></span>
-            <span class="title">Sign Out</span>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
+  <?php
+  include 'adminNavigation.php';
+
+  ?>
   <!-------------------------MAIN---------------------------->
   <div class="main">
     <div class="topbar">
@@ -75,74 +40,171 @@
         </label>
       </div>
       <div class="user">
-        <img src="/images/logo.jpg" alt="Sample pic" />
+        <img src="../images/logo.jpg" alt="Sample pic" />
       </div>
     </div>
 
-    <!-----------------CARDS--------------------------------------->
+
+
+
+
+
+
+
+
+
+
+
 
     <!----------------------------------------SECTION--------------------------------------------------->
     <div class="details">
       <div class="recentApplications">
         <div class="applicationHeader">
-          <h2>Manage Requirements</h2>
-          <a href="#" class="btn modal-trigger" data-modal-id="<?php echo 'addRequirementModal' ?>">Add New Document</a>
+          <h2>Manage Applicant Requirements</h2>
+          <div class="button-container">
+            <!-- button to trigger the add applicant modal -->
+            <a href="#" class="btn modal-trigger" data-modal-id="<?php echo 'requirement' ?>">
+              <ion-icon name="add"></ion-icon>
+            </a>
+            <?php
+            include('modals/addrequirement_modal.php');
+            ?>
+          </div>
         </div>
 
-        <p>In this page you can add the required documents that needs to be passed by the applicants in order to continue the applicant process</p>
-
-        <table id="myTable" class="applications-table">
+        <table class="applications-table">
           <thead>
             <tr>
-              <th>Document ID</td>
-              <th>Document Name</th>
-              <th>Description</th>
-              <th>Document Category</td>
-              <th>Date of Creation</td>
-              <th>Date of Update</td>
+              <th>Requirement ID</th>
+              <th>Requirement Name</th>
+              <th>Requirement Description</th>
+              <th>Requirement Status</th>
+              <!-- <th>Created At</th>
+              <th>Updated At</th> -->
+
+              <th class="action-header" colspan="3">Action</th>
+
             </tr>
           </thead>
+
           <tbody>
-            <tr>
-              <td>Name</td>
-              <td>Sample Address</td>
-              <td>23</td>
-              <td><span class="status pending">Pending</span></td>
-              <td>23</td>
-              <td>23</td>
+            <?php
+            $sql = mysqli_query($conn, "SELECT * from required_documents ORDER BY document_id ASC") or die(mysqli_error($conn));
 
-            </tr>
+            if (mysqli_num_rows($sql) > 0) {
+              while ($row = mysqli_fetch_array($sql)) {
+
+                $document_id = $row['document_id'];
+                $document_name = $row['document_name'];
+                $document_description = $row['document_description'];
+                $document_status = $row['is_required'];
+                $creation_date = $row['created_at'];
+                $update_date = $row['updated_at'];
+
+
+            ?>
+                <tr>
+                  <td><?php echo $document_id; ?></td>
+                  <td><?php echo $document_name ?></td>
+                  <td><?php echo $document_description ?></td>
+                  <td><span class="status <?php echo $document_status === 'required' ? 'required' : ''; ?>"><?php echo strtoupper($document_status) ?></span></td>
+
+                  <!-- <td><?php //echo $creation_date 
+                            ?></td> -->
+                  <!-- <td><?php //echo $update_date 
+                            ?></td> -->
+
+
+                  <td>
+                    <div class="action-buttons">
+                      <button type="button" class="action-button editBtn modal-trigger" data-modal-id="<?php echo 'user' . $id; ?>">
+                        <ion-icon name="open-outline"></ion-icon>
+                      </button>
+
+                      <!-- Add a delete button with an onclick event -->
+                      <!-- <button type="button" class="action-button deleteBtn modal-trigger" data-modal-id="<?php echo 'deleteApplicantModal' . $id ?>" data-applicant-name="<?php echo $row['firstName'] . ' ' . $row['lastName']; ?>">
+                        <ion-icon name="trash-outline"></ion-icon>
+                      </button> -->
+                      <?php
+                      include('modals/deleteApplicant_modal.php'); ?>
 
 
 
 
+                      <!-- pwede ako mag add ng mata na action button tas dun ko nalang ishow ibang info ng applicant via modal para di siksikan table -->
+
+
+
+                    </div>
+                    <?php include('modals/edit_modal1.php'); ?>
+                    <?php include('modals/view_modal1.php'); ?>
+                  </td>
+
+                </tr>
+
+            <?php
+
+              }
+            } else {
+              echo "Record not Found";
+            }
+            ?>
           </tbody>
+
+
+
         </table>
       </div>
-
-
-
     </div>
-
   </div>
 
-
   <!---------------SCRIPT--------------------------->
-  <script src="/script/admindashboard.js"></script>
+  <!-- <script src="../script/ADMIN/adminManageApplication.js"></script> -->
+  <script src="../script/ADMIN/adminManageRequirements.js"></script>
+  <script src="../script/ADMIN/modal.js"></script>
   <!---------ICONS----------------------------------->
-  <script src="../script/ADMIN/adminManageApplication.js"></script>
-  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="../script/ADMIN/modal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+
+
+
+
+
+
+
+
+  <!-- SweetAlert Script -->
+  <?php
+  if (isset($_SESSION['status']) && $_SESSION['status_code'] != '') {
+  ?>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        Swal.fire({
+          title: "<?php echo $_SESSION['status']; ?>",
+          icon: "<?php echo $_SESSION['status_code']; ?>",
+          showConfirmButton: true,
+        });
+
+      });
+    </script>
+  <?php
+    unset($_SESSION['status']);
+  }
+  ?>
+
+
+
+
+
+
+
+
+
+
+
 
 </body>
-
-<script>
-  $(document).ready(function() {
-    $('#myTable').DataTable();
-  });
-</script>
 
 </html>
