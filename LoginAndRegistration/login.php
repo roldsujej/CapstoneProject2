@@ -6,7 +6,24 @@ ini_set('display_errors', 1);
 require_once '../database/config.php';
 include 'common.php';
 
-
+// check if already logged in
+if (isset($_SESSION['id'])) {
+	
+	if (isset($_SESSION['user_role'])) {
+		// if applicant
+		if ($_SESSION['user_role'] === 'applicant') {
+			
+			header('location: ../Applicant/applicantDashboard.php');
+			
+		}
+		// if admin
+		else if ($_SESSION['user_role'] === 'admin') {
+			
+			header('location: ../ADMIN/admindashboard.php');
+			
+		}
+	}
+}
 
 if (isset($_POST['login'])) {
     $email = mysqli_real_escape_string($conn, $_POST["email"]);
@@ -59,7 +76,7 @@ if (isset($_POST['login'])) {
         }
     } elseif ($adminResult->num_rows > 0) {
         $row = $adminResult->fetch_assoc();
-        if ($_POST['$password'] === $row['password']) {
+        if ($_POST['password'] === $row['password']) {
             if ($row['account_status'] == 0) {
                 // Email not verified for admin
                 $_SESSION['login_error'] = "Email not verified for admin. Please check your email for verification instructions.";
@@ -67,10 +84,10 @@ if (isset($_POST['login'])) {
                 exit();
             } elseif ($row['membership_status'] == 'admin') {
                 // Admin login
-                $_SESSION['user_id'] = $row['id'];
+                $_SESSION['id'] = $row['id'];
                 $_SESSION['user_role'] = 'admin';
                 $_SESSION['email'] = $row['email'];
-                header("location: capeda/ADMIN/admindashboard.php");
+                header("location: ../ADMIN/admindashboard.php");
                 exit();
             }
         } else {

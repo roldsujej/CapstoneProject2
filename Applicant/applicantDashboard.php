@@ -70,9 +70,9 @@ session_start();
           </li> -->
 
                 <li>
-                    <a href="" id="signOutLink">
+                    <a href="" id="logOutLink">
                         <span class="icon"><ion-icon name="exit-outline"></ion-icon></span>
-                        <span class="title">Sign Out</span>
+                        <span class="title">Log Out</span>
                     </a>
                 </li>
             </ul>
@@ -82,13 +82,13 @@ session_start();
 
     <!-- ------------------------------MODALS----------------------------------- -->
 
-    <div id="signOutModal" class="modal">
+    <div id="logOutModal" class="modal">
         <div class="modal-content">
             <span class="close" id="closeModal">&times;</span>
             <h2>Confirmation</h2>
-            <p>Are you sure you want to sign out?</p>
-            <button id="confirmSignOut">Yes</button>
-            <button id="cancelSignOut">No</button>
+            <p>Are you sure you want to log out?</p>
+            <button id="confirmLogOut">Yes</button>
+            <button id="cancelLogOut">No</button>
         </div>
     </div>
 

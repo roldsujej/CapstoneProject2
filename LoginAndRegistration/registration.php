@@ -193,7 +193,7 @@ if (isset($_POST['submit'])) {
         </div>
 
         <div class="create">
-          <a href="unitregistration.html">Register your PEDICAB here</a>
+          <a href="unitregistration.php">Register your PEDICAB here</a>
           <i class="ri-arrow-right-fill"></i>
         </div>
       </form>

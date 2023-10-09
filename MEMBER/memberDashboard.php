@@ -64,7 +64,7 @@
                             <span class="icon"
                                 ><ion-icon name="exit-outline"></ion-icon
                             ></span>
-                            <span class="title">Sign Out</span>
+                            <span class="title">Log Out</span>
                         </a>
                     </li>
                 </ul>
