@@ -1,5 +1,5 @@
 <?php
-
+ob_start();
 function getLatestDocumentId()  //gets the latest auto incremented id
 {
     require "../database/config.php"; // Include your database connection code
@@ -32,6 +32,7 @@ if (isset($_POST['submit_document'])) {
         echo $insertQuery->error;
     }
 }
+ob_end_clean();
 ?>
 <!-- for adding new requirement -->
 <div class="modal-overlay" id="<?php echo 'requirement' ?>">

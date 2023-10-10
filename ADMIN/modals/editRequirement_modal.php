@@ -1,4 +1,5 @@
 <?php
+ob_start();
 if (isset($_POST['update_document'])) {
     $document_id = mysqli_real_escape_string($conn, $_POST['document_id']);
     $document_name = mysqli_real_escape_string($conn, $_POST['document_name']);
@@ -17,6 +18,8 @@ if (isset($_POST['update_document'])) {
         echo $updateQuery->error;
     }
 }
+ob_end_clean();
+
 ?>
 <!-- for adding new requirement -->
 <div class="modal-overlay" id="<?php echo 'EditRequirement' . $document_id ?>">

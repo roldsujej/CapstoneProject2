@@ -127,17 +127,19 @@ require "../database/config.php";
                         <ion-icon name="open-outline"></ion-icon>
                       </button>
 
+
+
                       <!-- Add a delete button with an onclick event -->
-                      <!-- <button type="button" class="action-button deleteBtn modal-trigger" data-modal-id="<?php echo 'deleteApplicantModal' . $id ?>" data-applicant-name="<?php echo $row['firstName'] . ' ' . $row['lastName']; ?>">
+                      <button type="button" class="action-button deleteBtn modal-trigger" data-modal-id="<?php echo 'deleteRequirementModal' . $document_id; ?>" data-doocument-name="<?php echo $row['document_name'] ?>">
                         <ion-icon name="trash-outline"></ion-icon>
-                      </button> -->
+                      </button>
                       <?php
-                      include('modals/deleteApplicant_modal.php'); ?>
+                      include('modals/deleteRequirement_modal.php'); ?>
 
 
 
 
-                      <!-- pwede ako mag add ng mata na action button tas dun ko nalang ishow ibang info ng applicant via modal para di siksikan table -->
+
 
 
 
