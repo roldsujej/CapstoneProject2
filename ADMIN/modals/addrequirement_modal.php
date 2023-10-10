@@ -13,10 +13,29 @@ function getLatestDocumentId()  //gets the latest auto incremented id
         return 1; // Default to 1 if there are no existing applicants
     }
 }
+if (isset($_POST['submit_document'])) {
+    $document_name = mysqli_real_escape_string($conn, $_POST['document_name']);
+    $document_description = mysqli_real_escape_string($conn, $_POST['document_description']);
+    $document_status = mysqli_real_escape_string($conn, $_POST['document_status']);
+    $document_type = mysqli_real_escape_string($conn, $_POST['document_type']);
+
+    // Insert the new requirement into the database
+    $insertQuery = $conn->prepare("INSERT INTO required_documents (document_name, document_description, is_required, document_type, created_at) VALUES (?, ?, ?, ?, NOW())");
+    $insertQuery->bind_param("ssss", $document_name, $document_description, $document_status, $document_type);
+
+    if ($insertQuery->execute()) {
+        // Requirement added successfully, you can show a success message
+        $_SESSION['status'] = "New Requirement Added.";
+        $_SESSION['status_code'] = "success";
+    } else {
+        // Handle the error (e.g., show an error message)
+        echo $insertQuery->error;
+    }
+}
 ?>
 <!-- for adding new requirement -->
 <div class="modal-overlay" id="<?php echo 'requirement' ?>">
-    <div class="modal-container modal-form-size modal-sm">
+    <div class="modal-container modal-form-size modal-l">
         <div class="modal-header text-light">
             <h4 class="modal-h4-header"><?php echo "Add New Requirement" ?></h4>
             <span class="modal-exit" data-modal-id="<?php echo 'requirement'  ?>">
@@ -57,40 +76,44 @@ function getLatestDocumentId()  //gets the latest auto incremented id
                         <span class="validation-message"></span>
                     </div>
 
+                    <!-- <div class="form-group">
+                        <label class="label" for="document_type">Document Type</label>
+                        <select class="form-control" name="document_type" id="document_type"> -->
+                    <?php
+                    // Fetch available document types from the database and populate options
+                    // $sql = "SELECT document_type FROM required_documents";
+                    // $result = mysqli_query($conn, $sql);
+                    // while ($row = mysqli_fetch_assoc($result)) {
+                    //     $document_type = $row['document_type'];
+                    //     echo '<option value="' . $document_type . '">' . $document_type . '</option>';
+                    //  }
 
+                    ?>
 
+                    <!-- Add options for existing document types here -->
+                    <!-- </select> -->
 
-
+                    <!-- </div> -->
+                    <div class="form-group">
+                        <label class="label" for="">Document Type</label>
+                        <input type="text" class="form-control" name="document_type" id="document_type" placeholder="Choose what type of file ">
+                        <span class="validation-message"></span>
+                    </div>
 
 
 
             </div>
             <br />
             <div class="modal-footer">
-                <button type="submit" name="submit_document" class="btn " onsubmit="return validate()">
+                <button type="submit" name="submit_document" class="modalBtn " onsubmit="return validate()">
                     Add
                 </button>
             </div>
+
+
             </form>
         </div>
+
+
     </div>
 </div>
-
-<?php
-if (isset($_POST['submit_document'])) {
-    // $document_id = mysqli_real_escape_string($conn, $_POST['document_id']); di na ata need since auto incremented
-    $document_name = mysqli_real_escape_string($conn, $_POST['document_name']);
-    $document_description = mysqli_real_escape_string($conn, $_POST['document_description']);
-    $document_status = mysqli_real_escape_string($conn, $_POST['document_status']);
-
-
-    // Update user account status using prepared statement
-    $insertQuery = $conn->prepare("INSERT INTO required_documents (document_name, document_description, is_required, created_at) VALUES (?, ?, ?, NOW())");
-    $insertQuery->bind_param("sss", $document_name, $document_description, $document_status);
-    if ($insertQuery->execute()) {
-        echo "Data inserted succesfully";
-    } else {
-        echo $insertQuery->error;
-    }
-}
-?>

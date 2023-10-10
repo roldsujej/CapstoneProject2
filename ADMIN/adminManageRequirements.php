@@ -66,8 +66,12 @@ require "../database/config.php";
             <a href="#" class="btn modal-trigger" data-modal-id="<?php echo 'requirement' ?>">
               <ion-icon name="add"></ion-icon>
             </a>
+            <!-- <a href="#" class="btn modal-trigger" data-modal-id="<?php echo 'addNewDocumentType' ?>">
+              Add Document Type
+            </a> -->
             <?php
             include('modals/addrequirement_modal.php');
+            // include('modals/addNewDocumentType_modal.php');
             ?>
           </div>
         </div>
@@ -79,6 +83,7 @@ require "../database/config.php";
               <th>Requirement Name</th>
               <th>Requirement Description</th>
               <th>Requirement Status</th>
+              <th>Document Type</th>
               <!-- <th>Created At</th>
               <th>Updated At</th> -->
 
@@ -100,6 +105,7 @@ require "../database/config.php";
                 $document_status = $row['is_required'];
                 $creation_date = $row['created_at'];
                 $update_date = $row['updated_at'];
+                $document_type = $row['document_type'];
 
 
             ?>
@@ -107,8 +113,8 @@ require "../database/config.php";
                   <td><?php echo $document_id; ?></td>
                   <td><?php echo $document_name ?></td>
                   <td><?php echo $document_description ?></td>
-                  <td><span class="status <?php echo $document_status === 'required' ? 'required' : ''; ?>"><?php echo strtoupper($document_status) ?></span></td>
-
+                  <td><span class="status <?php echo $document_status === 'required' ? 'required' : 'optional'; ?>"><?php echo strtoupper($document_status) ?></span></td>
+                  <td><?php echo $document_type ?></td>
                   <!-- <td><?php //echo $creation_date 
                             ?></td> -->
                   <!-- <td><?php //echo $update_date 
@@ -117,7 +123,7 @@ require "../database/config.php";
 
                   <td>
                     <div class="action-buttons">
-                      <button type="button" class="action-button editBtn modal-trigger" data-modal-id="<?php echo 'user' . $id; ?>">
+                      <button type="button" class="action-button editBtn modal-trigger" data-modal-id="<?php echo 'EditRequirement' . $document_id ?>">
                         <ion-icon name="open-outline"></ion-icon>
                       </button>
 
@@ -136,7 +142,7 @@ require "../database/config.php";
 
 
                     </div>
-                    <?php include('modals/edit_modal1.php'); ?>
+                    <?php include('modals/editRequirement_modal.php'); ?>
                     <?php include('modals/view_modal1.php'); ?>
                   </td>
 
