@@ -165,6 +165,9 @@ require "../database/config.php";
       </div>
     </div>
   </div>
+  <?php
+  include('modals/logout_modal.php');
+  ?>
 
   <!---------------SCRIPT--------------------------->
   <!-- <script src="../script/ADMIN/adminManageApplication.js"></script> -->

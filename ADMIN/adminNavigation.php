@@ -42,7 +42,9 @@
              <li>
                  <a href="">
                      <span class="icon"><ion-icon name="exit-outline"></ion-icon></span>
-                     <span class="title">Log Out</span>
+                     <span class="title modal-trigger" data-modal-id="logOutModal">Log Out</span>
+
+
                  </a>
              </li>
          </ul>

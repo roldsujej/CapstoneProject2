@@ -2,7 +2,9 @@
 
 require "../database/config.php";
 //require "adminAddApplicant_process.php";
-require "session.php"
+require "session.php";
+
+
 //include "fetchAdditionalInfo.php";
 
 
@@ -25,10 +27,12 @@ require "session.php"
 <body>
   <!-----------------------------NAVIGATION-------------------------------------------------->
   <!-- i separated the navigation to a specific php file so that i will be reusable in different pages -->
-
   <?php
   include 'adminNavigation.php';
+
   ?>
+
+
   <!-------------------------MAIN---------------------------->
   <div class="main">
     <div class="topbar">
@@ -58,19 +62,34 @@ require "session.php"
 
 
 
+
+
+
     <!----------------------------------------SECTION--------------------------------------------------->
+
+
     <div class="details">
       <div class="recentApplications">
         <div class="applicationHeader">
           <h2>Manage Membership Applications</h2>
+
           <div class="button-container">
             <!-- button to trigger the add applicant modal -->
             <a href="#" class="btn modal-trigger" data-modal-id="<?php echo 'addApplicantModal' ?>"><ion-icon name="add"></ion-icon></a>
             <?php
             include('modals/addapplicant_modal.php');
+
             ?>
           </div>
+
+
+
         </div>
+
+
+
+
+
 
         <table class="applications-table">
           <thead>
@@ -119,7 +138,9 @@ require "session.php"
                         <ion-icon name="trash-outline"></ion-icon>
                       </button>
                       <?php
-                      include('modals/deleteApplicant_modal.php'); ?>
+                      include('modals/deleteApplicant_modal.php');
+                      ?>
+
 
 
 
@@ -130,7 +151,7 @@ require "session.php"
 
                     </div>
                     <?php include('modals/edit_modal1.php'); ?>
-                    <?php include('modals/view_modal1.php'); ?>
+
                   </td>
 
                 </tr>
@@ -147,9 +168,19 @@ require "session.php"
 
 
         </table>
+
+
       </div>
+
     </div>
+
   </div>
+  <?php
+  include('modals/logout_modal.php');
+  ?>
+
+  <!-- You need to include the logout modal here to pop up the logout modal when the logout nav is clicked -->
+
 
   <!---------------SCRIPT--------------------------->
   <!-- <script src="../script/ADMIN/adminManageApplication.js"></script> -->
