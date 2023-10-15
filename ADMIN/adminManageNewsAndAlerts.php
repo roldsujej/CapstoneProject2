@@ -74,6 +74,8 @@ require "../database/config.php";
                             <th>Announcement Name</th>
                             <th>Description</th>
                             <th>Date Created</th>
+                            <th>Date Updated</th>
+
 
                             <th class="action-header" colspan="3">Action</th>
 
@@ -87,10 +89,14 @@ require "../database/config.php";
                         if (mysqli_num_rows($sql) > 0) {
                             while ($row = mysqli_fetch_array($sql)) {
 
+
+
                                 $announcement_id = $row['announcement_id'];
                                 $announcement_title = $row['announcement_title'];
                                 $announcement_description = $row['announcement_description'];
                                 $date_created = $row['date_created'];
+                                $date_updated = $row['date_updated'];
+                                $announcement_updated = ($date_updated != $row['date_created']);
 
 
 
@@ -99,8 +105,11 @@ require "../database/config.php";
                                     <td><?php echo $announcement_id; ?></td>
                                     <td><?php echo $announcement_title; ?></td>
                                     <td><?php echo $announcement_description; ?></td>
-                                    <td><?php echo $date_created;
-                                        ?></td>
+                                    <td><?php echo $date_created; ?></td>
+                                    <td>
+                                        <?php echo $announcement_updated ? $date_updated : ''; ?>
+                                    </td>
+
                                     <!-- <td><?php //echo $update_date 
                                                 ?></td> -->
 
