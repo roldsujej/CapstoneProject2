@@ -1,3 +1,16 @@
+<?php
+
+require "../database/config.php";
+
+//require "adminAddApplicant_process.php";
+//require "session.php"
+//include "fetchAdditionalInfo.php";
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +18,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="../css/admin/admindashboard.css" />
+    <link rel="stylesheet" href="../css/admin/adminAnnouncement.css" />
     <link rel="stylesheet" href="../script/ADMIN/global.css">
 </head>
 
@@ -31,88 +44,110 @@
             </div>
         </div>
 
-        <!-----------------CARDS--------------------------------------->
-        <div class="cardBox">
-            <div class="card">
-                <div class="numbers">1.504</div>
-                <div class="cardName">Active Members</div>
-                <div class="iconBx"><ion-icon name="person-outline"></ion-icon></div>
-            </div>
 
-            <div class="card">
-                <div class="numbers">1.504</div>
-                <div class="cardName">Active PEDICAB units</div>
-                <div class="iconBx">
-                    <ion-icon name="stats-chart-outline"></ion-icon>
-                </div>
-            </div>
 
-            <div class="card">
-                <div class="numbers">1.504</div>
-                <div class="cardName">On-going Application</div>
-                <div class="iconBx">
-                    <ion-icon name="ellipsis-horizontal-outline"></ion-icon>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="numbers">1.504</div>
-                <div class="cardName">Recent Members</div>
-                <div class="iconBx">
-                    <ion-icon name="checkmark-done-outline"></ion-icon>
-                </div>
-            </div>
-        </div>
 
         <!----------------------------------------SECTION--------------------------------------------------->
         <div class="details">
             <div class="recentApplications">
                 <div class="applicationHeader">
-                    <h2>Recent Membership Applications</h2>
-                    <a href="#" class="btn">View All</a>
+                    <h2>Manage News and Announcements</h2>
+                    <div class="button-container">
+                        <!-- button to trigger the add applicant modal -->
+                        <a href="#" class="btn modal-trigger" data-modal-id="<?php echo 'createAnnouncement' ?>">
+                            <ion-icon name="add"></ion-icon>
+                        </a>
+
+                        <?php
+                        include('modals/announcement_modal/addAnnouncement_modal.php');
+
+                        ?>
+                    </div>
+
+
                 </div>
 
-                <table>
+                <table class="applications-table">
                     <thead>
                         <tr>
-                            <td>Name</td>
-                            <td>Address</td>
-                            <td>Age</td>
-                            <td>Status</td>
+                            <th>Announcement ID</th>
+                            <th>Announcement Name</th>
+                            <th>Description</th>
+                            <th>Date Created</th>
+
+                            <th class="action-header" colspan="3">Action</th>
+
                         </tr>
                     </thead>
+
                     <tbody>
-                        <tr>
-                            <td>Name</td>
-                            <td>Sample Address</td>
-                            <td>23</td>
-                            <td><span class="status pending">Pending</span></td>
-                        </tr>
-                        <tr>
-                            <td>Name</td>
-                            <td>Address</td>
-                            <td>32</td>
-                            <td><span class="status approved">Approved</span></td>
-                        </tr>
-                        <tr>
-                            <td>Name</td>
-                            <td>Address</td>
-                            <td>17</td>
-                            <td><span class="status denied">Denied</span></td>
-                        </tr>
-                        <tr>
-                            <td>Name</td>
-                            <td>Address</td>
-                            <td>26</td>
-                            <td><span class="status denied">Denied</span></td>
-                        </tr>
-                        <tr>
-                            <td>Name</td>
-                            <td>Address</td>
-                            <td>55</td>
-                            <td><span class="status approved">Approved</span></td>
-                        </tr>
+                        <?php
+                        $sql = mysqli_query($conn, "SELECT * from tbl_announcements ORDER BY announcement_id ASC") or die(mysqli_error($conn));
+
+                        if (mysqli_num_rows($sql) > 0) {
+                            while ($row = mysqli_fetch_array($sql)) {
+
+                                $announcement_id = $row['announcement_id'];
+                                $announcement_title = $row['announcement_title'];
+                                $announcement_description = $row['announcement_description'];
+                                $date_created = $row['date_created'];
+
+
+
+                        ?>
+                                <tr>
+                                    <td><?php echo $announcement_id; ?></td>
+                                    <td><?php echo $announcement_title; ?></td>
+                                    <td><?php echo $announcement_description; ?></td>
+                                    <td><?php echo $date_created;
+                                        ?></td>
+                                    <!-- <td><?php //echo $update_date 
+                                                ?></td> -->
+
+
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button type="button" class="action-button editBtn modal-trigger" data-modal-id="<?php echo 'editAnnouncement' . $announcement_id  ?>">
+                                                <ion-icon name="open-outline"></ion-icon>
+                                            </button>
+
+
+
+
+                                            <!-- Add a delete button with an onclick event -->
+                                            <button type="button" class="action-button deleteBtn modal-trigger" data-modal-id="<?php echo 'deleteAnnouncementModal' . $announcement_id; ?>" data-doocument-name="<?php //echo $row['document_name'] 
+                                                                                                                                                                                                                    ?>">
+                                                <ion-icon name="trash-outline"></ion-icon>
+                                            </button>
+                                            <?php
+                                            include('modals/announcement_modal/deleteAnnouncement_modal.php'); ?>
+
+
+
+
+
+
+
+
+                                        </div>
+                                        <?php include('modals/announcement_modal/editAnnouncement_modal.php'); ?>
+
+                                        <?php include('modals/view_modal1.php'); ?>
+                                    </td>
+
+                                </tr>
+
+                        <?php
+
+                            }
+                        } else {
+                            echo "Record not Found";
+                        }
+                        ?>
                     </tbody>
+
+
+
                 </table>
             </div>
         </div>
