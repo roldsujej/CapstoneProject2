@@ -36,7 +36,7 @@
              <li>
                  <a href="adminManageNewsAndAlerts.php">
                      <span class="icon"><ion-icon name="alert-outline"></ion-icon></span>
-                     <span class="title">News and Alerts</span>
+                     <span class="title">Announcements</span>
                  </a>
              </li>
              <li>
