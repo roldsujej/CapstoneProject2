@@ -1,0 +1,97 @@
+<mxfile host="app.diagrams.net" modified="2023-10-16T15:57:34.907Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="xP6Dny2c43-Mh1qCbkxh" version="22.0.4" type="device">
+  <diagram name="Page-1" id="A9ywtFvvibDayRX8rk0S">
+    <mxGraphModel dx="1764" dy="2523" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="MHMV6ur7sK5eySB-AZ1Q-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="MHMV6ur7sK5eySB-AZ1Q-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="310" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="MHMV6ur7sK5eySB-AZ1Q-1" value="Submit registration form" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="160" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="MHMV6ur7sK5eySB-AZ1Q-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="MHMV6ur7sK5eySB-AZ1Q-13">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="310" y="430" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="MHMV6ur7sK5eySB-AZ1Q-13" value="validate email&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="300" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="MHMV6ur7sK5eySB-AZ1Q-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="MHMV6ur7sK5eySB-AZ1Q-15">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="180" y="640" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="MHMV6ur7sK5eySB-AZ1Q-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="MHMV6ur7sK5eySB-AZ1Q-15" target="MHMV6ur7sK5eySB-AZ1Q-13">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="420" y="480" />
+              <mxPoint x="420" y="330" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="MHMV6ur7sK5eySB-AZ1Q-15" value="email validated?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="260" y="430" width="100" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="MHMV6ur7sK5eySB-AZ1Q-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.583;entryY=0.033;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="MHMV6ur7sK5eySB-AZ1Q-17" target="MHMV6ur7sK5eySB-AZ1Q-28">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="360" y="1160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="MHMV6ur7sK5eySB-AZ1Q-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="MHMV6ur7sK5eySB-AZ1Q-17">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="40" y="1210" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="MHMV6ur7sK5eySB-AZ1Q-17" value="Elligible?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="125" y="1060" width="120" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="MHMV6ur7sK5eySB-AZ1Q-19" value="NO" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="360" y="450" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="MHMV6ur7sK5eySB-AZ1Q-20" value="YES" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="190" y="450" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="MHMV6ur7sK5eySB-AZ1Q-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="MHMV6ur7sK5eySB-AZ1Q-21" target="MHMV6ur7sK5eySB-AZ1Q-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="MHMV6ur7sK5eySB-AZ1Q-21" value="Admin will review if the applicant is elligible to apply" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="125" y="930" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="MHMV6ur7sK5eySB-AZ1Q-25" value="YES" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="50" y="1060" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="MHMV6ur7sK5eySB-AZ1Q-26" value="NO" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="300" y="1070" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="MHMV6ur7sK5eySB-AZ1Q-38" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="MHMV6ur7sK5eySB-AZ1Q-27" target="MHMV6ur7sK5eySB-AZ1Q-31">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="MHMV6ur7sK5eySB-AZ1Q-27" value="Admin will click approve on Admin Manage Applications module" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-20" y="1210" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="MHMV6ur7sK5eySB-AZ1Q-37" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="MHMV6ur7sK5eySB-AZ1Q-28" target="MHMV6ur7sK5eySB-AZ1Q-33">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="MHMV6ur7sK5eySB-AZ1Q-28" value="Admin will deny the application and will send an email to the applicant explaining the reason why the registration wont go through" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="330" y="1210" width="160" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="MHMV6ur7sK5eySB-AZ1Q-31" value="The user will be notified via email that he/she now can submit required documents" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-40" y="1450" width="160" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="MHMV6ur7sK5eySB-AZ1Q-33" value="The application will be recorded and the applicant profile will have a expiry before it is deleted on the database" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="350" y="1440" width="120" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="MHMV6ur7sK5eySB-AZ1Q-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="MHMV6ur7sK5eySB-AZ1Q-34" target="MHMV6ur7sK5eySB-AZ1Q-21">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="MHMV6ur7sK5eySB-AZ1Q-34" value="Redirect the applicant to review page wherein it will display that the account is being reviewed by admin" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="120" y="640" width="130" height="90" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

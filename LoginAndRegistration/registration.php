@@ -98,13 +98,34 @@ if (isset($_POST['submit'])) {
 
   <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet" />
   <link rel="stylesheet" href="../assets/loginAndRegistration/css/registration.css" />
+  <!-- <link rel="stylesheet" href="../script/ADMIN/global.css"> -->
 
 </head>
 
 <body>
   <div class="container">
     <div class="logo">
-      <img src="../images/capedalogo.png" alt="" />
+      <!-- <img src="../images/capedalogo.png" alt="" /> -->
+
+      <div class="card">
+        <header class="title">
+          <h3 class="title">Please read the instruction before submitting!</h3>
+        </header>
+
+        <div class="card-body">
+          <h4 class="card-title">Before you register make sure you have the requirements below:</h4>
+
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Active Email Account</li>
+            <li class="list-group-item">Barangay Clearance</li>
+            <li class="list-group-item">2x2 Picture</li>
+            <li class="list-group-item">Valid ID</li>
+
+          </ul>
+        </div>
+
+
+      </div>
     </div>
     <!----LOGO DESIGN HERE-->
 
@@ -159,7 +180,7 @@ if (isset($_POST['submit'])) {
 
           <div class="text-input">
             <i class="ri-map-pin-line"></i>
-            <input type="text" placeholder="Address" name="address" id="address" required onkeypress="return /[0-9]/.test(event.key) " />
+            <input type="text" placeholder="Address" name="address" id="address" required />
           </div>
           <p class="error" id="addressError"><?php echo isset($_SESSION['addressError']) ? $_SESSION['addressError'] : ''; ?></p>
 
