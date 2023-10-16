@@ -11,7 +11,28 @@ session_start();
 // Check if 'fullName' is set in the session before accessing it
 //$fullname = isset($_SESSION['fullName']) ? $_SESSION['fullName'] : '';
 
+// double check user role
+if (isset($_SESSION['id'])) {
+	
+	if (isset($_SESSION['user_role'])) {
+		// if applicant
+		if ($_SESSION['user_role'] === 'applicant') {
+			
+			// header('location: ../Applicant/applicantDashboard.php');
+			
+		}
+		// if admin
+		else if ($_SESSION['user_role'] === 'admin') {
+			
+			header('location: ../ADMIN/admindashboard.php');
+			
+		}
+	}
+} else {
+	
+	header('location: logout.php');
 
+}
 
 
 
@@ -113,7 +134,7 @@ session_start();
         <div class="cardBox">
             <div class="card">
 
-                <div class="cardName">Applicant ID: <?php echo $_SESSION['user_id']; ?></div>
+                <div class="cardName">Applicant ID: <?php echo $_SESSION['id']; ?></div>
                 <div class="iconBx">
                     <ion-icon name="person-outline"></ion-icon>
                 </div>

@@ -35,6 +35,7 @@ session_start();
     </div>
   </form>
 
+
   <!-- SweetAlert Script -->
   <?php
   if (isset($_SESSION['status']) && $_SESSION['status_code'] != '') {
@@ -76,6 +77,34 @@ session_start();
 
   <!-- Your other scripts and styles -->
   <script src="../assets/loginAndRegistration/script/otpverification.js"></script>
+  
+  <script>
+  // resend if logged in
+  document.addEventListener("DOMContentLoaded", function () {
+    // Check if you want to auto-send the 'resend' data
+    <?php if (isset($_SESSION['id'])) { ?>
+      fetch('verify_otp.php', {
+        method: 'POST',
+        body: new URLSearchParams({ 'resend': '1' }),
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      })
+        .then(response => {
+          if (response.ok) {
+            // Request was successful, you can handle the response here
+          } else {
+            // Request failed, handle the error
+            console.error('Failed to auto-send the "resend" data.');
+          }
+        })
+        .catch(error => {
+          console.error('An error occurred:', error);
+        });
+    <?php } ?>
+  });
+</script>
+  
 </body>
 
 </html>

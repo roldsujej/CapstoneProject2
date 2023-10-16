@@ -152,7 +152,7 @@ if (isset($_POST['submit'])) {
             if ($updateStmt->execute()) {
                 $_SESSION['status'] = "You have successfully verified your profile";
                 $_SESSION['status_code'] = "success";
-                header("Location: success.php"); // Redirect to success page or login page
+                header("Location: login.php"); // Redirect to success page or login page
                 exit();
             } else {
                 $_SESSION['msgError'] = "Database error: " . $conn->error;
