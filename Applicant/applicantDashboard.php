@@ -18,6 +18,12 @@ if (isset($_SESSION['id'])) {
 		// if applicant
 		if ($_SESSION['user_role'] === 'applicant') {
 			
+			if (isset($_SESSION['verified'])) {
+				if ($_SESSION['verified'] === 0) {
+					header('location: ../Applicant/logout.php');
+				}
+			}
+			
 			// header('location: ../Applicant/applicantDashboard.php');
 			
 		}

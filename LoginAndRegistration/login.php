@@ -6,6 +6,7 @@ ini_set('display_errors', 1);
 require_once '../database/config.php';
 include 'common.php';
 
+
 // check if already logged in
 if (isset($_SESSION['id'])) {
 	
@@ -53,6 +54,7 @@ if (isset($_POST['login'])) {
                 $_SESSION['id'] = $row['id'];
                 $_SESSION['user_role'] =  'applicant';
                 $_SESSION['email'] = $row['email'];
+				$_SESSION['verified'] = 0;
 				
                 header("location: verification.php");
                 exit();
