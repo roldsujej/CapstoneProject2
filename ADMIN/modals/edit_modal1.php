@@ -3,84 +3,6 @@
 //if pending verification admin should not be able to approve or deny, if email verified admin can, if approved buttons should be hidden if denied hidden or disabled
 
 
-if (isset($_POST['approve_user'])) {
-    $id = mysqli_real_escape_string($conn, $_POST['applicant_id']);
-    $emailStatus = getEmailStatus($id);
-    $status = getStatusText($emailStatus);
-
-    if ($emailStatus == 0) {
-        echo '<script>
-            alert("Cannot approve the application because the email is still pending for verification.");
-            window.location.href = "adminManageApplications.php";
-        </script>';
-    } elseif ($emailStatus == 1) {
-        if ($status != "Account Accepted") {
-            // Check if the status is not already "Account Accepted"
-            $updateQuery = $conn->prepare("UPDATE account_profiles SET status = ? WHERE id = ?");
-            $updateQuery->bind_param("ii", $status, $id);
-
-            if ($updateQuery->execute()) {
-                echo '<script>
-                    alert("User ' . ucfirst($fname) . ' ' . ucfirst($lname) . ' has been approved.");
-                    window.location.href = "adminManageApplications.php";
-                </script>';
-            } else {
-                echo '<script>
-                    alert("User not approved");
-                    window.location.href = "userAccounts.php";
-                </script>';
-            }
-        } else {
-            // Handle the case where the application is already approved
-            //for some reason ndi to gumagana hahahaha 
-            echo '<script>
-                alert("User ' . ucfirst($fname) . ' ' . ucfirst($lname) . ' is already approved.");
-                window.location.href = "adminManageApplications.php";
-            </script>';
-        }
-    }
-}
-
-
-
-
-if (isset($_POST['deny_user'])) {
-    $id = mysqli_real_escape_string($conn, $_POST['applicant_id']);
-    $emailStatus = getEmailStatus($id);
-    $status = getStatusText($emailStatus);
-
-    if ($emailStatus == 0) {
-        echo '<script>
-            alert("Cannot deny the application because the email is still pending for verification.");
-            window.location.href = "adminManageApplications.php";
-        </script>';
-    } elseif ($emailStatus == 1) {
-        if ($status != "Account Accepted") {
-            // Check if the status is not already "Account Accepted"
-            $updateQuery = $conn->prepare("UPDATE account_profiles SET status = ? WHERE id = ?");
-            $updateQuery->bind_param("ii", $status, $id);
-
-            if ($updateQuery->execute()) {
-                echo '<script>
-                    alert("User ' . ucfirst($fname) . ' ' . ucfirst($lname) . ' has been denied.");
-                    window.location.href = "adminManageApplications.php";
-                </script>';
-            } else {
-                echo '<script>
-                    alert("User not approved");
-                    window.location.href = "userAccounts.php";
-                </script>';
-            }
-        } else {
-            // Handle the case where the application is already approved
-            //for some reason ndi to gumagana hahahaha 
-            echo '<script>
-                alert("User ' . ucfirst($fname) . ' ' . ucfirst($lname) . ' is already denied.");
-                window.location.href = "adminManageApplications.php";
-            </script>';
-        }
-    }
-}
 
 
 
@@ -131,11 +53,25 @@ if (isset($_POST['deny_user'])) {
                         <label class="label" for="">Email</label>
                         <input type="email" class="form-control" name="email" id="email" value="<?php echo ($email); ?>" required>
                     </div>
+
+
                     <div class="form-group">
-                        <label class="label" for="">Status</label>
-                        <input type="text" class="form-control" name="status" id="status" value="<?php echo ($status); ?>" required>
+                        <label class="label" for="">Status:</label>
+                        <div style="display: flex; align-items: center;">
+                            <input type="text" class="form-control" name="status" id="status" value="<?php echo ($status); ?>" required>
+
+                            <?php
+                            if ($status === "Pending Verification") {
+                                echo '<button type="button" class="btnModal modal-trigger verify-email-button" data-modal-id="verifyEmail">Verify Email</button>';
+                            }
+
+                            ?>
+                            <?php
+                            include "modals/email_verification_modal/adminVerifyEmail_modal.php"
+
+                            ?>
+                        </div>
                     </div>
-                    <!-- Add this inside your edit modal's form -->
                     <div class=" form-group">
                         <label class="label" for="">Temporary Password</label>
                         <div class="password-input-container">
@@ -147,21 +83,7 @@ if (isset($_POST['deny_user'])) {
                         <button type="button" class="generate-password-button" id="generateEditPasswordButton">Generate Password</button>
 
                     </div>
-                    <div class="form-group text-center">
-                        <label class="label" for="">Approve Profile Application?</label>
 
-                        <?php
-                        if ($status !== "Account Accepted" && $status !== "Application Denied") {
-                            // Check if the status is not "Account Accepted" or "Application Denied"
-                            echo '<button type="submit" name="approve_user" class="btn btn-success">Approve</button>';
-                            echo '<button type="submit" name="deny_user" class="btn btn-danger">Deny</button>';
-                        } else {
-                            // Application is already approved or denied, so disable both buttons
-                            echo '<button type="button" class="btn btn-secondary" disabled>Approved</button>';
-                            echo '<button type="button" class="btn btn-secondary" disabled>Denied</button>';
-                        }
-                        ?>
-                    </div>
             </div>
             <br />
             <div class="modal-footer">

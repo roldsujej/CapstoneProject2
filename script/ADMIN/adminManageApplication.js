@@ -226,6 +226,7 @@ document.addEventListener("DOMContentLoaded", function () {
       passwordInputEdit.placeholder = "Generate temporary password"; // Restore the placeholder text
     }
   }
+  // Open the Verify Email modal
 
   // Function to open the edit modal
 

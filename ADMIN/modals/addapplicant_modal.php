@@ -28,7 +28,6 @@ function generateRandomPassword($length = 8)
 
 
 
-
 if (isset($_POST['add_applicant'])) {
 
     $generatedPassword = generateRandomPassword(8);
@@ -38,12 +37,17 @@ if (isset($_POST['add_applicant'])) {
     $address = $_POST['address'];
     $email = $_POST['email'];
     $password = $_POST['password']; // Use the generated password
+    // we will email this code to the applicant the 1st time they login
+    $otp = rand(100000, 999999);
+    $otp_expiration = date('Y-m-d H:i:s', strtotime('+5 minutes'));
+    $verificationStatus = getStatusText(0);  //status 0 = email not verified
+
 
 
 
     // Perform database insertion
-    $query = "INSERT INTO account_profiles (firstName, lastName, cpNumber, address, email, password) 
-        VALUES ('$firstName', '$lastName', '$cpNum', '$address', '$email', '$password')";
+    $query = "INSERT INTO account_profiles (firstName, lastName, cpNumber, address, email, password,otp,otp_exp) 
+        VALUES ('$firstName', '$lastName', '$cpNum', '$address', '$email', '$password',$otp,'$otp_expiration')";
 
     if (mysqli_query($conn, $query)) {
         // Data inserted successfully
@@ -133,8 +137,8 @@ if (isset($_POST['add_applicant'])) {
     </div>
 </div>
 
-<!-- <script>
+<script>
     if (window.history.replaceState) {
         window.history.replaceState(null, null, window.location.href);
     }
-</script> -->
+</script>

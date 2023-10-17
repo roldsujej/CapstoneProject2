@@ -359,6 +359,12 @@ body {
   padding: 10px 15px;
   background-color: var(--gray);
 }
+.details table thead th.action-header {
+  font-weight: 600;
+  text-align: center; /* Center the header text */
+  padding: 10px 15px;
+  background-color: var(--gray);
+}
 
 .details .recentApplications table tr {
   color: var(--black1);
@@ -435,13 +441,6 @@ body {
 }
 
 .status.pending {
-  /* padding: 2px 4px;
-  background: #f0f0f0fc;
-  color: var(--black1);
-  border-radius: 4px;
-  font-size: 14px;
-  font-weight: 500;
-  text-align: left; */
   background: #f0f0f0fc;
   color: var(--black1);
 }
@@ -451,6 +450,8 @@ body {
 .action-buttons {
   display: flex; /* Use flexbox to make buttons appear side by side */
   gap: 5px; /* Add some space between the buttons */
+  justify-content: center;
+  align-items: center;
 }
 .action-button {
   padding: 8px 16px;
@@ -459,8 +460,8 @@ body {
   border: none;
   border-radius: 2px;
   cursor: pointer;
-  display: flex; /* Add flex display to center icon and text */
-  align-items: center; /* Vertically center the icon and text */
+  display: flex;
+  align-items: center;
   justify-content: center;
 }
 
@@ -611,6 +612,11 @@ label:not(.form-check-label):not(.custom-file-label) {
   color: #fff;
   background-color: var(--dBlue);
   box-shadow: none;
+}
+
+.verify-email-button {
+  background: #19376d;
+  color: #fff;
 }
 
 .error-message {
@@ -806,4 +812,69 @@ label:not(.form-check-label):not(.custom-file-label) {
     align-items: center; /* Center align content horizontally */
     text-align: center; /* Center align text */
   }
+}
+
+/* OTP Verification Styles */
+/* Hide the Update button when the Verify Email modal is open */
+.verifyEmail-active
+  .modal-container.modal-form-size.modal-l
+  .modal-footer
+  button[name="update_user"] {
+  display: none;
+}
+
+/* Show the overlay when the modal is active */
+.modal-container.active + .blur-overlay {
+  display: block;
+}
+
+.otp-modal-card {
+  text-align: center;
+  background-color: white;
+  border-radius: 20px;
+  padding: 3rem;
+  box-shadow: 0 10px 40px -20px black;
+  color: #000; /* Set the text color to black */
+  text-decoration: none; /* Remove underline */
+}
+
+.otp-modal-card-inputs {
+  margin: 30px 0;
+  display: grid;
+  gap: 30px;
+  justify-content: center;
+  grid-template-columns: repeat(6, auto);
+}
+
+.otp-modal-card-inputs input {
+  width: 60px;
+  height: 70px;
+  font-size: 35px;
+  text-align: center;
+  border-radius: 20px;
+  border: 1px solid black;
+}
+
+.otp-modal-card-inputs input:focus {
+  outline: 1px solid #19376d;
+}
+
+.otp-modal-card button {
+  background-color: #19376d;
+  border: none;
+  padding: 15px 50px;
+  font-size: 18px;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+.otp-modal-card button:hover {
+  opacity: 0.9;
+}
+
+.otp-modal-card button[disabled] {
+  opacity: 0.6;
+  cursor: default;
 }
