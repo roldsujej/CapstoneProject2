@@ -3,9 +3,10 @@
 require "../database/config.php";
 //require "adminAddApplicant_process.php";
 require "session.php";
+include "status_functions.php";
+include "functions/getEmailStatus.php";
 
 
-//include "fetchAdditionalInfo.php";
 
 
 
@@ -107,16 +108,29 @@ require "session.php";
                 $cpNumber = $row['cpNumber'];
                 $address = $row['address'];
                 $email = $row['email'];
-                $status = $row['status'] == 1 ? 'Verified' : 'Pending Verification';
+                $status = getStatusText($row['status']); // Get the descriptive status text
                 $password = $row['password'];
-                $user_role = $row['user_role'];
+                // $user_role = $row['user_role'];
+                if ($row['status'] == 1) {
+                  $statusClass = 'status-verified'; // You can define a CSS class for styling
+                } elseif ($row['status'] == 2) {
+                  $statusClass = 'status-accepted';
+                } elseif ($row['status'] == 3) {
+                  $statusClass = 'status-done';
+                } elseif ($row['status'] == 4) {
+                  $statusClass = 'status-denied';
+                } else {
+                  $statusClass = 'status-pending';
+                }
+
 
             ?>
                 <tr>
                   <td><?php echo $row['id'] ?></td>
                   <td data-applicant-name="<?php echo $row['firstName'] . " " . $row['lastName']; ?>"><?php echo $row['firstName'] . " " . $row['lastName']; ?></td>
                   <td><?php echo $row['email']; ?></td>
-                  <td><span class="status <?php echo $row['status'] == 1 ? 'approved' : 'pending'; ?>"><?php echo $status; ?></span></td>
+                  <td><span class="status <?php echo $statusClass; ?>"><?php echo $status; ?></span></td>
+
                   <!-- <td><?php //echo $row['user_role'] 
                             ?></td> -->
                   <td>

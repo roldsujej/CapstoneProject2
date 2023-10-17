@@ -117,9 +117,9 @@ if (isset($_POST['submit'])) {
 
           <ul class="list-group list-group-flush">
             <li class="list-group-item">Active Email Account</li>
-            <li class="list-group-item">Barangay Clearance</li>
+            <!-- <li class="list-group-item">Barangay Clearance</li>
             <li class="list-group-item">2x2 Picture</li>
-            <li class="list-group-item">Valid ID</li>
+            <li class="list-group-item">Valid ID</li> -->
 
           </ul>
         </div>
