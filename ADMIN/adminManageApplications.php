@@ -282,15 +282,19 @@ include "functions/getEmailStatus.php";
   if (isset($_SESSION['status']) && $_SESSION['status_code'] != '') {
   ?>
     <script>
-      document.addEventListener("DOMContentLoaded", function() {
-        Swal.fire({
-          title: "<?php echo $_SESSION['status']; ?>",
-          icon: "<?php echo $_SESSION['status_code']; ?>",
-          showConfirmButton: true,
-        });
+	  document.addEventListener("DOMContentLoaded", function() {
+		Swal.fire({
+		  title: "<?php echo $_SESSION['status']; ?>",
+		  icon: "<?php echo $_SESSION['status_code']; ?>",
+		  showConfirmButton: true,
+		}).then((result) => {
+		  if (result.isConfirmed) {
+			location.reload(); // Refresh the page
+		  }
+		});
+	  });
+	</script>
 
-      });
-    </script>
   <?php
     unset($_SESSION['status']);
   }
