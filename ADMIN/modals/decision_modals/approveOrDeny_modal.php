@@ -10,7 +10,8 @@ use PHPMailer\PHPMailer\Exception;
 
 
 if (isset($_POST['approve_user'])) {
-    $emailStatus = getEmailStatus($id);
+	$applicantIdToApprove = $_POST['applicantIdToApprove'];
+    $emailStatus = getEmailStatus($applicantIdToApprove);
     $textStatus = getStatusText($emailStatus);
 
     if ($emailStatus == 0) {
@@ -23,7 +24,7 @@ if (isset($_POST['approve_user'])) {
             // Check if the status is not already "Account Accepted"
 			$status = 2;
             $updateQuery = $conn->prepare("UPDATE account_profiles SET status = ? WHERE id = ?");
-            $updateQuery->bind_param("ii", $status, $id);
+            $updateQuery->bind_param("ii", $status, $applicantIdToApprove);
 
             if ($updateQuery->execute()) {
                 // echo '<script>
@@ -81,7 +82,8 @@ if (isset($_POST['approve_user'])) {
 
 
 if (isset($_POST['deny_user'])) {
-    $emailStatus = getEmailStatus($id);
+	$applicantIdToApprove = $_POST['applicantIdToApprove'];
+    $emailStatus = getEmailStatus($applicantIdToApprove);
     $textStatus = getStatusText($emailStatus);
 
     if ($emailStatus == 0) {
@@ -94,7 +96,7 @@ if (isset($_POST['deny_user'])) {
             // Check if the status is not already "Application Denied"
 			$status = -1;
             $updateQuery = $conn->prepare("UPDATE account_profiles SET status = ? WHERE id = ?");
-            $updateQuery->bind_param("ii", $status, $id);
+            $updateQuery->bind_param("ii", $status, $applicantIdToApprove);
 
             if ($updateQuery->execute()) {
                 echo '<script>
@@ -135,7 +137,7 @@ if (isset($_POST['deny_user'])) {
             <div class="modal-content">
                 <form method="POST">
                     <!-- i passed the id in my input field and hid it so that i can just select a profile based on id and delete -->
-                    <input type="hidden" name="applicantIdToDelete" value="<?php echo $id; ?>" />
+                    <input type="hidden" name="applicantIdToApprove" value="<?php echo $id; ?>" />
                     <h3 class="deleteMessage" id="deleteModalMessage">Do you want to <?php echo  "approve  " . ucfirst($fname) . " " . ucfirst($lname) . " profile creation request?" ?></h3>
 
                     <div class="form-group text-center">
