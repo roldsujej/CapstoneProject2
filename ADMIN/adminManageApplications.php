@@ -121,7 +121,7 @@ include "functions/getEmailStatus.php";
                   $statusClass = 'status-accepted';
                 } elseif ($row['status'] == 3) {
                   $statusClass = 'status-done';
-                } elseif ($row['status'] == 4) {
+                } elseif ($row['status'] == -1) {
                   $statusClass = 'status-denied';
                 } else {
                   $statusClass = 'status-pending';
