@@ -3,8 +3,6 @@
 function getStatusText($statusCode)
 {
     switch ($statusCode) {
-        case -1:
-            return "Application Denied";
         case 0:
             return "Pending Verification";
         case 1:
@@ -13,6 +11,8 @@ function getStatusText($statusCode)
             return "Account Accepted";
         case 3:
             return "Member";
+        case 4:
+            return "Application Denied";
         default:
             return "Unknown Status";
     }

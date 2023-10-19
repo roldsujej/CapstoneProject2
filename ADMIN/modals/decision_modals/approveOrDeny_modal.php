@@ -10,8 +10,9 @@ use PHPMailer\PHPMailer\Exception;
 
 
 if (isset($_POST['approve_user'])) {
+    $id = mysqli_real_escape_string($conn, $_POST['applicant_id']);
     $emailStatus = getEmailStatus($id);
-    $textStatus = getStatusText($emailStatus);
+    $status = getStatusText($emailStatus);
 
     if ($emailStatus == 0) {
         echo '<script>
@@ -19,9 +20,8 @@ if (isset($_POST['approve_user'])) {
             window.location.href = "adminManageApplications.php";
         </script>';
     } elseif ($emailStatus == 1) {
-        if ($textStatus != "Account Accepted") {
+        if ($status != "Account Accepted") {
             // Check if the status is not already "Account Accepted"
-			$status = 2;
             $updateQuery = $conn->prepare("UPDATE account_profiles SET status = ? WHERE id = ?");
             $updateQuery->bind_param("ii", $status, $id);
 
@@ -81,8 +81,9 @@ if (isset($_POST['approve_user'])) {
 
 
 if (isset($_POST['deny_user'])) {
+    $id = mysqli_real_escape_string($conn, $_POST['applicant_id']);
     $emailStatus = getEmailStatus($id);
-    $textStatus = getStatusText($emailStatus);
+    $status = getStatusText($emailStatus);
 
     if ($emailStatus == 0) {
         echo '<script>
@@ -90,9 +91,8 @@ if (isset($_POST['deny_user'])) {
             window.location.href = "adminManageApplications.php";
         </script>';
     } elseif ($emailStatus == 1) {
-        if ($textStatus != "Application Denied") {
-            // Check if the status is not already "Application Denied"
-			$status = -1;
+        if ($status != "Account Accepted") {
+            // Check if the status is not already "Account Accepted"
             $updateQuery = $conn->prepare("UPDATE account_profiles SET status = ? WHERE id = ?");
             $updateQuery->bind_param("ii", $status, $id);
 
@@ -109,6 +109,7 @@ if (isset($_POST['deny_user'])) {
             }
         } else {
             // Handle the case where the application is already approved
+            //for some reason ndi to gumagana hahahaha 
             echo '<script>
                 alert("User ' . ucfirst($fname) . ' ' . ucfirst($lname) . ' is already denied.");
                 window.location.href = "adminManageApplications.php";

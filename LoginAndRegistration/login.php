@@ -47,7 +47,7 @@ if (isset($_POST['login'])) {
 
         if (password_verify($password, $row['password'])) {
 
-            if ($row['status'] == 0) {    // di verified email
+            if ($row['status'] == 0 && $row['user_role'] == 0) {    // di verified email
                 // Email not verified
                 $_SESSION['login_error'] = "Email not verified. Please check your email for verification instructions.";
                 $_SESSION['fullName'] = $row['firstName'] . ' ' . $row['lastName'];
@@ -58,7 +58,7 @@ if (isset($_POST['login'])) {
 				
                 header("location: verification.php");
                 exit();
-            } elseif ($row['status'] == 1) {
+            } elseif ($row['status'] == 1 && $row['user_role'] == 0) {
                 //  Email applicant Member login
 
                 //$_SESSION['user'] = $row;
