@@ -816,12 +816,12 @@ label:not(.form-check-label):not(.custom-file-label) {
 
 /* OTP Verification Styles */
 /* Hide the Update button when the Verify Email modal is open */
-.verifyEmail-active
+/* .verifyEmail-active
   .modal-container.modal-form-size.modal-l
   .modal-footer
   button[name="update_user"] {
   display: none;
-}
+} */
 
 /* Show the overlay when the modal is active */
 .modal-container.active + .blur-overlay {

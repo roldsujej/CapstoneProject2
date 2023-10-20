@@ -43,7 +43,7 @@
                         <div class="phone-input">
                             <input type="text" class="form-control" name="cpNum" id="cpNum" value="<?php echo ($cpNumber); ?>" required>
                         </div>
-                        <div id="phoneNumberError" class="error-message hidden">Avoid entering numeric characters.</div>
+                        <div id="phoneNumberError" class="error-message hidden">Avoid entering non- numeric characters.</div>
                     </div>
                     <div class="form-group">
                         <label class="label" for="">Address</label>
@@ -58,7 +58,7 @@
                     <div class="form-group">
                         <label class="label" for="">Status:</label>
                         <div style="display: flex; align-items: center;">
-                            <input type="text" class="form-control" name="status" id="status" value="<?php echo ($status); ?>" required>
+                            <input type="text" class="form-control" name="status" id="status" value="<?php echo ($status); ?>" disabled>
 
                             <?php
                             if ($status === "Pending Verification") {

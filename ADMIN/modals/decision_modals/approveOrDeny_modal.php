@@ -10,9 +10,12 @@ use PHPMailer\PHPMailer\Exception;
 
 
 if (isset($_POST['approve_user'])) {
-    $id = mysqli_real_escape_string($conn, $_POST['applicant_id']);
+    $fullname = $fname . " " . $lname;
+    $id = mysqli_real_escape_string($conn, $_POST['applicantIdToApprove']);
     $emailStatus = getEmailStatus($id);
+
     $status = getStatusText($emailStatus);
+    echo "Email Status: " . $emailStatus;
 
     if ($emailStatus == 0) {
         echo '<script>
@@ -22,6 +25,7 @@ if (isset($_POST['approve_user'])) {
     } elseif ($emailStatus == 1) {
         if ($status != "Account Accepted") {
             // Check if the status is not already "Account Accepted"
+            $status = 2;
             $updateQuery = $conn->prepare("UPDATE account_profiles SET status = ? WHERE id = ?");
             $updateQuery->bind_param("ii", $status, $id);
 
@@ -54,6 +58,7 @@ if (isset($_POST['approve_user'])) {
                 if ($mail->send()) { // If the email is sent successfully
                     $_SESSION['status'] = "Email sent to applicant";
                     $_SESSION['status_code'] = "success";
+
                     exit();
                 } else {
                     $_SESSION['status'] = "Failed to resend OTP: " . $mail->ErrorInfo;
@@ -81,26 +86,67 @@ if (isset($_POST['approve_user'])) {
 
 
 if (isset($_POST['deny_user'])) {
-    $id = mysqli_real_escape_string($conn, $_POST['applicant_id']);
+    $fullname = $fname . " " . $lname;
+    $id = mysqli_real_escape_string($conn, $_POST['applicantIdToApprove']);
+    $denialReasons = mysqli_real_escape_string($conn, $_POST['denial_reasons']); // Get denial reasons from the form
     $emailStatus = getEmailStatus($id);
+
     $status = getStatusText($emailStatus);
+    echo "Email Status: " . $emailStatus;
 
     if ($emailStatus == 0) {
         echo '<script>
-            alert("Cannot deny the application because the email is still pending for verification.");
+            alert("Cannot approve the application because the email is still pending for verification.");
             window.location.href = "adminManageApplications.php";
         </script>';
     } elseif ($emailStatus == 1) {
         if ($status != "Account Accepted") {
             // Check if the status is not already "Account Accepted"
-            $updateQuery = $conn->prepare("UPDATE account_profiles SET status = ? WHERE id = ?");
-            $updateQuery->bind_param("ii", $status, $id);
+
+            $status = 4;
+            $updateQuery = $conn->prepare("UPDATE account_profiles SET status = ?, denial_reason = ? WHERE id = ?");
+            $updateQuery->bind_param("isi", $status, $denialReasons, $id);
 
             if ($updateQuery->execute()) {
-                echo '<script>
-                    alert("User ' . ucfirst($fname) . ' ' . ucfirst($lname) . ' has been denied.");
-                    window.location.href = "adminManageApplications.php";
-                </script>';
+                // echo '<script>
+                //     alert("User ' . ucfirst($fname) . ' ' . ucfirst($lname) . ' has been approved.");
+                //     window.location.href = "adminManageApplications.php";
+                // </script>';
+                // ======================= SEND EMAIL WHEN THE ACCOUNT IS APPROVED====================
+                $mail = new PHPMailer;
+                $mail->isHTML(true);
+                $mail->isSMTP();
+                $mail->SMTPDebug = 2; // Enable verbose debugging
+                $mail->Debugoutput = 'html'; // Display debugging output in HTML format
+                $mail->SMTPKeepAlive = true;
+                $mail->Host = 'smtp.gmail.com';
+                $mail->Port = 587;
+                $mail->SMTPAuth = true;
+                $mail->Username = 'yeojsoriano721@gmail.com'; // Replace with your email
+                $mail->Password = 'vweswchyhxelzyhz'; // Replace with your email password
+                $mail->SMTPSecure = 'tls';
+                $mail->setFrom('CAPEDAInc@gmail.com', 'CAPEDA'); // Replace with your info
+                $mail->addAddress($email, $fullname);
+                $mail->Subject = 'Application Status Notification';
+
+                $mail->Body = "Hello, Good day. We are very sorry to tell you that your account creation was Denied due to the following reasons:
+
+                Reasons for Denial:
+                - $denialReasons
+
+                Please don't hesitate to reply to this email if you have more questions regarding your application. Thank you";
+
+
+                if ($mail->send()) { // If the email is sent successfully
+                    $_SESSION['status'] = "Email sent to applicant";
+                    $_SESSION['status_code'] = "success";
+
+                    exit();
+                } else {
+                    $_SESSION['status'] = "Failed to resend OTP: " . $mail->ErrorInfo;
+                    $_SESSION['status_code'] = "error";
+                    exit();
+                }
             } else {
                 echo '<script>
                     alert("User not approved");
@@ -111,7 +157,7 @@ if (isset($_POST['deny_user'])) {
             // Handle the case where the application is already approved
             //for some reason ndi to gumagana hahahaha 
             echo '<script>
-                alert("User ' . ucfirst($fname) . ' ' . ucfirst($lname) . ' is already denied.");
+                alert("User ' . ucfirst($fname) . ' ' . ucfirst($lname) . ' is already approved.");
                 window.location.href = "adminManageApplications.php";
             </script>';
         }
@@ -136,7 +182,7 @@ if (isset($_POST['deny_user'])) {
             <div class="modal-content">
                 <form method="POST">
                     <!-- i passed the id in my input field and hid it so that i can just select a profile based on id and delete -->
-                    <input type="hidden" name="applicantIdToDelete" value="<?php echo $id; ?>" />
+                    <input type="hidden" name="applicantIdToApprove" value="<?php echo $id; ?>" />
                     <h3 class="deleteMessage" id="deleteModalMessage">Do you want to <?php echo  "approve  " . ucfirst($fname) . " " . ucfirst($lname) . " profile creation request?" ?></h3>
 
                     <div class="form-group text-center">
@@ -153,13 +199,70 @@ if (isset($_POST['deny_user'])) {
                         ?>
                     </div>
 
+                    <div class="form-group denial-reasons">
+                        <label for="denial_reasons">Reasons for Denial:</label>
+                        <textarea name="denial_reasons" id="denial_reasons" rows="4" class="form-control" required></textarea>
+                    </div>
+                </form>
+            </div>
 
-                    <!-- <div class="modal-footer">
+
+            <!-- <div class="modal-footer">
                         <button type="submit" class="modalBtn" id="deleteModalBtn" name="deleteApplicant">Yes</button>
                         <button type="button" class="modalBtn cancel-button" data-modal-id="<?php echo 'approveOrDenyApplicantModal' . $id; ?>" id="closeDeleteModalButton">Cancel</button>
                     </div> -->
-                </form>
-            </div>
+            </form>
         </div>
     </div>
 </div>
+</div>
+<script>
+    $(document).ready(function() {
+        $('button[name="approve_user"]').click(function() {
+            // Disable the textarea when "Approve" button is clicked
+            $('#denial_reasons').prop('disabled', true);
+        });
+
+        $('button[name="deny_user"]').click(function() {
+            // Enable the textarea when "Deny" button is clicked
+            $('#denial_reasons').prop('disabled', false);
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        // Function to check if the textarea has content
+        function isDenialReasonsNotEmpty() {
+            return $.trim($('#denial_reasons').val()) !== '';
+        }
+
+        $('button[name="approve_user"]').click(function() {
+            if (isDenialReasonsNotEmpty()) {
+                // If denial reasons are not empty, prevent approving
+                alert("Please clear the 'Reasons for Denial' textarea before approving.");
+                return false; // Prevent the form submission
+            }
+            // Continue with approval
+        });
+
+        $('button[name="deny_user"]').click(function() {
+            // Enable the textarea when "Deny" button is clicked
+            $('#denial_reasons').prop('disabled', false);
+        });
+
+        // Check if the textarea content has changed and disable the Approve button
+        $('#denial_reasons').on('input', function() {
+            var $approveButton = $('button[name="approve_user"]');
+            var denialReasonsNotEmpty = isDenialReasonsNotEmpty();
+            $approveButton.prop('disabled', denialReasonsNotEmpty);
+
+            // Add or remove the "disabled-button" class based on the content
+            if (denialReasonsNotEmpty) {
+                $approveButton.addClass('disabled-button');
+            } else {
+                $approveButton.removeClass('disabled-button');
+            }
+        });
+    });
+</script>

@@ -449,6 +449,11 @@
   color: #fff;
   border-color: #dc3545;
 }
+.disabled-button {
+  background-color: #ccc; /* Set the background color to gray */
+  color: #999; /* Set the text color to a lighter shade */
+  cursor: not-allowed; /* Change the cursor to indicate it's not clickable */
+}
 
 .btn-danger:hover {
   background-color: #b02a37;

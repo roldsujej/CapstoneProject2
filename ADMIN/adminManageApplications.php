@@ -6,7 +6,10 @@ require "session.php";
 include "status_functions.php";
 include "functions/getEmailStatus.php";
 
-
+require "../Message/PHPMailer/src/PHPMailerAutoload.php";
+require '../Message/PHPMailer/src/Exception.php';
+require '../Message/PHPMailer/src/PHPMailer.php';
+require '../Message/PHPMailer/src/SMTP.php';
 
 
 

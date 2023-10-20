@@ -1,4 +1,4 @@
-<div class="modal-overlay <?php if ($isVerifyEmailModalActive) echo 'verifyEmail-active'; ?>" id="<?php echo 'verifyEmail' ?>">
+<div class="modal-overlay  id=" <?php echo 'verifyEmail'  ?>>
     <div class="modal-container modal-form-size modal-l">
         <div class="modal-header text-light">
             <h4 class="modal-h4-header"><?php echo "Verify " . ucfirst($fname) . " " . ucfirst($lname) . " 's Email" ?></h4>
