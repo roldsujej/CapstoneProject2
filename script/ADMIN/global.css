@@ -1113,6 +1113,11 @@
   background: #eb2b2bfc;
   color: white;
 }
+.status.optional {
+  background: #42aa5efc;
+  color: white;
+}
+
 .alert-danger {
   background-color: #f8d7da;
   border-color: #f5c6cb;

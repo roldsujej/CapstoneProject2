@@ -109,17 +109,16 @@ require "../database/config.php";
 
 
             ?>
-                <tr>
+                <tr class="<?php echo $document_status === 'optional' ? 'optional-row' : ''; ?>">
                   <td><?php echo $document_id; ?></td>
                   <td><?php echo $document_name ?></td>
                   <td><?php echo $document_description ?></td>
-                  <td><span class="status <?php echo $document_status === 'required' ? 'required' : 'optional'; ?>"><?php echo strtoupper($document_status) ?></span></td>
+                  <td>
+                    <span class="status <?php echo $document_status === 'required' ? 'required' : 'optional'; ?>">
+                      <?php echo strtoupper($document_status === 'required' ? 'required' : 'optional'); ?>
+                    </span>
+                  </td>
                   <td><?php echo $document_type ?></td>
-                  <!-- <td><?php //echo $creation_date 
-                            ?></td> -->
-                  <!-- <td><?php //echo $update_date 
-                            ?></td> -->
-
 
                   <td>
                     <div class="action-buttons">
@@ -127,27 +126,14 @@ require "../database/config.php";
                         <ion-icon name="open-outline"></ion-icon>
                       </button>
 
-
-
-                      <!-- Add a delete button with an onclick event -->
-                      <button type="button" class="action-button deleteBtn modal-trigger" data-modal-id="<?php echo 'deleteRequirementModal' . $document_id; ?>" data-doocument-name="<?php echo $row['document_name'] ?>">
+                      <button type="button" class="action-button deleteBtn modal-trigger" data-modal-id="<?php echo 'deleteRequirementModal' . $document_id; ?>" data-document-name="<?php echo $row['document_name'] ?>">
                         <ion-icon name="trash-outline"></ion-icon>
                       </button>
-                      <?php
-                      include('modals/deleteRequirement_modal.php'); ?>
-
-
-
-
-
-
-
-
+                      <?php include('modals/deleteRequirement_modal.php'); ?>
                     </div>
                     <?php include('modals/editRequirement_modal.php'); ?>
                     <?php include('modals/view_modal1.php'); ?>
                   </td>
-
                 </tr>
 
             <?php
