@@ -62,13 +62,13 @@
 
                             <?php
                             if ($status === "Pending Verification") {
-                                echo '<button type="button" class="btnModal modal-trigger verify-email-button" data-modal-id="verifyEmail">Verify Email</button>';
+                                echo '<button type="button" class="btnModal modal-trigger verify-email-button" data-modal-id="verifyEmail' . $id . '" 
+                data-email="' . $email . '" data-fullname="' . $fname . ' ' . $lname . '">Verify Email</button>';
                             }
-
                             ?>
-                            <?php
-                            include "modals/email_verification_modal/adminVerifyEmail_modal.php"
 
+                            <?php
+                            include "modals/email_verification_modal/adminVerifyEmail_modal.php";
                             ?>
                         </div>
                     </div>

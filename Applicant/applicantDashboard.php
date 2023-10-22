@@ -13,36 +13,30 @@ session_start();
 
 // double check user role
 if (isset($_SESSION['id'])) {
-	
-	if (isset($_SESSION['user_role'])) {
-		// if applicant
-		if ($_SESSION['user_role'] === 'applicant') {
-			
-			if (isset($_SESSION['verified'])) {
-				if ($_SESSION['verified'] === 0) {
-					header('location: ../Applicant/logout.php');
-				}
-			}
-			
-			// header('location: ../Applicant/applicantDashboard.php');
-			
-		}
-		// if admin
-		else if ($_SESSION['user_role'] === 'admin') {
-			
-			header('location: ../ADMIN/admindashboard.php');
-			
-		}
-	}
+
+    if (isset($_SESSION['user_role'])) {
+        // if applicant
+        if ($_SESSION['user_role'] === 'applicant') {
+
+            if (isset($_SESSION['verified'])) {
+                if ($_SESSION['verified'] === 0) {
+                    header('location: ../Applicant/logout.php');
+                }
+            }
+
+            // header('location: ../Applicant/applicantDashboard.php');
+
+        }
+        // if admin
+        else if ($_SESSION['user_role'] === 'admin') {
+
+            header('location: ../ADMIN/admindashboard.php');
+        }
+    }
 } else {
-	
-	header('location: logout.php');
 
+    header('location: logout.php');
 }
-
-
-
-
 
 
 ?>
@@ -53,58 +47,15 @@ if (isset($_SESSION['id'])) {
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Member Dashboard</title>
+    <title>Applicant Dashboard</title>
     <link rel="stylesheet" href="../css/applicant/applicantDashboard.css" />
 </head>
 
 <body>
     <!-----------------------------NAVIGATION-------------------------------------------------->
-    <div class="container">
-        <div class="navigation">
-
-            <ul>
-                <li>
-                    <a href="">
-                        <span class="icon"><ion-icon name="car-outline"></ion-icon></span>
-                        <span class="title"><?php echo $_SESSION['fullName']; ?></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
-                        <span class="title">Dashboard </span>
-                    </a>
-                </li>
-                <!-- <li>
-                    <a href="adminManageApplications.html">
-                        <span class="icon"><ion-icon name="bar-chart-outline"></ion-icon></span>
-                        <span class="title">My Account</span>
-                    </a>
-                </li> -->
-                <li>
-                    <a href="adminManageMembers.html">
-                        <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
-                        <span class="title"> My Requirements</span>
-                    </a>
-                </li>
-                <!-- <li>
-            <a href="adminManageAccounts.html">
-              <span class="icon"
-                ><ion-icon name="settings-outline"></ion-icon>
-              </span>
-              <span class="title">Manage Accounts</span>
-            </a>
-          </li> -->
-
-                <li>
-                    <a href="" id="logOutLink">
-                        <span class="icon"><ion-icon name="exit-outline"></ion-icon></span>
-                        <span class="title">Log Out</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
+    <?php
+    include 'applicantNavigation.php';
+    ?>
 
 
     <!-- ------------------------------MODALS----------------------------------- -->
@@ -176,7 +127,7 @@ if (isset($_SESSION['id'])) {
         <div class="details">
             <div class="card-instructions">
                 <h2>Welcome <?php echo $_SESSION['fullName']; ?></h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos excepturi adipisci doloribus placeat, quo tenetur aperiam velit, voluptatem modi corporis facilis, porro quam perspiciatis fuga mollitia? Amet itaque autem culpa!</p>
+                <p> You are 1 step closer to being a member, Just make sure to upload the required documents as soon as your account is approved to speed up the registration process</p>
             </div>
 
         </div>

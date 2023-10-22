@@ -1,0 +1,785 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;700&display=swap");
+
+/*===========================GLOBALS ========================*/
+* {
+  font-family: "Nunito", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --dBlue: #19376d;
+  --white: #fff;
+  --gray: #f5f5f5;
+  --black1: #222;
+  --black2: #999;
+}
+
+body {
+  /* height: 100vh; */
+  min-height: 100vh;
+  overflow-x: hidden;
+  /* display: flex;
+  flex-direction: column; */
+}
+
+.container {
+  position: relative;
+  width: 100%;
+}
+
+/* =====================NAV ================*/
+.navigation {
+  position: fixed;
+  width: 300px;
+  height: 100%;
+  background: var(--dBlue);
+  border-left: 10px solid var(--dBlue);
+  transition: 0.5s;
+  overflow: hidden;
+}
+
+.navigation.active {
+  width: 80px;
+}
+
+.navigation ul {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.navigation ul li {
+  position: relative;
+  width: 100%;
+  list-style: none;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+
+.navigation ul li:hover,
+.navigation ul li.hovered {
+  background-color: var(--white);
+}
+
+.navigation ul li:nth-child(1) {
+  /* nav items starting from dashboard */
+  margin-bottom: 40px;
+  pointer-events: none;
+}
+
+.navigation ul li a {
+  position: relative;
+  display: block;
+  width: 100%;
+  display: flex;
+  text-decoration: none;
+  color: var(--white);
+}
+
+.navigation ul li a:hover,
+.navigation ul li.hovered a {
+  color: var(--dBlue);
+}
+
+.navigation ul li a .icon {
+  position: relative;
+  display: block;
+  min-width: 60px;
+  height: 60px;
+  line-height: 75px;
+  text-align: center;
+}
+
+.navigation ul li a .icon ion-icon {
+  font-size: 1.75rem;
+}
+
+.navigation ul li a .title {
+  position: relative;
+  display: block;
+  padding: 0 10px;
+  height: 60px;
+  line-height: 60px;
+  text-align: start;
+  white-space: nowrap;
+}
+
+/* ------------outside curve --------------*/
+.navigation ul li:hover a::before,
+.navigation ul li.hovered a::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: -50px;
+  width: 50px;
+  height: 50px;
+  background-color: transparent; /*the curve effect pag hinahover*/
+  border-radius: 50%;
+  box-shadow: 35px 35px 0 10px var(--white);
+  pointer-events: none;
+}
+
+.navigation ul li:hover a::after,
+.navigation ul li.hovered a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -50px;
+  width: 50px;
+  height: 50px;
+  background-color: transparent; /*the curve effect pag hinahover*/
+  border-radius: 50%;
+  box-shadow: 35px -35px 0 10px var(--white);
+  pointer-events: none;
+}
+
+/* ==================MAIN==============================*/
+.main {
+  position: absolute;
+  width: calc(100% - 300px);
+  left: 300px;
+  min-height: 100vh;
+  background: var(--white);
+  transition: 0.5s;
+}
+.main.active {
+  width: calc(100% - 80px);
+  left: 80px;
+}
+.topbar {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.toggle {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.search {
+  position: relative;
+  width: 400px;
+  margin: 0 10px;
+}
+
+.search label {
+  position: relative;
+  width: 100%;
+}
+
+.search label input {
+  width: 100%;
+  height: 40px;
+  border-radius: 40px;
+  padding: 5px 20px;
+  padding-left: 35px;
+  font-size: 18px;
+  outline: none;
+  border: 1px solid var(--black2);
+}
+
+.search label ion-icon {
+  position: absolute;
+  top: 0;
+  left: 10px;
+  font-size: 1.2rem;
+}
+
+.user {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.user img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/*================SECTION======================*/
+
+.details {
+  position: relative;
+  /* flex: 1; */
+  width: 100%;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 30px;
+  /* margin-top: 10px; */
+}
+
+.details .recentApplications {
+  /*i want to make this div fill the remaining spaces from the cards */
+  position: relative;
+  display: grid;
+  min-height: 300px;
+  background: var(--white);
+  padding: 20px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+}
+
+.details .applicationHeader {
+  /* display: flex;
+  justify-content: space-between;
+  align-items: flex-start; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.applicationHeader h2 {
+  font-weight: 600;
+  color: var(--dBlue);
+  font-size: 1.5rem;
+}
+
+.button-container {
+  display: flex; /* Use flexbox to align buttons horizontally */
+  gap: 10px; /* Add spacing between buttons (adjust as needed) */
+}
+
+.applicationHeader .btn {
+  /* position: relative;
+  padding: 5px 10px;
+  background: var(--dBlue);
+  text-decoration: none;
+  color: var(--white);
+  border-radius: 6px; */
+  font-size: 22px;
+  padding: 5px 15px;
+  background: var(--dBlue);
+  text-decoration: none;
+  color: var(--white);
+  border-radius: 6px;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+.applicationHeader .btn:hover {
+  background: green;
+}
+
+/* Adjust table cell padding and text alignment */
+.details table thead td,
+.details .recentApplications table tbody tr td {
+  padding: 12px 15px; /* Adjust cell padding */
+  text-align: left; /* Set text alignment to left for all cells */
+  vertical-align: middle;
+}
+
+.details table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-size: 16px;
+  background-color: var(--white);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* border-spacing: 0; */
+}
+
+.details table thead th {
+  font-weight: 600;
+  text-align: left;
+  padding: 10px 15px;
+  background-color: var(--gray);
+}
+
+.details .recentApplications table tr {
+  color: var(--black1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease;
+}
+
+.details .recentApplications table tbody tr:hover {
+  background: var(--dBlue);
+  color: var(--white);
+}
+
+.details .recentApplications table tr:last-child {
+  border-bottom: none;
+}
+
+.details .recentApplications table tbody tr:hover {
+  background: var(--dBlue);
+  color: var(--white);
+}
+
+.details .recentApplications table tr td {
+  padding: 12px 15px;
+  text-align: left;
+  vertical-align: middle;
+}
+/* .details .recentApplications table tr td:last-child {
+  text-align: end;
+}
+.details .recentApplications table tr td:nth-child(2) {
+  text-align: end;
+}
+.details .recentApplications table tr td:nth-child(3) {
+  text-align: end;
+} */
+
+.status {
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.status.approved {
+  /* padding: 2px 4px;
+  background: #59a305fc;
+  color: var(--white);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500; */
+  background: #59a305fc;
+  color: var(--white);
+}
+
+/* for the text in my edit modal status */
+.status-verified {
+  color: green;
+}
+
+/* for the text in my edit modal status */
+.status-pending {
+  color: orange;
+}
+
+.status.denied {
+  /* padding: 2px 4px;
+  background: #eb2b2bfc;
+  color: var(--white);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: left; */
+  background: #eb2b2bfc;
+  color: var(--white);
+}
+
+.status.pending {
+  /* padding: 2px 4px;
+  background: #f0f0f0fc;
+  color: var(--black1);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: left; */
+  background: #f0f0f0fc;
+  color: var(--black1);
+}
+.action-header {
+  text-align: center;
+}
+.action-buttons {
+  display: flex; /* Use flexbox to make buttons appear side by side */
+  gap: 5px; /* Add some space between the buttons */
+}
+.action-button {
+  padding: 8px 16px;
+  background-color: #3498db; /* Change to your desired button color */
+  color: #fff;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  display: flex; /* Add flex display to center icon and text */
+  align-items: center; /* Vertically center the icon and text */
+  justify-content: center;
+}
+
+.action-button ion-icon {
+  font-size: 18px;
+}
+
+.deleteBtn {
+  background-color: red;
+}
+.viewBtn {
+  background-color: #58a680;
+}
+
+.action-button:hover {
+  background-color: #2980b9; /* Change to your desired hover color */
+}
+/* Modal container */
+.modal-container.hidden {
+  display: none;
+}
+
+/* Modal content */
+.modal {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  pointer-events: auto;
+  background-color: #fff;
+  background-clip: padding-box;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+}
+.modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.modal-body {
+  position: relative;
+  flex: 1 1 auto;
+  padding: 1rem;
+}
+
+.modalForm {
+  display: block;
+  margin-top: 0em;
+}
+
+.card {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 0 solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+}
+
+.form-body {
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  min-height: 1px;
+  padding: 1.25rem;
+}
+.form-group .label {
+  text-align: left !important;
+}
+
+.label {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+
+label:not(.form-check-label):not(.custom-file-label) {
+  font-weight: 700;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+  display: block;
+  text-align: left;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  height: calc(2.25rem + 2px);
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  box-shadow: inset 0 0 0 transparent;
+  /* transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; */
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 0.75rem;
+  border-top: 1px solid #e9ecef;
+  border-bottom-right-radius: calc(0.3rem - 1px);
+  border-bottom-left-radius: calc(0.3rem - 1px);
+}
+
+.modalBtn {
+  padding: 5px 15px;
+  background: var(--dBlue);
+  text-decoration: none;
+  color: var(--white);
+  font-size: 18px;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+.modalBtn:hover {
+  cursor: pointer;
+  background-color: #3498db;
+}
+
+.btnPrimary {
+  color: #fff;
+  background-color: var(--dBlue);
+  box-shadow: none;
+}
+
+.error-message {
+  color: red;
+  margin-top: 5px;
+}
+
+.error-message.hidden {
+  display: none;
+}
+
+.password-input-container {
+  position: relative;
+}
+
+.form-control {
+  padding-right: 30px; /* Adjust as needed to provide space for the eye icon */
+}
+
+.toggle-password {
+  position: absolute;
+  top: 55%;
+  right: 5px; /* Adjust the right position as needed */
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+.toggle-password ion-icon {
+  font-size: 20px; /* Adjust the font size as needed */
+  color: var(--dBlue);
+}
+
+/* Show the modal when it has the "active" class */
+.modal-container.active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); /* Add a semi-transparent background overlay */
+  z-index: 9999; /* Ensure it's on top of other content */
+}
+
+/* Add a media query for smaller screens */
+/* Add a media query for smaller screens */
+@media (max-width: 768px) {
+  /* * {
+    margin: 0;
+    padding: 0;
+  } */
+  /* Adjust navigation for smaller screens */
+  .navigation {
+    width: 80px; /* Adjust width for mobile layout */
+    height: 100vh;
+    background: var(--dBlue);
+    border: none;
+    transition: width 0.3s ease-in-out;
+    z-index: 50;
+  }
+  .navigation.active {
+    width: 300px; /* Slide it into view */
+  }
+
+  /* Adjust topbar padding for better spacing */
+  .topbar {
+    padding: 0 15px;
+  }
+
+  /* Adjust search input width for better alignment */
+  .search {
+    width: 100%;
+    max-width: 300px;
+    margin: 0;
+  }
+
+  /* Adjust recent applications padding */
+  .details .recentApplications {
+    padding: 15px;
+  }
+
+  /* Adjust application header spacing */
+  .applicationHeader {
+    margin-bottom: 10px;
+  }
+
+  /* Adjust application header text size */
+  .applicationHeader h2 {
+    font-size: 1.2rem;
+  }
+
+  /* Adjust button padding and text size */
+  .applicationHeader .btn {
+    padding: 3px 10px;
+    font-size: 14px;
+  }
+
+  /* Add this CSS code to your existing CSS file */
+  .applications-table {
+    width: 100%;
+    border-collapse: collapse; /* This removes the spacing between table cells */
+    table-layout: fixed; /* Add this line to enable fixed layout */
+  }
+
+  .applications-table th,
+  .applications-table td {
+    border: 1px solid #ddd; /* Add borders to table header and data cells */
+    padding: 8px; /* Add some padding for better spacing */
+    text-align: left; /* Align text to the left within cells */
+    width: 20%; /* Adjust the width as needed for each column */
+  }
+
+  .applicant-table th {
+    background-color: #c6bcbc; /* Background color for table headers */
+    font-weight: bold; /* Bold text for table headers */
+  }
+
+  /* Adjust table cell padding and font size */
+  .details table thead td,
+  .details .recentApplications table tr td {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+
+  /* Adjust the modal width for smaller screens */
+  .modal {
+    width: 80%; /* Adjust the modal width as needed */
+  }
+
+  /* Adjust the form inputs for smaller screens */
+  .modal .form-control {
+    width: 100%; /* Make the form inputs full width */
+  }
+
+  /* Adjust the button padding for smaller screens */
+  .modalBtn {
+    padding: 5px 10px; /* Adjust button padding as needed */
+  }
+
+  /* Adjust the topbar padding for smaller screens */
+  .topbar {
+    padding: 0 10px; /* Adjust topbar padding as needed */
+  }
+
+  /* Adjust the search input width for smaller screens */
+  .search label input {
+    width: 100%; /* Make the search input full width */
+  }
+
+  /* Adjust the card columns and spacing for smaller screens */
+  .cardBox {
+    grid-template-columns: repeat(2, 1fr); /* Two cards per row */
+    justify-content: center; /* Center align the cards */
+    grid-gap: 20px; /* Adjust spacing between cards */
+  }
+
+  /* Adjust card padding and alignment for smaller screens */
+  .cardBox .card {
+    padding: 15px; /* Adjust card padding */
+    flex-direction: column; /* Stack content vertically */
+    align-items: center; /* Center align content horizontally */
+    text-align: center; /* Center align text */
+  }
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.requirement-card {
+  /* Add styles for the card container */
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.requirement-card {
+  /* Your card styles */
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* Your other styles for title, description, status, and upload button go here */
+
+/* To make new requirements appear on the next line, use grid-auto-flow */
+/* This ensures new requirements will wrap to the next line when the container is full */
+.requirement-cards-container {
+  grid-auto-flow: row;
+}
+.requirement-details {
+  /* Add styles for the details container */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.requirement-info {
+  /* Add styles for the info container (title and description) */
+  flex: 1;
+  padding-right: 10px; /* Add space between info and status */
+}
+
+.requirement-status {
+  /* Add styles for the status container */
+  padding: 5px 10px;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+}
+
+.upload-button {
+  /* Add styles for the upload button container */
+  flex-shrink: 0; /* Prevent the button from growing or shrinking */
+}

@@ -1,5 +1,8 @@
 <?php
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 function getLatestApplicantId()  //gets the latest auto incremented id
 {
     require "../database/config.php"; // Include your database connection code
@@ -29,7 +32,6 @@ function generateRandomPassword($length = 8)
 
 
 if (isset($_POST['add_applicant'])) {
-
     $generatedPassword = generateRandomPassword(8);
     $firstName = $_POST['firstName'];
     $lastName = $_POST['lastName'];
@@ -37,23 +39,43 @@ if (isset($_POST['add_applicant'])) {
     $address = $_POST['address'];
     $email = $_POST['email'];
     $password = $_POST['password']; // Use the generated password
-    // we will email this code to the applicant the 1st time they login
+    // We will email this code to the applicant the 1st time they log in
     $otp = rand(100000, 999999);
     $otp_expiration = date('Y-m-d H:i:s', strtotime('+5 minutes'));
     $verificationStatus = getStatusText(0);  //status 0 = email not verified
 
-
-
-
     // Perform database insertion
-    $query = "INSERT INTO account_profiles (firstName, lastName, cpNumber, address, email, password,otp,otp_exp) 
-        VALUES ('$firstName', '$lastName', '$cpNum', '$address', '$email', '$password',$otp,'$otp_expiration')";
+    $query = "INSERT INTO account_profiles (firstName, lastName, cpNumber, address, email, password, otp, otp_exp, status) 
+              VALUES ('$firstName', '$lastName', '$cpNum', '$address', '$email', '$password', $otp, '$otp_expiration', '$verificationStatus')";
 
     if (mysqli_query($conn, $query)) {
         // Data inserted successfully
         $_SESSION['status'] = "New applicant profile added.";
         $_SESSION['status_code'] = "success";
-        //  header("Location: ../adminManageApplications.php"); // Redirect to a success page
+
+        // Send the OTP email
+        $mail = new PHPMailer;
+        $mail->isSMTP();
+        $mail->SMTPDebug = 2;  // Set this to 2 for detailed debugging
+        $mail->Host = 'smtp.gmail.com';
+        $mail->Port = 587;
+        $mail->SMTPAuth = true;
+        $mail->Username = 'yeojsoriano721@gmail.com'; // Replace with your email
+        $mail->Password = 'vweswchyhxelzyhz'; // Replace with your email password
+        $mail->SMTPSecure = 'tls';
+        $mail->setFrom('CAPEDAInc@gmail.com', 'CAPEDA');
+        $mail->addAddress($email, $firstName . ' ' . $lastName);
+        $mail->Subject = 'Email OTP Verification';
+        $mail->Body = "Your OTP for registration is: $otp. This OTP is valid for 5 minutes. Please use this code to verify your email.";
+
+        if ($mail->send()) {
+            echo "Email sent successfully";
+        } else {
+            echo "Email sending failed. Error: " . $mail->ErrorInfo;
+        }
+
+        // Redirect to a success page or perform other actions as needed
+        // header("Location: your-success-page.php");
         // exit();
     } else {
         // Error occurred
