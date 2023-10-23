@@ -38,15 +38,14 @@ if (isset($_POST['submit'])) {
         if ($otp != $storedOTP) {
             $_SESSION['status'] = "You entered a wrong OTP, Please check and try again";
             $_SESSION['status_code'] = "error";
-            header("Location: verification.php"); // Redirect back to verification.php
+            header("Location: verification.php");
             exit();
         } elseif (strtotime($otpExpiry) < time()) {
             $_SESSION['status'] = "You entered an expired OTP Code";
             $_SESSION['status_code'] = "error";
-            header("Location: verification.php"); // Redirect back to verification.php
+            header("Location: verification.php");
             exit();
         } else {
-            // OTP is valid and not expired
             $updateQuery = "UPDATE account_profiles SET status = 1, user_role = 0 WHERE email = ? AND id = ?";
             $updateStmt = $conn->prepare($updateQuery);
             $updateStmt->bind_param("si", $email, $id);
@@ -54,16 +53,20 @@ if (isset($_POST['submit'])) {
             if ($updateStmt->execute()) {
                 $_SESSION['status'] = "You have successfully verified your profile";
                 $_SESSION['status_code'] = "success";
-                header("Location: application_review.php"); // Redirect to success page or login page
+                header("Location: application_review.php");
                 exit();
             } else {
                 $_SESSION['msgError'] = "Database error: " . $conn->error;
-                header("Location: verification.php"); // Redirect back to verification.php
+                header("Location: verification.php");
                 exit();
             }
         }
     }
-} elseif (isset($_POST['resend'])) {
+} else {
+    echo "Failed";
+}
+
+if (isset($_POST['resend'])) {
     // Generate a new OTP
     $newOTP = rand(100000, 999999);
     $email = $_SESSION['email'];
@@ -109,6 +112,4 @@ if (isset($_POST['submit'])) {
         header("Location: verification.php"); // Redirect back to verification.php
         exit();
     }
-} else {
-    echo "Failed";
 }

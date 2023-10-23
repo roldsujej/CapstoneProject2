@@ -16,6 +16,11 @@ function getLatestApplicantId()  //gets the latest auto incremented id
         return 1; // Default to 1 if there are no existing applicants
     }
 }
+function sanitize($conn, $data)
+{
+    $sanitizedData = mysqli_real_escape_string($conn, $data);
+    return $sanitizedData;
+}
 
 
 function generateRandomPassword($length = 8)
@@ -32,21 +37,34 @@ function generateRandomPassword($length = 8)
 
 
 if (isset($_POST['add_applicant'])) {
-    $generatedPassword = generateRandomPassword(8);
-    $firstName = $_POST['firstName'];
-    $lastName = $_POST['lastName'];
-    $cpNum = $_POST['cpNum'];
-    $address = $_POST['address'];
-    $email = $_POST['email'];
-    $password = $_POST['password']; // Use the generated password
-    // We will email this code to the applicant the 1st time they log in
+    // $generatedPassword = generateRandomPassword(8);
+    // $firstName = $_POST['firstName'];
+    // $lastName = $_POST['lastName'];
+    // $cpNum = $_POST['cpNum'];
+    // $address = $_POST['address'];
+    // $email = $_POST['email'];
+    // $password = $_POST['password']; // Use the generated password
+    // // We will email this code to the applicant the 1st time they log in
+    // $otp = rand(100000, 999999);
+    // $otp_expiration = date('Y-m-d H:i:s', strtotime('+5 minutes'));
+    // $verificationStatus = getStatusText(0);  //status 0 = email not verified
+
+
+    $fullname = sanitize($conn, $_POST["firstName"] . $_POST["lastName"]);
+    $firstName = sanitize($conn, $_POST["firstName"]);
+    $lastName = sanitize($conn, $_POST["lastName"]);
+    $cpNum = sanitize($conn, $_POST["cpNum"]);
+    $address = sanitize($conn, $_POST["address"]);
+    $email = sanitize($conn, $_POST["email"]);
+    $password = sanitize($conn, $_POST["password"]);
+    $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
     $otp = rand(100000, 999999);
-    $otp_expiration = date('Y-m-d H:i:s', strtotime('+5 minutes'));
+    $otp_expiration = date('Y-m-d H:i:s', strtotime('+30 minutes'));
     $verificationStatus = getStatusText(0);  //status 0 = email not verified
 
     // Perform database insertion
     $query = "INSERT INTO account_profiles (firstName, lastName, cpNumber, address, email, password, otp, otp_exp, status) 
-              VALUES ('$firstName', '$lastName', '$cpNum', '$address', '$email', '$password', $otp, '$otp_expiration', '$verificationStatus')";
+              VALUES ('$firstName', '$lastName', '$cpNum', '$address', '$email',  '$hashedPassword', $otp, '$otp_expiration', '$verificationStatus')";
 
     if (mysqli_query($conn, $query)) {
         // Data inserted successfully

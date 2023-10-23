@@ -77,34 +77,88 @@ session_start();
 
   <!-- Your other scripts and styles -->
   <script src="../assets/loginAndRegistration/script/otpverification.js"></script>
-  
+
   <script>
-  // resend if logged in
-  document.addEventListener("DOMContentLoaded", function () {
-    // Check if you want to auto-send the 'resend' data
-    <?php if (isset($_SESSION['id'])) { ?>
-      fetch('verify_otp.php', {
-        method: 'POST',
-        body: new URLSearchParams({ 'resend': '1' }),
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-      })
-        .then(response => {
-          if (response.ok) {
-            // Request was successful, you can handle the response here
-          } else {
-            // Request failed, handle the error
-            console.error('Failed to auto-send the "resend" data.');
-          }
-        })
-        .catch(error => {
-          console.error('An error occurred:', error);
-        });
-    <?php } ?>
-  });
-</script>
-  
+    // resend if logged in
+    document.addEventListener("DOMContentLoaded", function() {
+      // Check if you want to auto-send the 'resend' data
+      <?php if (isset($_SESSION['id'])) { ?>
+        fetch('verify_otp.php', {
+            method: 'POST',
+            body: new URLSearchParams({
+              'resend': '1'
+            }),
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+            },
+          })
+          .then(response => {
+            if (response.ok) {
+              // Request was successful, you can handle the response here
+            } else {
+              // Request failed, handle the error
+              console.error('Failed to auto-send the "resend" data.');
+            }
+          })
+          .catch(error => {
+            console.error('An error occurred:', error);
+          });
+      <?php } ?>
+    });
+  </script>
+
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      let resendClicked = false;
+
+      // Function to handle the "Resend" button click
+      const handleResendClick = () => {
+        if (!resendClicked) {
+          // Disable the "Resend" link
+          document.getElementById("resend").classList.add("disabled");
+
+          // Set a flag indicating that the "Resend" button has been clicked
+          resendClicked = true;
+
+          // Fetch the 'resend' data when the link is clicked
+          fetch('verify_otp.php', {
+              method: 'POST',
+              body: new URLSearchParams({
+                'resend': '1'
+              }),
+              headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+              },
+            })
+            .then(response => {
+              if (response.ok) {
+                // Request was successful, you can handle the response here
+              } else {
+                // Request failed, handle the error
+                console.error('Failed to send the "resend" data.');
+              }
+            })
+            .catch(error => {
+              console.error('An error occurred:', error);
+            });
+
+          // Set a timer to re-enable the "Resend" link after a delay (e.g., 60 seconds)
+          setTimeout(() => {
+            // Re-enable the "Resend" link
+            document.getElementById("resend").classList.remove("disabled");
+
+            // Reset the flag so the user can click the "Resend" button again
+            resendClicked = false;
+          }, 60000); // Adjust the delay as needed (in milliseconds)
+        }
+      };
+
+      // Add a click event listener to the "Resend" link
+      document.getElementById("resend").addEventListener("click", handleResendClick);
+    });
+  </script>
+
 </body>
 
 </html>

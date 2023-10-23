@@ -31,7 +31,7 @@ if (isset($_POST['login'])) {
         if (password_verify($password, $row['password'])) {
             $statusText = getStatusText($row['status']);
 
-            if ($statusText === "Pending Verification" && $row['user_role'] === 0) {
+            if ($statusText === "Pending Verification") {
                 // Email not verified
                 $_SESSION['login_error'] = "Email not verified. Please check your email for verification instructions.";
                 $_SESSION['fullName'] = $row['firstName'] . ' ' . $row['lastName'];
@@ -40,7 +40,7 @@ if (isset($_POST['login'])) {
                 $_SESSION['email'] = $row['email'];
                 $_SESSION['verified'] = 0;
 
-                header("location: verification.php");
+                header("location: verification.php"); // Redirect to the verification page
                 exit();
             } elseif ($statusText === "Email Verified") {
                 // Email applicant Member login
@@ -48,11 +48,15 @@ if (isset($_POST['login'])) {
                 $_SESSION['id'] = $row['id'];
                 $_SESSION['user_role'] = 'applicant';
                 $_SESSION['email'] = $row['email'];
-
                 header("location: application_review.php");
                 exit();
             } elseif ($statusText === "Account Accepted") {
+                $_SESSION['fullName'] = $row['firstName'] . ' ' . $row['lastName'];
+                $_SESSION['id'] = $row['id'];
+                $_SESSION['user_role'] = 'applicant';
+                $_SESSION['email'] = $row['email'];
                 header("location: ../Applicant/applicantDashboard.php");
+                exit();
             } elseif ($statusText === "Member") {
                 header("location: ../MEMBER/memberDashboard.php");
             }
@@ -61,29 +65,29 @@ if (isset($_POST['login'])) {
             header("location: login.php");
             exit();
         }
-    } elseif ($adminResult->num_rows > 0) {
-        $row = $adminResult->fetch_assoc();
-        if ($_POST['password'] === $row['password']) {
-            $statusText = getStatusText($row['account_status']);
+        // } elseif ($adminResult->num_rows > 0) {
+        //     $row = $adminResult->fetch_assoc();
+        //     if ($_POST['password'] === $row['password']) {
+        //         $statusText = getStatusText($row['account_status']);
 
-            if ($statusText === "Pending Verification") {
-                // Email not verified for admin
-                $_SESSION['login_error'] = "Email not verified for admin. Please check your email for verification instructions.";
-                header("location: login.php");
-                exit();
-            } elseif ($row['membership_status'] === 'admin') {
-                // Admin login
-                $_SESSION['id'] = $row['id'];
-                $_SESSION['user_role'] = 'admin';
-                $_SESSION['email'] = $row['email'];
-                header("location: ../ADMIN/admindashboard.php");
-                exit();
-            }
-        } else {
-            $_SESSION['login_error'] = "Incorrect email or password.";
-            header("location: login.php");
-            exit();
-        }
+        //         if ($statusText === "Pending Verification") {
+        //             // Email not verified for admin
+        //             $_SESSION['login_error'] = "Email not verified for admin. Please check your email for verification instructions.";
+        //             header("location: verification.php"); // Redirect to the verification page for admin
+        //             exit();
+        //         } elseif ($row['membership_status'] === 'admin') {
+        //             // Admin login
+        //             $_SESSION['id'] = $row['id'];
+        //             $_SESSION['user_role'] = 'admin';
+        //             $_SESSION['email'] = $row['email'];
+        //             header("location: ../ADMIN/admindashboard.php");
+        //             exit();
+        //         }
+        //     } else {
+        //         $_SESSION['login_error'] = "Incorrect email or password.";
+        //         header("location: login.php");
+        //         exit();
+        //     }
     } else {
         $_SESSION['login_error'] = "Account not found.";
         header("location: login.php");
