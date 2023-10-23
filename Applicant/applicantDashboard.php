@@ -55,6 +55,7 @@ if (isset($_SESSION['id'])) {
     <!-----------------------------NAVIGATION-------------------------------------------------->
     <?php
     include 'applicantNavigation.php';
+    echo $_SESSION['id'];
     ?>
 
 

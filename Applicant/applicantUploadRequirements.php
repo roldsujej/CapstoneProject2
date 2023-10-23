@@ -1,5 +1,6 @@
 <?php
 require_once '../database/config.php';
+$uploadDirectory = __DIR__ . '/uploads/applicant_uploads';
 
 session_start();
 //var_dump($_SESSION);
@@ -38,39 +39,73 @@ if (isset($_SESSION['id'])) {
     header('location: logout.php');
 }
 
+if (isset($_POST['upload'])) {
+    // Check if a file has been uploaded
+    if (isset($_FILES['uploadedFile'])) {
+        $file = $_FILES['uploadedFile'];
 
-if (isset($_POST['upload'])) { //for uploading
-    // Check if a file was uploaded successfully
-    if (isset($_FILES['uploadedFile']) && $_FILES['uploadedFile']['error'] === UPLOAD_ERR_OK) {
-        // Handle the file upload here
-        $applicantId = $_SESSION['id'];
-        $documentId = $_POST['documentId'];
-        $fileName = $_FILES['uploadedFile']['name'];
-        $tmpName = $_FILES['uploadedFile']['tmp_name'];
-        $uploadDir = 'uploads/user_uploads'; // The directory to store uploaded files
-        $uploadPath = $uploadDir . $fileName;
+        // Check for file upload errors
+        if ($file['error'] === UPLOAD_ERR_OK) {
+            // Define a target directory to store the uploaded files
+            // $targetDirectory = 'uploads\user_uploads';  // Create this directory if it doesn't exist
 
-        // Move the uploaded file to the destination directory
-        if (move_uploaded_file($tmpName, $uploadPath)) {
-            // Insert the file information into the uploaded_documents table
-            $insertQuery = "INSERT INTO uploaded_documents (applicant_id, document_id, file_name, file_path)
-                            VALUES (?, ?, ?, ?)";
-            $stmt = $conn->prepare($insertQuery);
-            $stmt->bind_param("iiss", $applicantId, $documentId, $fileName, $uploadPath);
+            // Generate a unique filename for the uploaded file
+            $uniqueFilename = uniqid() . '_' . $file['name'];
 
-            if ($stmt->execute()) {
-                echo "File uploaded";
+            // Set the path for the uploaded file
+            $targetPath = $uploadDirectory . $uniqueFilename;
+
+            // Verify if the applicant_id exists in the account_profiles table
+            $documentId = $_POST['documentId'];
+            $applicantId = $_SESSION['id'];
+
+            // Check if the applicant_id exists in the account_profiles table
+            $checkQuery = "SELECT id FROM account_profiles WHERE id = ?";
+            $checkStmt = $conn->prepare($checkQuery);
+            $checkStmt->bind_param("i", $applicantId);
+            $checkStmt->execute();
+            $checkStmt->store_result();
+
+            if ($checkStmt->num_rows > 0) {
+                // Applicant ID exists in account_profiles, proceed with insertion
+                // Move the uploaded file to the target path
+                if (move_uploaded_file($file['tmp_name'], $targetPath)) {
+                    // Insert file details into the database
+                    $insertQuery = "INSERT INTO uploaded_documents (document_id, applicant_id, file_path) VALUES (?, ?, ?)";
+                    $insertStmt = $conn->prepare($insertQuery);
+                    $insertStmt->bind_param("iis", $documentId, $applicantId, $targetPath);
+
+                    if ($insertStmt->execute()) {
+                        // File upload and database insertion successful
+                        $_SESSION['status'] = "File uploaded successfully.";
+                        $_SESSION['status_code'] = "success";
+                    } else {
+                        $_SESSION['status'] = "Failed to insert file details into the database: " . $conn->error;
+                        $_SESSION['status_code'] = "error";
+                    }
+                } else {
+                    $_SESSION['status'] = "Failed to move the uploaded file to the target directory.";
+                    $_SESSION['status_code'] = "error";
+                }
             } else {
-                // Handle database insert error
-                // You can display an error message
-                echo "error uploading";
+                // Handle the case where the applicant_id doesn't exist in account_profiles
+                $_SESSION['status'] = "Invalid applicant ID.";
+                $_SESSION['status_code'] = "error";
             }
         } else {
-            // Handle file move error
-            // You can display an error message
+            $_SESSION['status'] = "File upload error: " . $file['error'];
+            $_SESSION['status_code'] = "error";
         }
+    } else {
+        $_SESSION['status'] = "No file was uploaded.";
+        $_SESSION['status_code'] = "error";
     }
 }
+
+
+
+
+
 
 
 
@@ -135,42 +170,42 @@ if (isset($_POST['upload'])) { //for uploading
                 <h2>Please upload the following documents below: </h2>
                 <p>Ensure that you are following instruction to avoid delay on your registration</p>
             </div>
-            <div class="requirement-cards-container">
-                <?php
-                $sql = mysqli_query($conn, "SELECT * FROM required_documents ORDER BY document_id ASC") or die(mysqli_error($conn));
+            <form class="upload-form" method="POST" enctype="multipart/form-data">
+                <div class="requirement-cards-container">
+                    <?php
+                    $sql = mysqli_query($conn, "SELECT * FROM required_documents ORDER BY document_id ASC") or die(mysqli_error($conn));
 
-                if (mysqli_num_rows($sql) > 0) {
-                    while ($row = mysqli_fetch_array($sql)) {
-                        $document_id = $row['document_id'];
-                        $document_name = $row['document_name'];
-                        $document_description = $row['document_description'];
-                        $document_status = $row['is_required'];
-                        $document_type = $row['document_type'];
+                    if (mysqli_num_rows($sql) > 0) {
+                        while ($row = mysqli_fetch_array($sql)) {
+                            $document_id = $row['document_id'];
+                            $document_name = $row['document_name'];
+                            $document_description = $row['document_description'];
+                            $document_status = $row['is_required'];
+                            $document_type = $row['document_type'];
 
-                        $requirementClass = $document_status === 'required' ? 'required' : 'optional';
-                ?>
-                        <div class="requirement-card <?php echo $requirementClass; ?>">
-                            <h3><?php echo $document_name; ?></h3>
-                            <p><?php echo $document_description; ?></p>
-                            <span class="status"><?php echo strtoupper($document_status); ?></span>
-                            <p><?php echo $document_type; ?></p>
-
-                            <form class="upload-form" method="POST">
-                                <input type="file" class="file-input" name="uploadedFile" accept="application/pdf" required>
-                                <input type="hidden" name="documentId" value="<?php echo $document_id; ?>">
-                                <button type="submit" class="action-button submitBtn" name="upload">
-                                    <ion-icon name="cloud-upload-outline"></ion-icon> Upload
-                                </button>
-                            </form>
-                        </div>
-                <?php
+                            $requirementClass = $document_status === 'required' ? 'required' : 'optional';
+                    ?>
+                            <div class="requirement-card <?php echo $requirementClass; ?>">
+                                <h3><?php echo $document_name; ?></h3>
+                                <p><?php echo $document_description; ?></p>
+                                <span class="status"><?php echo strtoupper($document_status); ?></span>
+                                <p><?php echo $document_type; ?></p>
+                                <input type="file" class="file-input" name="uploadedFile_<?php echo $document_id; ?>" accept="application/pdf" required>
+                                <input type="hidden" name="documentId_<?php echo $document_id; ?>" value="<?php echo $document_id; ?>">
+                            </div>
+                    <?php
+                        }
+                    } else {
+                        echo "No requirements found.";
                     }
-                } else {
-                    echo "No requirements found.";
-                }
-                ?>
-            </div>
+                    ?>
+                </div>
+                <button type="submit" class="action-button submitBtn" name="upload">
+                    <ion-icon name="cloud-upload-outline"></ion-icon> Upload
+                </button>
+            </form>
         </div>
+
     </div>
     </div>
 
