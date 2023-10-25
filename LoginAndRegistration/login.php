@@ -48,7 +48,7 @@ if (isset($_POST['login'])) {
                 $_SESSION['id'] = $row['id'];
                 $_SESSION['user_role'] = 'applicant';
                 $_SESSION['email'] = $row['email'];
-                header("location: application_review.php");
+                header("location: ../landing_pages/application_review.php");
                 exit();
             } elseif ($statusText === "Account Accepted") {
                 $_SESSION['fullName'] = $row['firstName'] . ' ' . $row['lastName'];
