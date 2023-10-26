@@ -72,10 +72,34 @@ if (isset($_POST['submit'])) {
                 $mail->Password = 'vweswchyhxelzyhz'; // Replace with your email password
                 $mail->SMTPSecure = 'tls';
                 $mail->setFrom('CAPEDAInc@gmail.com', 'CAPEDA'); // Replace with your info
-                $mail->addAddress($email, $fullname);
                 $mail->Subject = 'Email OTP Verification';
-                $mail->Body = "Your OTP for registration is: $otp. This OTP is valid for 5 minutes.";
+                $mail->addAddress($email, $fullname);
+                $designedEmail = "<div style='font-family: Helvetica,Arial,sans-serif;min-width:1000px;overflow:auto;line-height:2'>
+    <div style='margin:50px auto;width:70%;padding:20px 0'>
+      <div style='border-bottom:1px solid #eee'>
+        <a href='' style='font-size:1.4em;color: #00466a;text-decoration:none;font-weight:600'>OTP Verification</a>
+      </div>
+      <p style='font-size:1.1em'>Hello,</p>
+      <p> Your email can be verified using this  OTP code: $otp .
+     <p> This OTP code will expire within 10 minutes. </p>
+
+      
+        </p>
+      <h2 style='background: #00466a;margin: 0 auto;width: max-content;padding: 0 10px;color: #fff;border-radius: 4px;'>OTP CODE GOES HERE</h2>
+      <p style='font-size:0.9em;'>Regards,<br />CAPEDA.</p>
+      <hr style='border:none;border-top:1px solid #eee' />
+      <div style='float:right;padding:8px 0;color:#aaa;font-size:0.8em;line-height:1;font-weight:300'>
+        <p>PRO Climate Innovations</p>
+        <p>Northwalk Clark 2nd Floor Unit 3 No. 8 M.A. Roxas Highway</p>
+        <p> Clark Freeport Zone,</p>
+        <p>Clark Pampanga Philippines</p>
+        <p> +63 908 8125221 / +63915 7016270</p>
+      </div>
+    </div>
+  </div>";
+                $mail->Body = $designedEmail;
                 $mail->send();
+
 
                 if ($mail->send()) {
                     $_SESSION['email'] = $email;

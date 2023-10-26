@@ -50,9 +50,41 @@ if (isset($_POST['approve_user'])) {
                 $mail->setFrom('CAPEDAInc@gmail.com', 'CAPEDA'); // Replace with your info
                 $mail->addAddress($email, $fullname);
                 $mail->Subject = 'Account Approval Notification';
-                $mail->Body = "Hello, Good day. I am glad to tell you that you're account creation was approved. 
-                You can now login to upload your required documents. 
-                Please make sure to read instructions before submitting your documents. Thank you";
+                $mail->Body = "
+  <!DOCTYPE html>
+  <html lang='en'>
+  <head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>CAPEDA | Registration</title>
+  </head>
+  <body>
+      <div style='font-family: Helvetica,Arial,sans-serif;min-width:1000px;overflow:auto;line-height:2'>
+    <div style='margin:50px auto;width:70%;padding:20px 0'>
+      <div style='border-bottom:1px solid #eee'>
+        <a href='' style='font-size:1.4em;color: #00466a;text-decoration:none;font-weight:600'>Account Approval Notification</a>
+      </div>
+      <p style='font-size:1.1em'>Hello, Thank you for waiting for our response.</p>
+      <p> We are glad to tell you That you are elligible to become a member of CAPEDA. 
+     <p>You can now log in to the system and upload the required documents. Please make sure to read the instructions before uploading your documents.  </p>
+
+      
+        </p>
+
+      <p style='font-size:0.9em;'>Regards,<br />CAPEDA Org.</p>
+      <hr style='border:none;border-top:1px solid #eee' />
+      <div style='float:right;padding:8px 0;color:#aaa;font-size:0.8em;line-height:1;font-weight:300'>
+        <p>Camella II Pedicab Association</p>
+        <pSample Address</p>
+        <p> Sample Address,</p>
+        <p>Bacoor city, Cavite Philippines</p>
+        <p> +63 908 8125221 / +63915 7016270</p>
+      </div>
+    </div>
+  </div>
+  </body>
+  </html>
+";
 
 
                 if ($mail->send()) { // If the email is sent successfully
@@ -128,15 +160,41 @@ if (isset($_POST['deny_user'])) {
                 $mail->setFrom('CAPEDAInc@gmail.com', 'CAPEDA'); // Replace with your info
                 $mail->addAddress($email, $fullname);
                 $mail->Subject = 'Application Status Notification';
+                $mail->Body = "
+  <!DOCTYPE html>
+  <html lang='en'>
+  <head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>CAPEDA | Registration</title>
+  </head>
+  <body>
+      <div style='font-family: Helvetica,Arial,sans-serif;min-width:1000px;overflow:auto;line-height:2'>
+    <div style='margin:50px auto;width:70%;padding:20px 0'>
+      <div style='border-bottom:1px solid #eee'>
+        <a href='' style='font-size:1.4em;color: #00466a;text-decoration:none;font-weight:600'>Application Status Update</a>
+      </div>
+      <p style='font-size:1.1em'>Hello, Thank you for your interest on joining CAPEDA. </p>
+      <p> This is an update to your application request, Unfortunately you did not pass the criteria to apply for membership for the following reason:
+        <p> $denialReasons </p>
 
-                $mail->Body = "Hello, Good day. We are very sorry to tell you that your account creation was Denied due to the following reasons:
-
-                Reasons for Denial:
-                - $denialReasons
-
-                Please don't hesitate to reply to this email if you have more questions regarding your application. Thank you";
-
-
+      <p> If you have more questions feel free to reply in this email. Thank you.
+        </p>
+   
+      <p style='font-size:0.9em;'>Regards,<br />CAPEDA Org.</p>
+      <hr style='border:none;border-top:1px solid #eee' />
+      <div style='float:right;padding:8px 0;color:#aaa;font-size:0.8em;line-height:1;font-weight:300'>
+        <p>Camella II Pedicab Association</p>
+        <pSample Address</p>
+        <p> Sample Address,</p>
+        <p>Bacoor city, Cavite Philippines</p>
+        <p> +63 908 8125221 / +63915 7016270</p>
+      </div>
+    </div>
+  </div>
+  </body>
+  </html>
+";
                 if ($mail->send()) { // If the email is sent successfully
                     $_SESSION['status'] = "Email sent to applicant";
                     $_SESSION['status_code'] = "success";

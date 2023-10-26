@@ -50,7 +50,7 @@ if (isset($_POST['submit'])) {
       try {
         $mail = new PHPMailer;
         $mail->isSMTP();
-        $mail->SMTPDebug = 2;  // Set this to 2 for detailed debugging
+        $mail->SMTPDebug = 0;  // Set this to 0 for production
         $mail->Host = 'smtp.gmail.com';
         $mail->Port = 587;
         $mail->SMTPAuth = true;
@@ -60,7 +60,44 @@ if (isset($_POST['submit'])) {
         $mail->setFrom('CAPEDAInc@gmail.com', 'CAPEDA');
         $mail->addAddress($email, $fname . ' ' . $lname);
         $mail->Subject = 'Email OTP Verification';
-        $mail->Body = "Your OTP for registration is: $otp. This OTP is valid for 5 minutes.";
+
+        // Email content
+        $mail->isHTML(true);
+        $mail->Body = "
+  <!DOCTYPE html>
+  <html lang='en'>
+  <head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>CAPEDA | Registration</title>
+  </head>
+  <body>
+      <div style='font-family: Helvetica,Arial,sans-serif;min-width:1000px;overflow:auto;line-height:2'>
+    <div style='margin:50px auto;width:70%;padding:20px 0'>
+      <div style='border-bottom:1px solid #eee'>
+        <a href='' style='font-size:1.4em;color: #00466a;text-decoration:none;font-weight:600'>Email Verification</a>
+      </div>
+      <p style='font-size:1.1em'>Hello, Thank you for your interest on joining CAPEDA.</p>
+      <p> Your email can be verified using this  OTP code. 
+     <p> This OTP code will expire within 10 minutes. </p>
+
+      
+        </p>
+      <h2 style='background: #00466a;margin: 0 auto;width: max-content;padding: 0 10px;color: #fff;border-radius: 4px;'>$otp</h2>
+      <p style='font-size:0.9em;'>Regards,<br />CAPEDA Org.</p>
+      <hr style='border:none;border-top:1px solid #eee' />
+      <div style='float:right;padding:8px 0;color:#aaa;font-size:0.8em;line-height:1;font-weight:300'>
+        <p>Camella II Pedicab Association</p>
+        <pSample Address</p>
+        <p> Sample Address,</p>
+        <p>Bacoor city, Cavite Philippines</p>
+        <p> +63 908 8125221 / +63915 7016270</p>
+      </div>
+    </div>
+  </div>
+  </body>
+  </html>
+";
 
         if ($mail->send()) {
           $_SESSION['email'] = $email;

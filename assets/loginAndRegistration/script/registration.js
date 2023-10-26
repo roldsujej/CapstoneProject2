@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function clearError(errorId) {
     var errorElement = document.getElementById(errorId);
     if (errorElement) {
-      errorElement.innerHTML = "";
+      errorElement.textContent = "";
     }
   }
 
@@ -28,6 +28,14 @@ document.addEventListener("DOMContentLoaded", function () {
       clearError("passwordError");
     }
   }
+
+  // Clear the main PHP error message after 5 seconds
+  var errorMsgContainer = document.getElementById("phpErrorMsg");
+  if (errorMsgContainer) {
+    setTimeout(function () {
+      errorMsgContainer.textContent = ""; // Clear the error message after 5 seconds
+    }, 5000); // 5000 milliseconds = 5 seconds
+  }
 });
 
 function validatePhoneNumber() {
@@ -40,19 +48,8 @@ function validatePhoneNumber() {
 
   if (!regex.test(phoneNumberInput.value)) {
     phoneNumberError.textContent =
-      "Please enter mobile number from Philippines.";
+      "Please enter a valid mobile number from the Philippines.";
   } else {
     phoneNumberError.textContent = "";
   }
 }
-
-// function validateFirstName() {
-//   const fnameInput = document.getElementById("fname");
-//   const fnameError = document.getElementById("fnameError");
-
-//   if (fnameInput.value.trim() === "") {
-//     fnameError.textContent = "First name is required.";
-//   } else {
-//     fnameError.textContent = ""; // Clear the error message
-//   }
-// }
