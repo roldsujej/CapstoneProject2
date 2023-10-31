@@ -34,7 +34,7 @@ function confirmLogOutHandler() {
   // Add code here to perform the log-out action
   // For example, redirect to the log-out page or perform AJAX request
   // After log-out, you can redirect the user to the desired page
-  window.location.href = "logout.php";
+  window.location.href = "../logout.php";
 }
 
 // Attach event listeners

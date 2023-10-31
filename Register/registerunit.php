@@ -45,7 +45,7 @@
         <!-- <a href="#" class="forgot">Forgot Username/Password?</a> -->
 
         <div class="create">
-          <a href="registration.html">Want to register as a member instead?</a>
+          <a href="register.php">Want to register as a member instead?</a>
           <i class="ri-arrow-right-fill"></i>
         </div>
         <!-- <div class="modal">

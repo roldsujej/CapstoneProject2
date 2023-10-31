@@ -10,7 +10,7 @@ session_start();
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="../images/capedalogo.png" type="image/x-icon">
-  <link rel="stylesheet" href="../assets/css/otpverification.css" />
+  <link rel="stylesheet" href="../css/otpverification.css" />
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
@@ -76,7 +76,7 @@ session_start();
 
 
   <!-- Your other scripts and styles -->
-  <script src="../assets/loginAndRegistration/script/otpverification.js"></script>
+  <script src="../js/login/otpverification.js"></script>
 
   <script>
     // resend if logged in

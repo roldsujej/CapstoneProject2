@@ -16,7 +16,7 @@ require "../database/config.php";
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin Dashboard</title>
   <link rel="stylesheet" href="../css/admin/adminManageRequirements.css" />
-  <link rel="stylesheet" href="../script/ADMIN/global.css">
+  <link rel="stylesheet" href="../css/admin/global.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
@@ -156,9 +156,9 @@ require "../database/config.php";
   ?>
 
   <!---------------SCRIPT--------------------------->
-  <!-- <script src="../script/ADMIN/adminManageApplication.js"></script> -->
-  <script src="../script/ADMIN/adminManageRequirements.js"></script>
-  <script src="../script/ADMIN/modal.js"></script>
+  <!-- <script src="../js/ADMIN/adminManageApplication.js"></script> -->
+  <script src="../js/ADMIN/adminManageRequirements.js"></script>
+  <script src="../js/ADMIN/modal.js"></script>
   <!---------ICONS----------------------------------->
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>

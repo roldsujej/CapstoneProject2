@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin Dashboard</title>
   <link rel="stylesheet" href="../css/admin/admindashboard.css" />
-  <link rel="stylesheet" href="../script/ADMIN/global.css"> <!------------nagugulo yung card pag nakalink yung global so need adjust sa display in the cards design----->
+  <link rel="stylesheet" href="../css/admin/global.css"> <!------------nagugulo yung card pag nakalink yung global so need adjust sa display in the cards design----->
 </head>
 
 <body>
@@ -123,10 +123,10 @@
 
   <!---------------SCRIPT--------------------------->
 
-  <script src="../script/ADMIN/modal.js"></script>
+  <script src="../js/ADMIN/modal.js"></script>
 
   <!---------------SCRIPT--------------------------->
-  <script src="../script/admindashboard.js"></script>
+  <script src="../js/admindashboard.js"></script>
   <!---------ICONS----------------------------------->
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>

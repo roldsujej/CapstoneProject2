@@ -2,10 +2,13 @@
 // Start a new session or resume the existing session
 session_start();
 
-// Check if a user session is active
+// Clear session data
 session_unset();
 
+// Destroy the session
+session_destroy();
+
 // Redirect the user to the login page after logging out
-header("Location: ../LoginAndRegistration/login.php");
+header("Location: Login/login.php");
 die; // Terminate script execution
 ?>

@@ -2,7 +2,7 @@
 session_start();
 
 require "../database/config.php";
-include "common.php";
+include "../common.php";
 $errorMsg = "";
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -54,54 +54,51 @@ if (isset($_POST['submit'])) {
         $mail->Host = 'smtp.gmail.com';
         $mail->Port = 587;
         $mail->SMTPAuth = true;
-        $mail->Username = 'yeojsoriano721@gmail.com'; // Replace with your email
-        $mail->Password = 'vweswchyhxelzyhz'; // Replace with your email password
+        $mail->Username = 'janvryzleonelpareja@gmail.com'; // Replace with your email
+        $mail->Password = 'vokqbubvqehenmau'; // Replace with your email password
         $mail->SMTPSecure = 'tls';
-        $mail->setFrom('CAPEDAInc@gmail.com', 'CAPEDA');
+        $mail->setFrom('CAPEDAInc@gmail.com', 'CAPEDA'); // Replace with your info
         $mail->addAddress($email, $fname . ' ' . $lname);
         $mail->Subject = 'Email OTP Verification';
 
         // Email content
         $mail->isHTML(true);
         $mail->Body = "
-  <!DOCTYPE html>
-  <html lang='en'>
-  <head>
-    <meta charset='UTF-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>CAPEDA | Registration</title>
-  </head>
-  <body>
-      <div style='font-family: Helvetica,Arial,sans-serif;min-width:1000px;overflow:auto;line-height:2'>
-    <div style='margin:50px auto;width:70%;padding:20px 0'>
-      <div style='border-bottom:1px solid #eee'>
-        <a href='' style='font-size:1.4em;color: #00466a;text-decoration:none;font-weight:600'>Email Verification</a>
-      </div>
-      <p style='font-size:1.1em'>Hello, Thank you for your interest on joining CAPEDA.</p>
-      <p> Your email can be verified using this  OTP code. 
-     <p> This OTP code will expire within 10 minutes. </p>
-
-      
-        </p>
-      <h2 style='background: #00466a;margin: 0 auto;width: max-content;padding: 0 10px;color: #fff;border-radius: 4px;'>$otp</h2>
-      <p style='font-size:0.9em;'>Regards,<br />CAPEDA Org.</p>
-      <hr style='border:none;border-top:1px solid #eee' />
-      <div style='float:right;padding:8px 0;color:#aaa;font-size:0.8em;line-height:1;font-weight:300'>
-        <p>Camella II Pedicab Association</p>
-        <pSample Address</p>
-        <p> Sample Address,</p>
-        <p>Bacoor city, Cavite Philippines</p>
-        <p> +63 908 8125221 / +63915 7016270</p>
-      </div>
-    </div>
-  </div>
-  </body>
-  </html>
-";
+			<!DOCTYPE html>
+			<html lang='en'>
+			<head>
+			<meta charset='UTF-8'>
+			<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+			<title>CAPEDA | Registration</title>
+			</head>
+			<body>
+			  <div style='font-family: Helvetica,Arial,sans-serif;min-width:1000px;overflow:auto;line-height:2'>
+			<div style='margin:50px auto;width:70%;padding:20px 0'>
+			  <div style='border-bottom:1px solid #eee'>
+				<a href='' style='font-size:1.4em;color: #00466a;text-decoration:none;font-weight:600'>Email Verification</a>
+			  </div>
+			  <p style='font-size:1.1em'>Hello, Thank you for your interest on joining CAPEDA.</p>
+			  <p> Your email can be verified using this  OTP code. </p>
+			  <p> This OTP code will expire within 5 minutes. </p>
+			  <h2 style='background: #00466a;margin: 0 auto;width: max-content;padding: 0 10px;color: #fff;border-radius: 4px;'>$otp</h2>
+			  <p style='font-size:0.9em;'>Regards,<br />CAPEDA Org.</p>
+			  <hr style='border:none;border-top:1px solid #eee' />
+			  <div style='float:right;padding:8px 0;color:#aaa;font-size:0.8em;line-height:1;font-weight:300'>
+				<p>Camella II Pedicab Association</p>
+				<pSample Address</p>
+				<p> Sample Address,</p>
+				<p>Bacoor city, Cavite Philippines</p>
+				<p> +63 908 8125221 / +63915 7016270</p>
+			  </div>
+			</div>
+			</div>
+			</body>
+			</html>
+			";
 
         if ($mail->send()) {
           $_SESSION['email'] = $email;
-          header("Location: verification.php");  // dapat may way na maredirect back to login si user after registering, it can be a button or anything
+          header("Location: ../Login/verification.php");  // dapat may way na maredirect back to login si user after registering, it can be a button or anything
           exit();
         } else {
           $errorMsg = "Mailer Error: " . $mail->ErrorInfo;
@@ -117,7 +114,7 @@ if (isset($_POST['submit'])) {
   }
 
   $_SESSION['errorMsg'] = $errorMsg;
-  header("Location: registration.php");
+  header("Location: register.php");
   exit();
 }
 ?>
@@ -134,8 +131,8 @@ if (isset($_POST['submit'])) {
   <title>CAPEDA | Registration </title>
 
   <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet" />
-  <link rel="stylesheet" href="../assets/loginAndRegistration/css/registration.css" />
-  <!-- <link rel="stylesheet" href="../script/ADMIN/global.css"> -->
+  <link rel="stylesheet" href="../css/register/register.css" />
+  <!-- <link rel="stylesheet" href="../css/admin/global.css"> -->
 
 </head>
 
@@ -251,7 +248,7 @@ if (isset($_POST['submit'])) {
         </div>
 
         <div class="create">
-          <a href="unitregistration.php">Register your PEDICAB here</a>
+          <a href="registerunit.php">Register your PEDICAB here</a>
           <i class="ri-arrow-right-fill"></i>
         </div>
       </form>
@@ -269,7 +266,7 @@ if (isset($_POST['submit'])) {
 
 
 
-  <script src="../assets/loginAndRegistration/script/registration.js"></script>
+  <script src="../js/register/register.js"></script>
 </body>
 
 

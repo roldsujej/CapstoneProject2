@@ -5,39 +5,13 @@ $uploadDirectory = __DIR__ . '/uploads/applicant_uploads';
 session_start();
 //var_dump($_SESSION);
 
-//include '../LoginAndRegistration/login.php';
 //require_once 'sessions.php';
 
 
 // Check if 'fullName' is set in the session before accessing it
 //$fullname = isset($_SESSION['fullName']) ? $_SESSION['fullName'] : '';
 
-// double check user role
-if (isset($_SESSION['id'])) {
 
-    if (isset($_SESSION['user_role'])) {
-        // if applicant
-        if ($_SESSION['user_role'] === 'applicant') {
-
-            if (isset($_SESSION['verified'])) {
-                if ($_SESSION['verified'] === 0) {
-                    header('location: ../Applicant/logout.php');
-                }
-            }
-
-            // header('location: ../Applicant/applicantDashboard.php');
-
-        }
-        // if admin
-        else if ($_SESSION['user_role'] === 'admin') {
-
-            header('location: ../ADMIN/admindashboard.php');
-        }
-    }
-} else {
-
-    header('location: logout.php');
-}
 
 if (isset($_POST['upload'])) {
     // Check if a file has been uploaded
@@ -122,7 +96,7 @@ if (isset($_POST['upload'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Applicant Dashboard</title>
     <link rel="stylesheet" href="../css/applicant/applicantUploadRequirements.css" />
-    <link rel="stylesheet" href="../script/ADMIN/global.css">
+    <link rel="stylesheet" href="../css/admin/global.css">
 </head>
 
 <body>
@@ -214,7 +188,7 @@ if (isset($_POST['upload'])) {
     </div>
 
     <!---------------SCRIPT--------------------------->
-    <script src="../script/APPLICANT/applicantDashboard.js"></script>
+    <script src="../js/APPLICANT/applicantDashboard.js"></script>
     <!---------ICONS----------------------------------->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
