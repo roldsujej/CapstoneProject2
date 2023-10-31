@@ -1372,28 +1372,71 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 /* dashboard cards */
-.dashboard_card {
+.cardBox {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 30px;
+}
+
+.cardBox .card {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin: 5px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 5px 10px;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+  cursor: pointer;
+  background-color: var(--white);
 }
-.dashboard_card svg {
-  font-size: 14px;
-  margin-right: 10px;
-}
-
-.status {
-  font-size: 14px;
-  margin-bottom: 1px;
+.cardBox .card .iconBx {
+  margin-right: 20px; /* Adjust as needed for spacing between icon and text */
 }
 
-.count {
-  font-size: 42px;
-  font-weight: bold;
+.cardBox .card .cardContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
 }
+
+.cardBox .card .numbers {
+  position: relative;
+  font-weight: 500;
+  font-size: 2.5rem;
+  color: var(--dBlue);
+}
+
+.cardBox .card .cardName {
+  color: var(--dBlue);
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 5px; /* Adjust as needed */
+}
+
+.cardBox .card .additionalText {
+  color: var(--black2);
+  font-size: 0.9rem; /* Adjust as needed */
+  /* Additional styling for the extra text */
+}
+
+.cardBox .card .iconBx {
+  font-size: 3.5rem;
+  color: var(--black2);
+}
+
+.cardBox .card:hover {
+  background: var(--dBlue);
+}
+
+.cardBox .card:hover .numbers,
+.cardBox .card:hover .cardName,
+.cardBox .card:hover .iconBx {
+  color: var(--white);
+}
+
 @media (max-width: 600px) {
   .dashboard_card {
     margin: 5px;
