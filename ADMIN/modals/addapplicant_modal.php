@@ -37,23 +37,15 @@ function generateRandomPassword($length = 8)
 
 
 if (isset($_POST['add_applicant'])) {
-    // $generatedPassword = generateRandomPassword(8);
-    // $firstName = $_POST['firstName'];
-    // $lastName = $_POST['lastName'];
-    // $cpNum = $_POST['cpNum'];
-    // $address = $_POST['address'];
-    // $email = $_POST['email'];
-    // $password = $_POST['password']; // Use the generated password
-    // // We will email this code to the applicant the 1st time they log in
-    // $otp = rand(100000, 999999);
-    // $otp_expiration = date('Y-m-d H:i:s', strtotime('+5 minutes'));
-    // $verificationStatus = getStatusText(0);  //status 0 = email not verified
 
 
+    $countryCode = '+63';
     $fullname = sanitize($conn, $_POST["firstName"] . $_POST["lastName"]);
     $firstName = sanitize($conn, $_POST["firstName"]);
     $lastName = sanitize($conn, $_POST["lastName"]);
-    $cpNum = sanitize($conn, $_POST["cpNum"]);
+    $birthday = sanitize($conn, $_POST["dob"]);
+    $age = sanitize($conn, $_POST["age"]);
+    $cpNum = sanitize($conn, $countryCode . $_POST["cpNum"]);
     $address = sanitize($conn, $_POST["address"]);
     $email = sanitize($conn, $_POST["email"]);
     $password = sanitize($conn, $_POST["password"]);
@@ -63,8 +55,8 @@ if (isset($_POST['add_applicant'])) {
     $verificationStatus = getStatusText(0);  //status 0 = email not verified
 
     // Perform database insertion
-    $query = "INSERT INTO account_profiles (firstName, lastName, cpNumber, address, email, password, otp, otp_exp, status) 
-              VALUES ('$firstName', '$lastName', '$cpNum', '$address', '$email',  '$hashedPassword', $otp, '$otp_expiration', '$verificationStatus')";
+    $query = "INSERT INTO account_profiles (firstName, lastName, cpNumber, birthday, age,  address, email, password, otp, otp_exp, status) 
+              VALUES ('$firstName', '$lastName', '$cpNum','$birthday', $age, '$address', '$email',  '$hashedPassword', $otp, '$otp_expiration', '$verificationStatus')";
 
     if (mysqli_query($conn, $query)) {
         // Data inserted successfully
@@ -108,7 +100,7 @@ if (isset($_POST['add_applicant'])) {
 
 <!-- Create the modal container -->
 <div class="modal-overlay" id="<?php echo 'addApplicantModal'  ?>">
-    <div class="modal-container modal-form-size modal-sm">
+    <div class="modal-container modal-form-size modal-l">
         <div class="modal-header text-light">
             <h4 class="modal-h4-header"><?php echo "Add New Applicant" ?></h4>
             <span class="modal-exit" data-modal-id="<?php echo 'addApplicantModal'  ?>">
@@ -120,10 +112,14 @@ if (isset($_POST['add_applicant'])) {
         <div class="modal-body">
             <div class="modalContent">
                 <form method="post">
+
                     <div class="form-group">
                         <label class="label" for="">ID:</label>
                         <input type="text" name="applicant_id" id="applicant_id" class="form-control" readonly value="<?php echo getLatestApplicantId(); ?>">
                     </div>
+                    <hr>
+                    <h3 class="modalHeader">PERSONAL INFORMATION:</h3>
+                    <hr>
                     <div class="form-group">
                         <label class="label" for="">First Name</label>
                         <input type="text" class="form-control" name="firstName" id="firstName" placeholder="Enter First Name ">
@@ -135,16 +131,36 @@ if (isset($_POST['add_applicant'])) {
                         <span class="error-message hidden"></span>
                     </div>
                     <div class="form-group">
-                        <label class="label" for="">Contact Number</label>
-                        <div class="phone-input">
-                            <input type="text" class="form-control" name="cpNum" id="cpNum" placeholder="Enter cellphone number" required>
+                        <label class="label" for="">Mobile Number</label>
+                        <div class="input-container">
+                            <span class="country-code" name="countryCode">+63</span>
+                            <input type="tel" class="form-control" name="cpNum" id="cpNum" placeholder="9XXXXXXXXX" required oninput="validatePhoneNumber()" />
                         </div>
-                        <div id="phoneNumberError" class="error-message hidden">Avoid entering numeric characters.</div>
                     </div>
+                    <div id="cpNumError" class="error-message"></div>
+
+
+
+                    <div class="form-group">
+                        <label class="label" for="dob">Date of Birth</label>
+                        <input type="date" class="form-control" name="dob" id="dob" oninput="validateBirthDate()" required>
+                        <span id="dobError" class="error-message hidden">Please enter a valid birth date.</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="label" for="age">Age</label>
+                        <input type="text" class="form-control" name="age" id="age" readonly>
+                        <span id="ageError" class="error-message hidden">Applicants under 18 years old cannot apply.</span>
+                    </div>
+
+
                     <div class="form-group">
                         <label class="label" for="">Address</label>
                         <input type="text" class="form-control" name="address" id="address" placeholder="Enter address" required>
                     </div>
+                    <hr>
+                    <h3 class="modalHeader">ACCOUNT INFORMATION:</h3>
+                    <hr>
                     <div class="form-group">
                         <label class="label" for="">Email</label>
                         <input type="email" class="form-control" name="email" id="email" placeholder="Enter email" required>

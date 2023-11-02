@@ -1,3 +1,28 @@
+<?php
+require "../database/config.php";
+if (isset($_POST['deleteApplicant'])) {
+    // Assuming you retrieve the announcement ID from the form
+    $announcement_id = $_POST['announcementIdToDelete'];
+
+    // Delete the announcement from the database
+    $deleteQuery = $conn->prepare("DELETE FROM tbl_announcements WHERE announcement_id = ?");
+    $deleteQuery->bind_param("i", $announcement_id);
+
+    if ($deleteQuery->execute()) {
+        // Announcement deleted successfully
+        $_SESSION['status'] = "Announcement Deleted.";
+        $_SESSION['status_code'] = "success";
+        // header('location : ../AdminManageNewsAndAlerts.php');
+    } else {
+        // Handle the error
+        $_SESSION['status'] = "An error has occured.";
+        $_SESSION['status_code'] = "error";
+    }
+}
+
+
+?>
+
 <div class="modal-overlay" id="<?php echo 'deleteAnnouncementModal' . $announcement_id; ?>">
     <div class="modal-container modal-form-size modal-sm">
         <div class="modal-header text-light">

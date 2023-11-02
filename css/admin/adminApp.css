@@ -666,6 +666,33 @@ label:not(.form-check-label):not(.custom-file-label) {
   ); /* Add a semi-transparent background overlay */
   z-index: 9999; /* Ensure it's on top of other content */
 }
+/* header on add applicant modal */
+.modalHeader {
+  text-align: center;
+  color: #19376d;
+}
+
+/* input container for cp number design */
+.input-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 100%; /* Adjust width as needed */
+}
+
+.country-code {
+  padding: 10px; /* Adjust spacing as needed */
+  background-color: #f0f0f0; /* Add a background color to the country code */
+  border: 1px solid #ccc; /* Add border for the country code */
+  border-right: none; /* Adjust border as needed */
+  color: #3570dd;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px; /* Adjust padding as needed */
+  border: 1px solid #ccc; /* Add border for the phone number input */
+}
 
 /* Add a media query for smaller screens */
 /* Add a media query for smaller screens */

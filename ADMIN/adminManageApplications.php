@@ -37,7 +37,6 @@ require '../Message/PHPMailer/src/SMTP.php';
   <!-- i separated the navigation to a specific php file so that i will be reusable in different pages -->
   <?php
   include 'adminNavigation.php';
-
   ?>
 
 
@@ -113,6 +112,8 @@ require '../Message/PHPMailer/src/SMTP.php';
                 $fname = $row['firstName'];
                 $lname = $row['lastName'];
                 $cpNumber = $row['cpNumber'];
+                $birthday = $row['birthday'];
+                $age = $row['age'];
                 $address = $row['address'];
                 $email = $row['email'];
                 $status = getStatusText($row['status']); // Get the descriptive status text

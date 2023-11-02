@@ -1,33 +1,4 @@
-const navigation = document.querySelector(".navigation");
-const toggleButton = document.querySelector(".toggle");
-const main = document.querySelector(".main");
-
-toggleButton.addEventListener("click", () => {
-  navigation.classList.toggle("active");
-  main.classList.toggle("active");
-});
-
-// Close navigation on small screens by default
-const screenWidth = window.innerWidth || document.documentElement.clientWidth;
-if (screenWidth <= 768) {
-  navigation.classList.remove("active");
-  main.classList.remove("active");
-}
-
-// Adjust content positioning on resize
-window.addEventListener("resize", () => {
-  const screenWidth = window.innerWidth || document.documentElement.clientWidth;
-  if (screenWidth <= 768) {
-    navigation.classList.remove("active");
-    main.classList.remove("active");
-  } else {
-    navigation.classList.add("active");
-    main.classList.add("active");
-  }
-});
-
 //modal on AdminManageApplications
-
 document.addEventListener("DOMContentLoaded", function () {
   const openModalButton = document.getElementById("openModalButton");
   const closeModalButton = document.getElementById("closeModalButton");
@@ -53,7 +24,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const deleteButtons = document.querySelectorAll(".deleteBtn");
 
   // Update the delete modal message with the applicant's name
-
   generatePasswordButton.addEventListener("click", function () {
     const newPassword = generateRandomPassword();
     passwordInput.value = newPassword;
@@ -100,7 +70,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Function to generate a random password
-
   function generateRandomPassword() {
     const length = 10; // You can adjust the desired length of the password
     const charset =
@@ -119,7 +88,6 @@ document.addEventListener("DOMContentLoaded", function () {
     event.preventDefault(); // Prevent the default form submission
 
     // You can add validation here before submitting the form
-
     // Submit the form using an AJAX request
     const formData = new FormData(editApplicantForm);
     fetch(editApplicantForm.action, {
@@ -140,9 +108,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Function to handle form submission
   function submitForm(event) {
     // Prevent the default form submission
-
     // You can add validation here before submitting the form
-
     // Submit the form using an AJAX request
     const formData = new FormData(addApplicantForm);
     fetch(addApplicantForm.action, {
@@ -211,17 +177,17 @@ document.addEventListener("DOMContentLoaded", function () {
     const today = new Date();
     const inputDate = new Date(dob);
 
+    // Ensure that the input date is not in the future and the year has 4 digits
     if (
       inputDate > today ||
-      inputDate.getFullYear() < 1000 || // Restrict years less than 1000
-      inputDate.getFullYear() > 9999 // Restrict years greater than 9999
+      inputDate.getFullYear().toString().length !== 4 ||
+      inputDate.getFullYear() > 9999
     ) {
       dobError.classList.remove("hidden");
     } else {
       dobError.classList.add("hidden");
     }
   }
-
   //checker if under 18 yung age
   function validateAge(age) {
     const ageError = document.getElementById("ageError");
@@ -243,12 +209,9 @@ document.addEventListener("DOMContentLoaded", function () {
   //     alert("Please enter your date of birth");
   //     return false;
   //   }
-
   //   return true;
   // }
-
   //function to validate phone number
-
   function validatePhoneNumber() {
     const phoneNumber = document.getElementById("cpNum").value;
     const cpNumError = document.getElementById("cpNumError");
@@ -265,6 +228,12 @@ document.addEventListener("DOMContentLoaded", function () {
   document
     .getElementById("cpNum")
     .addEventListener("input", validatePhoneNumber);
+
+  // Event listener to open the modal when the "Add" button is clicked
+  openModalButton.addEventListener("click", openModal);
+
+  // Event listener to close the modal when the close button is clicked
+  closeModalButton.addEventListener("click", closeModal);
 
   // Event listener to handle form submission when the submit button is clicked
   addApplicantForm.addEventListener("submit", submitForm);

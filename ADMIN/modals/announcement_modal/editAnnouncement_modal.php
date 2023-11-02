@@ -48,6 +48,22 @@ if (isset($_POST['update_announcement'])) {
                         <input type="text" class="form-control" name="announcement_description" id="announcement_description" value="<?php echo "$announcement_description"; ?>">
                     </div>
 
+                    <div class="form-group">
+                        <label class="label" for="">Venue</label>
+                        <input type="text" class="form-control" name="announcement_venue" id="announcement_venue" value="<?php echo "$announcement_venue"; ?>">
+                        <span class=" validation-message"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="label" for="">Date</label>
+                        <input type="date" class="form-control" name="announcement_date" id="announcement_date" value="<?php echo "$announcement_date"; ?>">
+                        <span class=" validation-message"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="label" for="">Time</label>
+                        <input type="time" class="form-control" name="announcement_time" id="announcement_time" value="<?php echo "$announcement_time"; ?>">
+                        <span class=" validation-message"></span>
+                    </div>
+
             </div>
             <br />
             <div class="modal-footer">

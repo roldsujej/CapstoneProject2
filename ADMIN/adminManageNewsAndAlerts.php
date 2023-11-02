@@ -73,8 +73,9 @@ require "../database/config.php";
                             <th>Announcement ID</th>
                             <th>Announcement Name</th>
                             <th>Description</th>
-                            <th>Date Created</th>
-                            <th>Date Updated</th>
+                            <th>Venue</th>
+                            <th>Date</th>
+                            <th>Time</th>
 
 
                             <th class="action-header" colspan="3">Action</th>
@@ -94,6 +95,9 @@ require "../database/config.php";
                                 $announcement_id = $row['announcement_id'];
                                 $announcement_title = $row['announcement_title'];
                                 $announcement_description = $row['announcement_description'];
+                                $announcement_venue = $row['announcement_venue'];
+                                $announcement_date = $row['announcement_date'];
+                                $announcement_time = $row['announcement_time'];
                                 $date_created = $row['date_created'];
                                 $date_updated = $row['date_updated'];
                                 $announcement_updated = ($date_updated != $row['date_created']);
@@ -105,10 +109,14 @@ require "../database/config.php";
                                     <td><?php echo $announcement_id; ?></td>
                                     <td><?php echo $announcement_title; ?></td>
                                     <td><?php echo $announcement_description; ?></td>
-                                    <td><?php echo $date_created; ?></td>
-                                    <td>
-                                        <?php echo $announcement_updated ? $date_updated : ''; ?>
-                                    </td>
+                                    <td><?php echo  $announcement_venue ?></td>
+                                    <td><?php echo  $announcement_date ?></td>
+                                    <td><?php echo  $announcement_time ?></td>
+
+                                    <!-- <td>
+                                        <?php //echo $announcement_updated ? $date_updated : ''; 
+                                        ?>
+                                    </td> -->
 
                                     <!-- <td><?php //echo $update_date 
                                                 ?></td> -->
@@ -173,6 +181,26 @@ require "../database/config.php";
     <!---------ICONS----------------------------------->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    <!-- SweetAlert Script -->
+    <?php
+    if (isset($_SESSION['status']) && $_SESSION['status_code'] != '') {
+    ?>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                Swal.fire({
+                    title: "<?php echo $_SESSION['status']; ?>",
+                    icon: "<?php echo $_SESSION['status_code']; ?>",
+                    showConfirmButton: true,
+                });
+
+            });
+        </script>
+    <?php
+        unset($_SESSION['status']);
+    }
+    ?>
 </body>
 
 </html>

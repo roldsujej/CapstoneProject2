@@ -25,9 +25,11 @@
                 <form method="post">
                     <div class="form-group">
                         <label class="label" for="">ID:</label>
-                        <input type="text" name="applicant_id" id="applicant_id" value="<?php echo "$id"; ?>" class=" form-control">
-
+                        <input type="text" name="applicant_id" id="applicant_id" value="<?php echo "$id"; ?>" class=" form-control" readonly>
                     </div>
+                    <hr>
+                    <h3 class="modalHeader">PERSONAL INFORMATION:</h3>
+                    <hr>
                     <div class="form-group">
                         <label class="label" for="">First Name</label>
                         <input type="text" class="form-control" name="firstName" id="firstName" value="<?php echo ucfirst($fname); ?>">
@@ -39,16 +41,31 @@
                         <span class="error-message hidden"></span>
                     </div>
                     <div class="form-group">
-                        <label class="label" for="">Contact Number</label>
-                        <div class="phone-input">
-                            <input type="text" class="form-control" name="cpNum" id="cpNum" value="<?php echo ($cpNumber); ?>" required>
+                        <label class="label" for="">Mobile Number</label>
+                        <div class="input-container">
+                            <input type="tel" class="form-control" name="cpNum" id="cpNum" value="<?php echo ($cpNumber); ?>" required>
                         </div>
-                        <div id="phoneNumberError" class="error-message hidden">Avoid entering non- numeric characters.</div>
                     </div>
+
+                    <div class="form-group">
+                        <label class="label" for="dob">Date of Birth</label>
+                        <input type="date" class="form-control" name="dob" id="dob" value="<?php echo ($birthday); ?>" required>
+                        <span id="dobError" class="error-message hidden">Please enter a valid birth date.</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="label" for="age">Age</label>
+                        <input type="text" class="form-control" name="age" id="age" value="<?php echo ($age); ?>" readonly>
+                        <span id="ageError" class="error-message hidden">Applicants under 18 years old cannot apply.</span>
+                    </div>
+
                     <div class="form-group">
                         <label class="label" for="">Address</label>
                         <input type="text" class="form-control" name="address" id="address" value="<?php echo ($address); ?>" required>
                     </div>
+                    <hr>
+                    <h3 class="modalHeader">ACCOUNT INFORMATION:</h3>
+                    <hr>
                     <div class="form-group">
                         <label class="label" for="">Email</label>
                         <input type="email" class="form-control" name="email" id="email" value="<?php echo ($email); ?>" required>
@@ -85,6 +102,7 @@
                     </div>
 
             </div>
+
             <br />
             <div class="modal-footer">
                 <button type="submit" name="update_user" class="btn btn-warning text-dark" onsubmit="return validate()">

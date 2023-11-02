@@ -1,14 +1,16 @@
 <?php
-
 if (isset($_POST['submit_announcement'])) {
     $announcement_title = mysqli_real_escape_string($conn, $_POST['announcement_title']);
     $announcement_description = mysqli_real_escape_string($conn, $_POST['announcement_description']);
+    $announcement_venue = mysqli_real_escape_string($conn, $_POST['announcement_venue']);
+    $announcement_date = $_POST['announcement_date'];
+    $announcement_time = $_POST['announcement_time'];
     date_default_timezone_set('Asia/Manila');
     $date_created = date('Y-m-d H:i:s');
 
     // Insert the new announcement into the database
-    $insertQuery = $conn->prepare("INSERT INTO tbl_announcements (announcement_title, announcement_description, date_created) VALUES (?, ?, ?)");
-    $insertQuery->bind_param("sss", $announcement_title, $announcement_description, $date_created);
+    $insertQuery = $conn->prepare("INSERT INTO tbl_announcements (announcement_title, announcement_description, announcement_venue, announcement_date, announcement_time, date_created) VALUES (?, ?, ?, ?, ?, ?)");
+    $insertQuery->bind_param("ssssss", $announcement_title, $announcement_description, $announcement_venue, $announcement_date, $announcement_time, $date_created);
 
     if ($insertQuery->execute()) {
         // Announcement added successfully
@@ -19,10 +21,8 @@ if (isset($_POST['submit_announcement'])) {
         echo $insertQuery->error;
     }
 }
-
-
-
 ?>
+
 
 
 
@@ -41,12 +41,27 @@ if (isset($_POST['submit_announcement'])) {
                 <form method="post">
                     <div class="form-group">
                         <label class="label" for="">Announcement Title</label>
-                        <input type="text" class="form-control" name="announcement_title" id="announcement_title" placeholder="Enter the title of the announcement">
+                        <input type="text" class="form-control" name="announcement_title" id="announcement_title" placeholder="Enter the title of the announcement" required>
                         <span class="validation-message"></span>
                     </div>
                     <div class="form-group">
-                        <label class="label" for="">Announcement Description</label>
-                        <input type="text" class="form-control" name="announcement_description" id="announcement_description" placeholder="Enter details about your announcement">
+                        <label class="label" for="">Description</label>
+                        <input type="text" class="form-control" name="announcement_description" id="announcement_description" placeholder="What is the announcement about?" required>
+                        <span class="validation-message"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="label" for="">Venue</label>
+                        <input type="text" class="form-control" name="announcement_venue" id="announcement_venue" placeholder="Where will the drivers meet?" required>
+                        <span class="validation-message"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="label" for="">Date</label>
+                        <input type="date" class="form-control" name="announcement_date" id="announcement_venue" required>
+                        <span class="validation-message"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="label" for="">Time</label>
+                        <input type="time" class="form-control" name="announcement_time" id="announcement_venue" required>
                         <span class="validation-message"></span>
                     </div>
 
