@@ -1,3 +1,3 @@
 # CAPEDA
 
-this system is intended for capeda and for our capstone project #2
+This system is for our CAPSTONE PROJECT 2 and intended for CAPEDA Drivers of Bacoor only. 
