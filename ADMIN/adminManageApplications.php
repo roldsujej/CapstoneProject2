@@ -11,9 +11,29 @@ require '../Message/PHPMailer/src/Exception.php';
 require '../Message/PHPMailer/src/PHPMailer.php';
 require '../Message/PHPMailer/src/SMTP.php';
 
+$records_per_page = 10;
 
+// Check the current page
+if (isset($_GET['page']) && $_GET['page'] > 0) {
+  $page = $_GET['page'];
+} else {
+  $page = 1;
+}
 
+// Calculate the offset for the query
+$offset = ($page - 1) * $records_per_page;
+
+// Fetch total number of records
+$total_records = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM account_profiles"));
+
+// Calculate the total number of pages
+$total_pages = ceil($total_records / $records_per_page);
+
+// Fetch records with pagination
+$sql = mysqli_query($conn, "SELECT * FROM account_profiles ORDER BY id DESC LIMIT $offset, $records_per_page") or die(mysqli_error($conn));
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -84,6 +104,7 @@ require '../Message/PHPMailer/src/SMTP.php';
 
 
         </div>
+
 
 
 
@@ -194,8 +215,21 @@ require '../Message/PHPMailer/src/SMTP.php';
 
         </table>
 
+        <div class="pagination">
+          <?php
+          // Render pagination links
+          for ($i = 1; $i <= $total_pages; $i++) {
+            echo "<a href='?page=" . $i . "'>" . $i . "</a> ";
+          }
+          ?>
+        </div>
+
+
 
       </div>
+
+      <!-- Display pagination -->
+
 
     </div>
 
