@@ -13,24 +13,24 @@ require '../Message/PHPMailer/src/SMTP.php';
 
 $records_per_page = 10;
 
-// Check the current page
-if (isset($_GET['page']) && $_GET['page'] > 0) {
-  $page = $_GET['page'];
-} else {
-  $page = 1;
-}
+// // Check the current page
+// if (isset($_GET['page']) && $_GET['page'] > 0) {
+//   $page = $_GET['page'];
+// } else {
+//   $page = 1;
+// }
 
-// Calculate the offset for the query
-$offset = ($page - 1) * $records_per_page;
+// // Calculate the offset for the query
+// $offset = ($page - 1) * $records_per_page;
 
-// Fetch total number of records
-$total_records = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM account_profiles"));
+// // Fetch total number of records
+// $total_records = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM account_profiles"));
 
-// Calculate the total number of pages
-$total_pages = ceil($total_records / $records_per_page);
+// // Calculate the total number of pages
+// $total_pages = ceil($total_records / $records_per_page);
 
-// Fetch records with pagination
-$sql = mysqli_query($conn, "SELECT * FROM account_profiles ORDER BY id DESC LIMIT $offset, $records_per_page") or die(mysqli_error($conn));
+// // Fetch records with pagination
+// $sql = mysqli_query($conn, "SELECT * FROM account_profiles ORDER BY id DESC LIMIT $offset, $records_per_page") or die(mysqli_error($conn));
 ?>
 
 
@@ -43,7 +43,7 @@ $sql = mysqli_query($conn, "SELECT * FROM account_profiles ORDER BY id DESC LIMI
   <title>Admin Dashboard</title>
   <link rel="stylesheet" href="../css/admin/adminApp.css" />
   <link rel="stylesheet" href="../css/admin/verifyEmailModal.css" />
-
+  <link rel="stylesheet" href="../css/admin/table.css">
   <link rel="stylesheet" href="../css/admin/global.css">
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -104,9 +104,6 @@ $sql = mysqli_query($conn, "SELECT * FROM account_profiles ORDER BY id DESC LIMI
 
 
         </div>
-
-
-
 
 
 
@@ -214,21 +211,17 @@ $sql = mysqli_query($conn, "SELECT * FROM account_profiles ORDER BY id DESC LIMI
 
 
         </table>
-
+        <!-- Display pagination -->
         <div class="pagination">
-          <?php
-          // Render pagination links
-          for ($i = 1; $i <= $total_pages; $i++) {
-            echo "<a href='?page=" . $i . "'>" . $i . "</a> ";
-          }
-          ?>
+          <!-- the pages are automatically added using js -->
+
         </div>
 
 
 
       </div>
 
-      <!-- Display pagination -->
+
 
 
     </div>
@@ -245,6 +238,7 @@ $sql = mysqli_query($conn, "SELECT * FROM account_profiles ORDER BY id DESC LIMI
   <!-- <script src="../js/ADMIN/adminManageApplication.js"></script> -->
   <script src="../js/ADMIN/adminManageApplication.js"></script>
   <script src="../js/ADMIN/modal.js"></script>
+  <script src="../js/ADMIN/tablePagination.js"></script>
   <!---------ICONS----------------------------------->
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>

@@ -17,6 +17,7 @@ require "../database/config.php";
   <title>Admin Dashboard</title>
   <link rel="stylesheet" href="../css/admin/adminManageRequirements.css" />
   <link rel="stylesheet" href="../css/admin/global.css">
+  <link rel="stylesheet" href="../css/admin/table.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
@@ -147,7 +148,11 @@ require "../database/config.php";
 
 
 
+
         </table>
+        <div class="pagination">
+          <!-- the pages are automatically added using js -->
+        </div>
       </div>
     </div>
   </div>
@@ -159,6 +164,7 @@ require "../database/config.php";
   <!-- <script src="../js/ADMIN/adminManageApplication.js"></script> -->
   <script src="../js/ADMIN/adminManageRequirements.js"></script>
   <script src="../js/ADMIN/modal.js"></script>
+  <script src="../js/ADMIN/tablePagination.js"></script>
   <!---------ICONS----------------------------------->
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>

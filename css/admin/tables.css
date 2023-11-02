@@ -1,5 +1,9 @@
 /* table designs i added it here so i can reuse its design */
 
+/* !!!!!!!!!!!!!!!!!!!!!!!!IMPORTANT NOTE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+
+/* ingat sa pag gamit netong css na to nasisira yung design ng tables pag eto cincall */
+
 /* Adjust table cell padding and text alignment */
 .details table thead td,
 .details .recentApplications table tbody tr td {

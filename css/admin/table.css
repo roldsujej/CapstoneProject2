@@ -1,0 +1,23 @@
+/* =========pagination===================== */
+/* Style for pagination container */
+.pagination {
+  margin: 20px 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Style for each pagination button */
+.pagination a {
+  display: inline-block;
+  padding: 5px 10px;
+  margin: 0 5px;
+  border: 1px solid #ccc;
+  text-decoration: none;
+  color: #333;
+  border-radius: 3px;
+}
+
+/* Style for the currently active page */
+.pagination a.active {
+  background-color: #007bff;
+  color: white;
+}
