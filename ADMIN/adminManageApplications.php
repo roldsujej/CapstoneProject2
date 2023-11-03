@@ -104,6 +104,21 @@ $records_per_page = 10;
 
 
         </div>
+        <div class="filter-container">
+          <label for="statusFilter">Filter:</label>
+          <select id="statusFilter">
+            <option value="all">All</option>
+            <option value="0">Pending Verification</option>
+            <option value="1">Email Verified</option>
+            <option value="2">Account Accepted</option>
+            <option value="3">Member</option>
+            <option value="4">Denied</option>
+          </select>
+        </div>
+
+
+
+
 
 
 
@@ -148,6 +163,7 @@ $records_per_page = 10;
                 } else {
                   $statusClass = 'status-pending';
                 }
+                // echo '<span class="status ' . $statusClass . '">' . $status . '</span>';
 
 
             ?>

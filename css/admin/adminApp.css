@@ -391,15 +391,28 @@ body {
   text-align: left;
   vertical-align: middle;
 }
-/* .details .recentApplications table tr td:last-child {
-  text-align: end;
+/* //filter */
+
+.filter-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px; /* Adjust this margin to your preference */
 }
-.details .recentApplications table tr td:nth-child(2) {
-  text-align: end;
+
+label {
+  display: inline-block;
+  margin-bottom: 8px; /* Adjust this margin to your preference */
+  color: #19376d;
+  font-size: 19px;
 }
-.details .recentApplications table tr td:nth-child(3) {
-  text-align: end;
-} */
+
+select {
+  display: inline-block;
+  padding: 5px;
+  margin-bottom: 8px; /* Adjust this margin to your preference */
+  font-size: 17px;
+  width: 100%;
+}
 
 .status {
   padding: 2px 6px;
@@ -840,15 +853,6 @@ label:not(.form-check-label):not(.custom-file-label) {
     text-align: center; /* Center align text */
   }
 }
-
-/* OTP Verification Styles */
-/* Hide the Update button when the Verify Email modal is open */
-/* .verifyEmail-active
-  .modal-container.modal-form-size.modal-l
-  .modal-footer
-  button[name="update_user"] {
-  display: none;
-} */
 
 /* Show the overlay when the modal is active */
 .modal-container.active + .blur-overlay {

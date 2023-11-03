@@ -2,22 +2,39 @@
 session_start();
 
 require "../database/config.php";
+require "../vendor/autoload.php";
 include "../common.php";
 $errorMsg = "";
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
+
 require "../Message/PHPMailer/src/PHPMailerAutoload.php";
 require '../Message/PHPMailer/src/Exception.php';
 require '../Message/PHPMailer/src/PHPMailer.php';
 require '../Message/PHPMailer/src/SMTP.php';
 
+use Twilio\Rest\Client;
+
+
+
+
+
+// require '../vendor/autoload.php'; // This is the Twilio PHP library path
+
+// Your Twilio credentials
+$account_sid = 'AC5a005cccf82ff29e220e999e34c6a3cc';
+$auth_token = 'c9811fd936f99ac1c6b9007fa3c6843b';
+$twilio_number = '+12563048891';
+$twilio = new Client($account_sid, $auth_token);
+
 
 if (isset($_POST['submit'])) {
+  $countryCode = '+63';
   $fname = sanitize($conn, $_POST["fname"]);
   $lname = sanitize($conn, $_POST["lname"]);
-  $number = sanitize($conn, $_POST["phoneNumber"]);
+  $number = sanitize($conn, $countryCode . $_POST["phoneNumber"]);
   $address = sanitize($conn, $_POST["address"]);
   $email = sanitize($conn, $_POST["email"]);
   $password = sanitize($conn, $_POST["password"]);
@@ -48,14 +65,31 @@ if (isset($_POST['submit'])) {
 
     if ($insertQuery->execute()) {
       try {
+
+
+        // Send SMS using Twilio
+
+        // sms is being delivered but not received 
+
+        $message = $twilio->messages
+          ->create(
+            $number, // to
+            array(
+              "from" => $twilio_number,
+              "body" => 'Your OTP is: ' . $otp
+            )
+          );
+        echo 'Message sent!';
+
+        //email send
         $mail = new PHPMailer;
         $mail->isSMTP();
         $mail->SMTPDebug = 0;  // Set this to 0 for production
         $mail->Host = 'smtp.gmail.com';
         $mail->Port = 587;
         $mail->SMTPAuth = true;
-        $mail->Username = 'janvryzleonelpareja@gmail.com'; // Replace with your email
-        $mail->Password = 'vokqbubvqehenmau'; // Replace with your email password
+        $mail->Username = 'yeojsoriano721@gmail.com'; // Replace with your email
+        $mail->Password = 'vweswchyhxelzyhz'; // Replace with your email password
         $mail->SMTPSecure = 'tls';
         $mail->setFrom('CAPEDAInc@gmail.com', 'CAPEDA'); // Replace with your info
         $mail->addAddress($email, $fname . ' ' . $lname);

@@ -271,3 +271,21 @@ document.addEventListener("DOMContentLoaded", function () {
   // Event listener to handle form submission when the submit button is clicked in the Edit modal
   editApplicantForm.addEventListener("submit", submitEditForm); // Add this line
 });
+
+//filter not yet working
+
+$(document).ready(function () {
+  $("#statusFilter").on("change", function () {
+    const status = $(this).val();
+
+    $(".applications-table tbody tr").hide(); // Hide all rows initially
+
+    if (status === "all") {
+      $(".applications-table tbody tr").show(); // Show all rows if 'All' is selected
+    } else {
+      $(`.applications-table tbody tr td:nth-child(4) .status-${status}`)
+        .closest("tr")
+        .show();
+    }
+  });
+});
