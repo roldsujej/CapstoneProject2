@@ -60,8 +60,17 @@ require "../database/config.php";
     <!----------------------------------------SECTION--------------------------------------------------->
     <div class="details">
       <div class="recentApplications">
+
+        <h2>Manage Documents</h2>
         <div class="applicationHeader">
-          <h2>Manage Applicant Requirements</h2>
+
+          <div>
+            <ul class="navbar">
+              <li><a href="#" onclick="showTable('table1')">View Requirements</a></li>
+              <li><a href="#" onclick="showTable('table2')">View Documents</a></li>
+            </ul>
+          </div>
+
           <div class="button-container">
             <!-- button to trigger the add applicant modal -->
             <a href="#" class="btn modal-trigger" data-modal-id="<?php echo 'requirement' ?>">
@@ -75,9 +84,12 @@ require "../database/config.php";
             // include('modals/addNewDocumentType_modal.php');
             ?>
           </div>
+
         </div>
 
-        <table class="applications-table">
+
+
+        <table class="applications-table" id="table1">
           <thead>
             <tr>
               <th>Requirement ID</th>
@@ -150,9 +162,84 @@ require "../database/config.php";
 
 
         </table>
+
+
+
+        <!-- ================================================UPLOADED DOCUMENTS TABLE=========================== -->
+        <table class="applications-table " id="table2" style="display: none;">
+          <thead>
+            <tr>
+              <th>Document ID</th>
+              <th>Uploader</th>
+              <th>File Name</th>
+              <th>Upload Date</th>
+
+
+              <th class="action-header" colspan="3">Action</th>
+
+            </tr>
+          </thead>
+
+          <tbody>
+            <?php
+            $sql = mysqli_query($conn, "SELECT * from uploaded_documents") or die(mysqli_error($conn));
+
+            if (mysqli_num_rows($sql) > 0) {
+              while ($row = mysqli_fetch_array($sql)) {
+
+                $document_id = $row['document_id'];
+                $document_uploader = $row['applicant_id'];
+                $file_name = $row['file_name'];
+                $upload_date = $row['upload_date'];
+
+
+
+            ?>
+                <tr>
+                  <td><?php echo $document_id; ?></td>
+                  <td><?php echo $document_uploader ?></td>
+                  <td><?php echo $file_name ?></td>
+                  <td><?php echo $upload_date ?></td>
+                  <td>
+                    <div class="action-buttons">
+                      <button type="button" class="action-button editBtn modal-trigger" data-modal-id="">
+                        <ion-icon name="open-outline"></ion-icon>
+                      </button>
+
+                      <button type="button" class="action-button deleteBtn modal-trigger" data-modal-id="">
+                        <ion-icon name="trash-outline"></ion-icon>
+                      </button>
+                      <?php //include('modals/deleteRequirement_modal.php'); 
+                      ?>
+                    </div>
+                    <?php //include('modals/editRequirement_modal.php'); 
+                    ?>
+                    <?php //include('modals/view_modal1.php'); 
+                    ?>
+                  </td>
+
+
+
+
+                </tr>
+
+            <?php
+
+              }
+            } else {
+              echo "Record not Found";
+            }
+            ?>
+          </tbody>
+
+
+
+
+        </table>
         <div class="pagination">
           <!-- the pages are automatically added using js -->
         </div>
+
       </div>
     </div>
   </div>

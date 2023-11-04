@@ -243,3 +243,25 @@ document.addEventListener("DOMContentLoaded", function () {
   // Event listener to handle form submission when the submit button is clicked in the Edit modal
   editApplicantForm.addEventListener("submit", submitEditForm); // Add this line
 });
+
+function showTable(tableId) {
+  const tables = document.querySelectorAll(".applications-table");
+  tables.forEach((table) => {
+    if (table.id === tableId) {
+      table.style.display = "table";
+    } else {
+      table.style.display = "none";
+    }
+  });
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const navbarItems = document.querySelectorAll(".navbar li a");
+
+  navbarItems.forEach((item) => {
+    item.addEventListener("click", function (event) {
+      navbarItems.forEach((navItem) => navItem.classList.remove("active"));
+      item.classList.add("active");
+    });
+  });
+});
