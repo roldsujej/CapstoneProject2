@@ -242,9 +242,11 @@ if (isset($_POST['upload'])) {
 
                                     <td>
                                         <div class="action-buttons">
-                                            <button type="button" class="action-button editBtn modal-trigger" data-modal-id="<?php echo 'EditRequirement' . $document_id ?>">
-                                                <ion-icon name="cloud-upload-outline"></ion-icon>
+                                            <button type="button" class="action-button editBtn modal-trigger" data-modal-id="<?php echo 'uploadDocumentModal' . $document_id; ?>">
+                                                <ion-icon name="cloud-upload-outline"></ion-icon> Upload
                                             </button>
+
+
 
                                             <button type="button" class="action-button deleteBtn modal-trigger" data-modal-id="<?php echo 'deleteRequirementModal' . $document_id; ?>" data-document-name="<?php echo $row['document_name'] ?>">
                                                 <ion-icon name="trash-outline"></ion-icon>
@@ -252,8 +254,9 @@ if (isset($_POST['upload'])) {
                                             <?php //include('modals/deleteRequirement_modal.php'); 
                                             ?>
                                         </div>
-                                        <?php //include('modals/editRequirement_modal.php'); 
+                                        <?php include('../ADMIN/modals/APPLICANT/upload_document_modal.php');
                                         ?>
+
                                         <?php //include('modals/view_modal1.php'); 
                                         ?>
                                     </td>
@@ -293,6 +296,8 @@ if (isset($_POST['upload'])) {
     <!---------------SCRIPT--------------------------->
     <script src="../js/APPLICANT/applicantDashboard.js"></script>
     <script src="../js/ADMIN/tablePagination.js"></script>
+    <script src="../js/ADMIN/modal.js"></script>
+
     <!---------ICONS----------------------------------->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>

@@ -86,8 +86,8 @@ if (isset($_POST['resend'])) {
         $mail->Host = 'smtp.gmail.com';
         $mail->Port = 587;
         $mail->SMTPAuth = true;
-        $mail->Username = 'janvryzleonelpareja@gmail.com'; // Replace with your email
-        $mail->Password = 'vokqbubvqehenmau'; // Replace with your email password
+        $mail->Username = 'yeojsoriano721@gmail.com'; // Replace with your email
+        $mail->Password = 'vweswchyhxelzyhz'; // Replace with your email password
         $mail->SMTPSecure = 'tls';
         $mail->setFrom('CAPEDAInc@gmail.com', 'CAPEDA'); // Replace with your info
         $mail->addAddress($email, $fname . ' ' . $lname);
