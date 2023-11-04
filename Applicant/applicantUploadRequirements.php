@@ -97,6 +97,7 @@ if (isset($_POST['upload'])) {
     <title>Applicant Dashboard</title>
     <link rel="stylesheet" href="../css/applicant/applicantUploadRequirements.css" />
     <link rel="stylesheet" href="../css/admin/global.css">
+    <link rel="stylesheet" href="../css/admin/table.css">
 </head>
 
 <body>
@@ -139,7 +140,7 @@ if (isset($_POST['upload'])) {
 
 
         <!----------------------------------------SECTION--------------------------------------------------->
-        <div class="details">
+        <!-- <div class="details">
             <div class="card-instructions">
                 <h2>Please upload the following documents below: </h2>
                 <p>Ensure that you are following instruction to avoid delay on your registration</p>
@@ -178,7 +179,109 @@ if (isset($_POST['upload'])) {
                     <ion-icon name="cloud-upload-outline"></ion-icon> Upload
                 </button>
             </form>
+        </div> -->
+
+        <div class="details">
+            <div class="recentApplications">
+
+
+
+                <div class="applicationHeader">
+                    <h2>Submit the following documents:</h2>
+
+                </div>
+
+
+
+                <table class="applications-table" id="table1">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Requirement Name</th>
+                            <th>Requirement Description</th>
+                            <th>Requirement Status</th>
+                            <th>Document Type</th>
+                            <!-- <th>Created At</th>
+              <th>Updated At</t h> -->
+
+                            <th class="action-header" colspan="3">Action</th>
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <?php
+                        $sql = mysqli_query($conn, "SELECT * from required_documents ORDER BY document_id ASC") or die(mysqli_error($conn));
+
+                        if (mysqli_num_rows($sql) > 0) {
+                            $count = 1; // Initialize the row count
+                            while ($row = mysqli_fetch_array($sql)) {
+
+                                $document_id = $row['document_id'];
+                                $document_name = $row['document_name'];
+                                $document_description = $row['document_description'];
+                                $document_status = $row['is_required'];
+                                $creation_date = $row['created_at'];
+                                $update_date = $row['updated_at'];
+                                $document_type = $row['document_type'];
+
+
+                        ?>
+                                <tr class="<?php echo $document_status === 'optional' ? 'optional-row' : ''; ?>">
+                                    <!-- <td><?php //echo $document_id; 
+                                                ?></td> -->
+                                    <td><?php echo $count; ?></td>
+                                    <td><?php echo $document_name ?></td>
+                                    <td><?php echo $document_description ?></td>
+                                    <td>
+                                        <span class="status <?php echo $document_status === 'required' ? 'required' : 'optional'; ?>">
+                                            <?php echo strtoupper($document_status === 'required' ? 'required' : 'optional'); ?>
+                                        </span>
+                                    </td>
+                                    <td><?php echo $document_type ?></td>
+
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button type="button" class="action-button editBtn modal-trigger" data-modal-id="<?php echo 'EditRequirement' . $document_id ?>">
+                                                <ion-icon name="cloud-upload-outline"></ion-icon>
+                                            </button>
+
+                                            <button type="button" class="action-button deleteBtn modal-trigger" data-modal-id="<?php echo 'deleteRequirementModal' . $document_id; ?>" data-document-name="<?php echo $row['document_name'] ?>">
+                                                <ion-icon name="trash-outline"></ion-icon>
+                                            </button>
+                                            <?php //include('modals/deleteRequirement_modal.php'); 
+                                            ?>
+                                        </div>
+                                        <?php //include('modals/editRequirement_modal.php'); 
+                                        ?>
+                                        <?php //include('modals/view_modal1.php'); 
+                                        ?>
+                                    </td>
+                                </tr>
+
+                        <?php
+                                $count++; // Increment the count for each row
+                            }
+                        } else {
+                            echo "Record not Found";
+                        }
+                        ?>
+                    </tbody>
+
+
+
+
+                </table>
+                <div class="pagination">
+                    <!-- the pages are automatically added using js -->
+                </div>
+
+
+
+            </div>
         </div>
+
+
 
     </div>
     </div>
@@ -189,6 +292,7 @@ if (isset($_POST['upload'])) {
 
     <!---------------SCRIPT--------------------------->
     <script src="../js/APPLICANT/applicantDashboard.js"></script>
+    <script src="../js/ADMIN/tablePagination.js"></script>
     <!---------ICONS----------------------------------->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
