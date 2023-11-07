@@ -75,6 +75,7 @@ require "../database/config.php";
               <span class="notification-count">0</span>
             </div>
           </h2>
+          <!-- when clicked redirect to a page where the uploaded documents are displayed -->
 
           <div class="button-container">
             <!-- button to trigger the add applicant modal -->
