@@ -18,6 +18,7 @@ require "../database/config.php";
   <link rel="stylesheet" href="../css/admin/adminManageRequirements.css" />
   <link rel="stylesheet" href="../css/admin/global.css">
   <link rel="stylesheet" href="../css/admin/table.css">
+  <link rel="stylesheet" href="../css/admin/notification.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
@@ -40,6 +41,7 @@ require "../database/config.php";
           <ion-icon name="search-outline"></ion-icon>
         </label>
       </div>
+
       <div class="user">
         <img src="../images/logo.jpg" alt="Sample pic" />
       </div>
@@ -57,35 +59,43 @@ require "../database/config.php";
 
 
 
+
+
     <!----------------------------------------SECTION--------------------------------------------------->
     <div class="details">
+
+
+
       <div class="recentApplications">
-
-        <h2>Manage Documents</h2>
         <div class="applicationHeader">
-
-          <div>
-            <ul class="navbar">
-              <li><a href="#" onclick="showTable('table1')">View Requirements</a></li>
-              <li><a href="#" onclick="showTable('table2')">View Documents</a></li>
-            </ul>
-          </div>
+          <h2 class="header-with-bell">
+            Manage Requirements and Documents
+            <div class="notification-container">
+              <ion-icon name="notifications-outline" class="notification-bell"></ion-icon>
+              <span class="notification-count">0</span>
+            </div>
+          </h2>
 
           <div class="button-container">
             <!-- button to trigger the add applicant modal -->
             <a href="#" class="btn modal-trigger" data-modal-id="<?php echo 'requirement' ?>">
               <ion-icon name="add"></ion-icon>
             </a>
-            <!-- <a href="#" class="btn modal-trigger" data-modal-id="<?php echo 'addNewDocumentType' ?>">
-              Add Document Type
-            </a> -->
             <?php
             include('modals/addrequirement_modal.php');
-            // include('modals/addNewDocumentType_modal.php');
             ?>
           </div>
-
         </div>
+
+        <div>
+          <ul class="navbar">
+            <li><a href="#" onclick="showTable('table1')">View Requirements</a></li>
+            <li><a href="#" onclick="showTable('table2')">View Documents</a></li>
+          </ul>
+        </div>
+
+
+
 
 
 
@@ -182,23 +192,26 @@ require "../database/config.php";
 
           <tbody>
             <?php
-            $sql = mysqli_query($conn, "SELECT * from uploaded_documents") or die(mysqli_error($conn));
+            $uploadedDocsQuery = "SELECT ud.id, ud.id, ud.document_id, ud.file_name, ud.file_path, ud.upload_date, ap.firstName, ap.lastName 
+                      FROM uploaded_documents ud 
+                      JOIN account_profiles ap ON ud.id = ap.id";
+            $uploadedDocsResult = $conn->query($uploadedDocsQuery);
 
-            if (mysqli_num_rows($sql) > 0) {
-              while ($row = mysqli_fetch_array($sql)) {
+            if ($uploadedDocsResult->num_rows > 0) {
+              while ($row = $uploadedDocsResult->fetch_assoc()) {
 
-                $document_id = $row['document_id'];
-                $document_uploader = $row['applicant_id'];
-                $file_name = $row['file_name'];
-                $upload_date = $row['upload_date'];
+                // $document_id = $row['document_id'];
+                // $document_uploader = $row['applicant_id'];
+                // $file_name = $row['file_name'];
+                // $upload_date = $row['upload_date'];
 
 
 
             ?>
                 <tr>
-                  <td><?php echo $document_id; ?></td>
-                  <td><?php echo $document_uploader ?></td>
-                  <td><?php echo $file_name ?></td>
+                  <td><?php echo $row['document_id']; ?></td>
+                  <td><?php echo $row['firstName'] . ' ' . $row['lastName'] ?></td>
+                  <td><?php echo $row['file_path'] . $row['file_name']   ?></td>
                   <td><?php echo $upload_date ?></td>
                   <td>
                     <div class="action-buttons">
