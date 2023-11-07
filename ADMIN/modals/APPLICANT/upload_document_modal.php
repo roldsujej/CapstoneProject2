@@ -17,7 +17,7 @@ if (isset($_POST['upload'])) {
             $uniqueFilename = uniqid() . '_' . $file['name'];
 
             // Set the path for the uploaded file
-            $targetPath = $uploadDirectory . $uniqueFilename;
+            $targetPath = $uploadDirectory . '/' . $uniqueFilename;
 
             // Verify if the applicant_id exists in the account_profiles table
             $documentId = $_POST['documentId'];

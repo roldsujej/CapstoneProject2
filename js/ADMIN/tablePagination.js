@@ -37,3 +37,16 @@ document.addEventListener("DOMContentLoaded", function () {
     paginationContainer.appendChild(pageLink);
   }
 });
+
+//table nav
+
+function showTable(tableId) {
+  const tables = document.querySelectorAll(".applications-table");
+  tables.forEach((table) => {
+    if (table.id === tableId) {
+      table.style.display = "table";
+    } else {
+      table.style.display = "none";
+    }
+  });
+}

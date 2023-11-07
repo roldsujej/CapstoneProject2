@@ -99,11 +99,13 @@ $records_per_page = 10;
             include('modals/addapplicant_modal.php');
 
             ?>
+
           </div>
 
 
 
         </div>
+
         <div class="filter-container">
           <label for="statusFilter">Filter:</label>
           <select id="statusFilter">
@@ -115,6 +117,12 @@ $records_per_page = 10;
             <option value="4">Denied</option>
           </select>
         </div>
+        <div>
+          <ul class="navbar">
+            <li><a href="#" onclick="showTable('table1')">Applicants </a></li>
+            <li><a href="#" onclick="showTable('table2')">Archived</a></li>
+          </ul>
+        </div>
 
 
 
@@ -123,7 +131,7 @@ $records_per_page = 10;
 
 
 
-        <table class="applications-table">
+        <table class="applications-table" id="table1">
           <thead>
             <tr>
               <th>Applicant Id</th>
@@ -225,8 +233,9 @@ $records_per_page = 10;
           </tbody>
 
 
-
         </table>
+
+
         <!-- Display pagination -->
         <div class="pagination">
           <!-- the pages are automatically added using js -->
