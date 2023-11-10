@@ -7,13 +7,13 @@
              </a>
          </li>
          <li>
-             <a href="">
+             <a href="memberDashboard.php">
                  <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
                  <span class="title">Dashboard</span>
              </a>
          </li>
          <li>
-             <a href="memberAccount.php">
+             <a href="memberAccountManagement.php">
                  <span class="icon"><ion-icon name="bar-chart-outline"></ion-icon></span>
                  <span class="title">My Account</span>
 

@@ -1,0 +1,62 @@
+/* =========pagination===================== */
+/* Style for pagination container */
+.pagination {
+  margin: 20px 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Style for each pagination button */
+.pagination a {
+  display: inline-block;
+  padding: 5px 10px;
+  margin: 0 5px;
+  border: 1px solid #ccc;
+  text-decoration: none;
+  color: #333;
+  border-radius: 3px;
+}
+
+/* Style for the currently active page */
+.pagination a.active {
+  background-color: #007bff;
+  color: white;
+}
+
+/* NAV BAR DESIGN */
+
+/* CSS for the Navbar */
+.navbar {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.navbar li {
+  margin: 0;
+  padding: 0;
+}
+
+.navbar li a {
+  display: block;
+  padding: 15px 20px;
+  text-decoration: none;
+  color: black;
+  position: relative;
+  transition: color 0.3s;
+}
+
+.navbar li a:after {
+  content: "";
+  display: block;
+  height: 2px;
+  width: 0;
+  background: #333;
+  transition: width 0.3s;
+}
+
+.navbar li a.active,
+.navbar li a:hover {
+  border-bottom: 2px solid #19376d;
+}

@@ -1,0 +1,121 @@
+/* General styling for cards */
+.card {
+  margin: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+  vertical-align: top;
+}
+
+.card hr {
+  border: 1px solid #ddd;
+}
+
+.card h3 {
+  color: #333;
+  text-align: center;
+}
+
+/* Form group styling */
+.form-group {
+  margin-bottom: 15px;
+}
+
+/* Profile header styling */
+.profile-header {
+  color: #19376d;
+}
+
+/* Label styling */
+.label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* Form control styling */
+.form-control {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 17px;
+}
+
+/* Input container styling */
+.input-container {
+  display: flex;
+  align-items: center;
+}
+
+/* Country code styling */
+.country-code {
+  background-color: #eee;
+  padding: 8px;
+  margin-right: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+/* Error message styling */
+.error-message {
+  color: #ff0000;
+  font-size: 14px;
+  margin-top: 5px;
+  display: block;
+}
+
+/* Profile info container styling */
+.profile-info-container {
+  display: flex;
+  align-items: center;
+}
+
+/* Profile picture styling */
+.profile-picture {
+  margin-right: 20px; /* Adjust the margin for separation */
+}
+
+.profile-picture img {
+  width: 100px; /* Adjust the size as needed */
+  height: 100px; /* Adjust the size as needed */
+  border-radius: 50%; /* Ensures the image appears as a circle */
+  cursor: pointer;
+}
+
+/* Additional styling for form group */
+.form-group {
+  margin-bottom: 1rem;
+  display: block;
+  text-align: left;
+  font-weight: 600;
+  margin-bottom: 5px;
+  font-size: 17px;
+  color: #19376d;
+}
+
+/* Additional styling for cards */
+.card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+/* Additional styling for profile info container */
+.profile-info-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Additional styling for cards in profile info container */
+.profile-info-container .card {
+  width: 48%;
+}
+
+/* Styling for cards in member info */
+.member-info .card {
+  width: 100%;
+}
