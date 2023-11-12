@@ -20,14 +20,14 @@
              </a>
          </li>
          <li>
-             <a href="adminManageMembers.html">
+             <a href="memberDocuments.php">
                  <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
                  <span class="title">My Documents</span>
              </a>
          </li>
 
          <li>
-             <a href="">
+             <a href="memberAnnouncement.php">
                  <span class="icon"><ion-icon name="alert-outline"></ion-icon></span>
                  <span class="title">Announcements</span>
              </a>

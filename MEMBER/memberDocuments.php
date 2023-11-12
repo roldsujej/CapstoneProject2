@@ -19,9 +19,7 @@ require "../database/config.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Member Dashboard</title>
     <link rel="stylesheet" href="../css/member/memberDashboard.css">
-    <link rel="stylesheet" href="../css/member/profile.css" />
     <link rel="stylesheet" href="../css/member/table.css">
-
 
 </head>
 
@@ -33,7 +31,6 @@ require "../database/config.php";
         ?>
     </div>
 
-
     <!-------------------------MAIN---------------------------->
     <div class="main">
         <div class="topbar">
@@ -44,11 +41,9 @@ require "../database/config.php";
             <div class="search">
                 <label for="">
                     <input type="text" placeholder="Search here" />
-
+                    <ion-icon name="search-outline"></ion-icon>
                 </label>
             </div>
-
-
 
 
             <div class="user">
@@ -60,7 +55,6 @@ require "../database/config.php";
                 </div>
 
             </div>
-
 
 
         </div>
@@ -79,18 +73,18 @@ require "../database/config.php";
         <div class="details">
             <div class="recentApplications">
                 <div class="applicationHeader">
-                    <div>
-                        <ul class="navbar">
-                            <li><a href="#" onclick="showSection('personalInfo')">Personal Information </a></li>
-                            <li><a href="#" onclick="showSection('AccountSettings')">Account Settings</a></li>
-                        </ul>
-                    </div>
-
+                    <h2>Member Documents</h2>
+                </div>
+                <div>
+                    <ul class="navbar">
+                        <li><a href="#" onclick="showSection('personalInfo')">View Uploaded Documents </a></li>
+                        <li><a href="#" onclick="showSection('AccountSettings')">View Requested Documents</a></li>
+                    </ul>
                 </div>
 
                 <div class="content" id="sectionContent">
                     <!-- Initially, display the personal info section -->
-                    <?php include "personalInfo.php";
+                    <?php //include "personalInfo.php";
                     ?>
 
                 </div>
@@ -113,23 +107,7 @@ require "../database/config.php";
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
     <script>
-        function showSection(section) {
-            // Load content dynamically based on the selected section
-            const sectionContent = document.getElementById('sectionContent');
-            if (section === 'personalInfo') {
-                // Load the content directly into the details div
-                fetch('personalInfo.php')
-                    .then(response => response.text())
-                    .then(data => sectionContent.innerHTML = data)
-                    .catch(error => console.error('Error:', error));
-            } else if (section === 'AccountSettings') {
-                // Load the content dynamically using AJAX (similar to the previous example)
-                fetch('accountsettings.php')
-                    .then(response => response.text())
-                    .then(data => sectionContent.innerHTML = data)
-                    .catch(error => console.error('Error:', error));
-            }
-        }
+
     </script>
 
 

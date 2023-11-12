@@ -1,39 +1,21 @@
 <?php
 require_once '../database/config.php';
+
 $uploadDirectory = __DIR__ . '/uploads/applicant_uploads';
 
 session_start();
-//var_dump($_SESSION);
-
-//require_once 'sessions.php';
-
-
-// Check if 'fullName' is set in the session before accessing it
-//$fullname = isset($_SESSION['fullName']) ? $_SESSION['fullName'] : '';
-
-
 
 if (isset($_POST['upload'])) {
-    // Check if a file has been uploaded
     if (isset($_FILES['uploadedFile'])) {
         $file = $_FILES['uploadedFile'];
 
-        // Check for file upload errors
         if ($file['error'] === UPLOAD_ERR_OK) {
-            // Define a target directory to store the uploaded files
-            // $targetDirectory = 'uploads\user_uploads';  // Create this directory if it doesn't exist
+            $uniqueFilename = uniqid('', true) . '.' . pathinfo($file['name'], PATHINFO_EXTENSION);
+            $targetPath = $uploadDirectory . '/' . $uniqueFilename;
 
-            // Generate a unique filename for the uploaded file
-            $uniqueFilename = uniqid() . '_' . $file['name'];
-
-            // Set the path for the uploaded file
-            $targetPath = $uploadDirectory . $uniqueFilename;
-
-            // Verify if the applicant_id exists in the account_profiles table
             $documentId = $_POST['documentId'];
             $applicantId = $_SESSION['id'];
 
-            // Check if the applicant_id exists in the account_profiles table
             $checkQuery = "SELECT id FROM account_profiles WHERE id = ?";
             $checkStmt = $conn->prepare($checkQuery);
             $checkStmt->bind_param("i", $applicantId);
@@ -41,20 +23,16 @@ if (isset($_POST['upload'])) {
             $checkStmt->store_result();
 
             if ($checkStmt->num_rows > 0) {
-                // Applicant ID exists in account_profiles, proceed with insertion
-                // Move the uploaded file to the target path
                 if (move_uploaded_file($file['tmp_name'], $targetPath)) {
-                    // Insert file details into the database
-                    $insertQuery = "INSERT INTO uploaded_documents (document_id, applicant_id, file_path) VALUES (?, ?, ?)";
+                    $insertQuery = "INSERT INTO uploaded_documents (document_id, applicant_id, file_name, file_path) VALUES (?, ?, ?, ?)";
                     $insertStmt = $conn->prepare($insertQuery);
-                    $insertStmt->bind_param("iis", $documentId, $applicantId, $targetPath);
+                    $insertStmt->bind_param("iiss", $documentId, $applicantId, $uniqueFilename, $targetPath);
 
                     if ($insertStmt->execute()) {
-                        // File upload and database insertion successful
                         $_SESSION['status'] = "File uploaded successfully.";
                         $_SESSION['status_code'] = "success";
                     } else {
-                        $_SESSION['status'] = "Failed to insert file details into the database: " . $conn->error;
+                        $_SESSION['status'] = "Failed to insert file details into the database: " . $insertStmt->error;
                         $_SESSION['status_code'] = "error";
                     }
                 } else {
@@ -62,7 +40,6 @@ if (isset($_POST['upload'])) {
                     $_SESSION['status_code'] = "error";
                 }
             } else {
-                // Handle the case where the applicant_id doesn't exist in account_profiles
                 $_SESSION['status'] = "Invalid applicant ID.";
                 $_SESSION['status_code'] = "error";
             }
@@ -76,17 +53,11 @@ if (isset($_POST['upload'])) {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
 ?>
+
+<!-- Rest of your HTML remains unchanged -->
+
+
 
 <!DOCTYPE html>
 <html lang="en">

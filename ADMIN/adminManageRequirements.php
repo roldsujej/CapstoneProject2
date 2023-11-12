@@ -180,76 +180,72 @@ require "../database/config.php";
         <table class="applications-table " id="table2" style="display: none;">
           <thead>
             <tr>
-              <th>Document ID</th>
+              <!-- <th>Document ID</th> -->
+              <th>Applicant ID</th>
               <th>Uploader</th>
+              <th>Document Name</th>
               <th>File Name</th>
               <th>Upload Date</th>
-
-
               <th class="action-header" colspan="3">Action</th>
-
             </tr>
           </thead>
-
           <tbody>
             <?php
-            $uploadedDocsQuery = "SELECT ud.id, ud.id, ud.document_id, ud.file_name, ud.file_path, ud.upload_date, ap.firstName, ap.lastName 
+            // $uploadedDocsQuery = "SELECT ud.id as doc_id, ud.document_id, ud.file_name, ud.file_path, ud.upload_date, ap.firstName, ap.lastName, r.document_name 
+            //       FROM uploaded_documents ud 
+            //       JOIN account_profiles ap ON ud.applicant_id = ap.id
+            //       JOIN required_documents r ON ud.document__id = r.document_id";
+
+            $uploadedDocsQuery = "SELECT ud.id as doc_id, ud.applicant_id, ud.document_id, ud.file_name, ud.file_path, ud.upload_date, ap.id, ap.firstName, ap.lastName, r.document_name
                       FROM uploaded_documents ud 
-                      JOIN account_profiles ap ON ud.id = ap.id";
+                      JOIN account_profiles ap ON ud.applicant_id = ap.id
+                      JOIN required_documents r ON ud.document_id = r.document_id";
+
             $uploadedDocsResult = $conn->query($uploadedDocsQuery);
 
             if ($uploadedDocsResult->num_rows > 0) {
               while ($row = $uploadedDocsResult->fetch_assoc()) {
-
-                // $document_id = $row['document_id'];
-                // $document_uploader = $row['applicant_id'];
-                // $file_name = $row['file_name'];
-                // $upload_date = $row['upload_date'];
-
-
+                $docId = $row['doc_id'];
+                $targetPath = 'http://localhost/CapstoneProject2/Applicant/uploads/applicant_uploads/' . $row['file_name'];
 
             ?>
                 <tr>
-                  <td><?php echo $row['document_id']; ?></td>
+                  <td><?php echo $row['id'];  // pwede to tanggalin if ever di need inadd ko lng pra di nakakalito
+                      ?></td>
                   <td><?php echo $row['firstName'] . ' ' . $row['lastName'] ?></td>
-                  <td><?php echo $row['file_path'] . $row['file_name']   ?></td>
-                  <td><?php echo $upload_date ?></td>
+                  <td><?php echo $row['document_name'] ?></td>
+                  <td><?php echo $row['file_name']  ?></td>
+                  <td><?php echo $row['upload_date'] ?></td>
                   <td>
                     <div class="action-buttons">
-                      <button type="button" class="action-button editBtn modal-trigger" data-modal-id="">
-                        <ion-icon name="open-outline"></ion-icon>
+                      <button type="button" class="action-button viewBtn modal-trigger" data-modal-id="<?php echo 'viewDocumentModal' . $row['doc_id']; ?>">
+                        <ion-icon name="eye-outline"></ion-icon>
                       </button>
 
-                      <button type="button" class="action-button deleteBtn modal-trigger" data-modal-id="">
+                      <button type="button" class="action-button validateBtn" onclick="validateDocument(<?php echo $row['doc_id']; ?>)">
+                        Validate
+                      </button>
+
+                      <button type="button" class="action-button deleteBtn modal-trigger" data-modal-id="<?php echo 'deleteDocumentModal' . $row['doc_id']; ?>">
                         <ion-icon name="trash-outline"></ion-icon>
                       </button>
-                      <?php //include('modals/deleteRequirement_modal.php'); 
-                      ?>
                     </div>
-                    <?php //include('modals/editRequirement_modal.php'); 
+
+                    <?php //include('modals/deleteDocument_modal.php'); 
                     ?>
-                    <?php //include('modals/view_modal1.php'); 
+                    <?php include('modals/documents/viewDocument_modal.php');
                     ?>
                   </td>
-
-
-
-
                 </tr>
-
             <?php
-
               }
             } else {
               echo "Record not Found";
             }
             ?>
           </tbody>
-
-
-
-
         </table>
+
         <div class="pagination">
           <!-- the pages are automatically added using js -->
         </div>
