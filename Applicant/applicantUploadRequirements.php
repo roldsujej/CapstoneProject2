@@ -1,61 +1,12 @@
 <?php
 require_once '../database/config.php';
-
-$uploadDirectory = __DIR__ . '/uploads/applicant_uploads';
-
 session_start();
 
-if (isset($_POST['upload'])) {
-    if (isset($_FILES['uploadedFile'])) {
-        $file = $_FILES['uploadedFile'];
 
-        if ($file['error'] === UPLOAD_ERR_OK) {
-            $uniqueFilename = uniqid('', true) . '.' . pathinfo($file['name'], PATHINFO_EXTENSION);
-            $targetPath = $uploadDirectory . '/' . $uniqueFilename;
-
-            $documentId = $_POST['documentId'];
-            $applicantId = $_SESSION['id'];
-
-            $checkQuery = "SELECT id FROM account_profiles WHERE id = ?";
-            $checkStmt = $conn->prepare($checkQuery);
-            $checkStmt->bind_param("i", $applicantId);
-            $checkStmt->execute();
-            $checkStmt->store_result();
-
-            if ($checkStmt->num_rows > 0) {
-                if (move_uploaded_file($file['tmp_name'], $targetPath)) {
-                    $insertQuery = "INSERT INTO uploaded_documents (document_id, applicant_id, file_name, file_path) VALUES (?, ?, ?, ?)";
-                    $insertStmt = $conn->prepare($insertQuery);
-                    $insertStmt->bind_param("iiss", $documentId, $applicantId, $uniqueFilename, $targetPath);
-
-                    if ($insertStmt->execute()) {
-                        $_SESSION['status'] = "File uploaded successfully.";
-                        $_SESSION['status_code'] = "success";
-                    } else {
-                        $_SESSION['status'] = "Failed to insert file details into the database: " . $insertStmt->error;
-                        $_SESSION['status_code'] = "error";
-                    }
-                } else {
-                    $_SESSION['status'] = "Failed to move the uploaded file to the target directory.";
-                    $_SESSION['status_code'] = "error";
-                }
-            } else {
-                $_SESSION['status'] = "Invalid applicant ID.";
-                $_SESSION['status_code'] = "error";
-            }
-        } else {
-            $_SESSION['status'] = "File upload error: " . $file['error'];
-            $_SESSION['status_code'] = "error";
-        }
-    } else {
-        $_SESSION['status'] = "No file was uploaded.";
-        $_SESSION['status_code'] = "error";
-    }
-}
 
 ?>
 
-<!-- Rest of your HTML remains unchanged -->
+
 
 
 
@@ -80,7 +31,7 @@ if (isset($_POST['upload'])) {
 
     <!-- ------------------------------MODALS----------------------------------- -->
 
-    <div id="logOutModal" class="modal">
+    <!-- <div id="logOutModal" class="modal">
         <div class="modal-content">
             <span class="close" id="closeModal">&times;</span>
             <h2>Confirmation</h2>
@@ -88,7 +39,7 @@ if (isset($_POST['upload'])) {
             <button id="confirmLogOut">Yes</button>
             <button id="cancelLogOut">No</button>
         </div>
-    </div>
+    </div> -->
 
     <!-------------------------MAIN---------------------------->
     <div class="main">
@@ -272,6 +223,28 @@ if (isset($_POST['upload'])) {
     <!---------ICONS----------------------------------->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+
+
+    <?php
+    if (isset($_SESSION['status']) && $_SESSION['status_code'] != '') {
+    ?>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                Swal.fire({
+                    title: "<?php echo $_SESSION['status']; ?>",
+                    icon: "<?php echo $_SESSION['status_code']; ?>",
+                    showConfirmButton: true,
+                });
+
+            });
+        </script>
+    <?php
+        unset($_SESSION['status']);
+    }
+    ?>
+
 </body>
 
 </html>
