@@ -42,11 +42,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function showTable(tableId) {
   const tables = document.querySelectorAll(".applications-table");
+  const headers = document.querySelectorAll(".applicationHeader");
   tables.forEach((table) => {
     if (table.id === tableId) {
       table.style.display = "table";
     } else {
       table.style.display = "none";
+    }
+  });
+}
+
+//show section
+
+function showSection(sectionId) {
+  const sections = document.querySelectorAll(".section");
+  console.log("${ sectionId }");
+  sections.forEach((section) => {
+    if (section.id === sectionId) {
+      section.style.display = "block";
+    } else {
+      section.style.display = "none";
     }
   });
 }

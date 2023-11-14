@@ -71,7 +71,7 @@ require "../database/config.php";
                 <table class="applications-table">
                     <thead>
                         <tr>
-                            <th>Announcement ID</th>
+                            <th>ID</th>
                             <th>Announcement Name</th>
                             <th>Description</th>
                             <th>Venue</th>
