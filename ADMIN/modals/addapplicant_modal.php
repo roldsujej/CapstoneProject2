@@ -34,10 +34,7 @@ function generateRandomPassword($length = 8)
 }
 
 
-
-
 if (isset($_POST['add_applicant'])) {
-
 
     $countryCode = '+63';
     $fullname = sanitize($conn, $_POST["firstName"] . $_POST["lastName"]);
@@ -66,7 +63,7 @@ if (isset($_POST['add_applicant'])) {
         // Send the OTP email
         $mail = new PHPMailer;
         $mail->isSMTP();
-        $mail->SMTPDebug = 2;  // Set this to 2 for detailed debugging
+        // $mail->SMTPDebug = 2;  // Set this to 2 for detailed debugging
         $mail->Host = 'smtp.gmail.com';
         $mail->Port = 587;
         $mail->SMTPAuth = true;
@@ -79,7 +76,8 @@ if (isset($_POST['add_applicant'])) {
         $mail->Body = "Your OTP for registration is: $otp. This OTP is valid for 5 minutes. Please use this code to verify your email.";
 
         if ($mail->send()) {
-            echo "Email sent successfully";
+            header('location: adminManageApplications.php');
+            exit();
         } else {
             echo "Email sending failed. Error: " . $mail->ErrorInfo;
         }
@@ -92,18 +90,15 @@ if (isset($_POST['add_applicant'])) {
         echo "Error: " . mysqli_error($conn);
     }
 }
-
-
-
 ?>
 
 
 <!-- Create the modal container -->
-<div class="modal-overlay" id="<?php echo 'addApplicantModal'  ?>">
+<div class="modal-overlay" id="<?php echo 'addApplicantModal' ?>">
     <div class="modal-container modal-form-size modal-l">
         <div class="modal-header text-light">
-            <h4 class="modal-h4-header"><?php echo "Add New Applicant" ?></h4>
-            <span class="modal-exit" data-modal-id="<?php echo 'addApplicantModal'  ?>">
+            <h4 class="modal-h4-header"><?php echo "Add New Applicant"; ?></h4>
+            <span class="modal-exit" data-modal-id="<?php echo 'addApplicantModal'; ?>">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
                     <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z" />
                 </svg>

@@ -9,60 +9,59 @@ require '../ADMIN/status_functions.php';
 
 
 // check if already logged in
-if(isset($_SESSION['id'])) {
-	if(isset($_SESSION['role'])) {
-		switch ($_SESSION['role']) {
-			
-			case 'admin':
-				// Handle role admin
-				// Redirect or perform specific actions for role admin
-				// Admin
-				header('location: ../ADMIN/admindashboard.php');
-			break;
-			
-			case '-1':
-				// Handle role -1
-				// Redirect or perform specific actions for role -1
-				// Account termination
-				header('location: ../logout.php');
-			break;
-			
+if (isset($_SESSION['id'])) {
+    if (isset($_SESSION['role'])) {
+        switch ($_SESSION['role']) {
+
+            case 'admin':
+                // Handle role admin
+                // Redirect or perform specific actions for role admin
+                // Admin
+                header('location: ../ADMIN/admindashboard.php');
+                break;
+
+            case '-1':
+                // Handle role -1
+                // Redirect or perform specific actions for role -1
+                // Account termination
+                header('location: ../logout.php');
+                break;
+
             case '0':
                 // Handle role 0
                 // Redirect or perform specific actions for role 0
-				// Email not verified
-				header('location: ../login/verification.php');
-			break;
+                // Email not verified
+                header('location: ../login/verification.php');
+                break;
 
             case '1':
                 // Handle role 1
                 // Redirect or perform specific actions for role 1
-				// Verified email
-				header('location: ../APPLICANT/applicantDashboard.php');
-			break;
+                // Verified email
+                header('location: ../APPLICANT/applicantDashboard.php');
+                break;
 
             case '2':
                 // Handle role 2
                 // Redirect or perform specific actions for role 2
-				// Account accepted
-				header('location: ../APPLICANT/applicantDashboard.php');
-			break;
+                // Account accepted
+                header('location: ../APPLICANT/applicantDashboard.php');
+                break;
 
             case '3':
                 // Handle role 3
                 // Redirect or perform specific actions for role 3
-				// Member
-				header('location: ../logout.php');
-			break;
+                // Member
+                header('location: ../logout.php');
+                break;
 
             default:
                 // Handle the default case if it doesn't match any of the above cases
                 // This can be an error message or a fallback action
-				header('location: ../logout.php');
-            break;
-			
-		}
-	}
+                header('location: ../logout.php');
+                break;
+        }
+    }
 }
 
 // login
@@ -89,44 +88,44 @@ if (isset($_POST['login'])) {
             $statusText = getStatusText($row['status']);
 
             if ($statusText === "Pending Verification") {
-				
+
                 $_SESSION['login_error'] = "Email not verified. Please check your email for verification instructions.";
                 $_SESSION['fullName'] = $row['firstName'] . ' ' . $row['lastName'];
                 $_SESSION['id'] = $row['id'];
                 $_SESSION['user_role'] = 'applicant';
                 $_SESSION['email'] = $row['email'];
-				$_SESSION['role'] = $row['status'];
+                $_SESSION['role'] = $row['status'];
 
                 header("location: verification.php");
                 exit();
             } elseif ($statusText === "Email Verified") {
-				
+
                 $_SESSION['fullName'] = $row['firstName'] . ' ' . $row['lastName'];
                 $_SESSION['id'] = $row['id'];
                 $_SESSION['user_role'] = 'applicant';
                 $_SESSION['email'] = $row['email'];
-				$_SESSION['role'] = $row['status'];
-				
+                $_SESSION['role'] = $row['status'];
+
                 header("location: ../Applicant/applicantDashboard.php");
                 exit();
             } elseif ($statusText === "Account Accepted") {
-				
+
                 $_SESSION['fullName'] = $row['firstName'] . ' ' . $row['lastName'];
                 $_SESSION['id'] = $row['id'];
                 $_SESSION['user_role'] = 'applicant';
                 $_SESSION['email'] = $row['email'];
-				$_SESSION['role'] = $row['status'];
-				
+                $_SESSION['role'] = $row['status'];
+
                 header("location: ../Applicant/applicantDashboard.php");
                 exit();
             } elseif ($statusText === "Member") {
-				
-				$_SESSION['fullName'] = $row['firstName'] . ' ' . $row['lastName'];
-				$_SESSION['id'] = $row['id'];
-				$_SESSION['user_role'] = 'member';
-				$_SESSION['email'] = $row['email'];
-				$_SESSION['role'] = $row['status'];
-				
+
+                $_SESSION['fullName'] = $row['firstName'] . ' ' . $row['lastName'];
+                $_SESSION['id'] = $row['id'];
+                $_SESSION['user_role'] = 'member';
+                $_SESSION['email'] = $row['email'];
+                $_SESSION['role'] = $row['status'];
+
                 header("location: ../MEMBER/memberDashboard.php");
             }
         } else {
@@ -134,25 +133,25 @@ if (isset($_POST['login'])) {
             header("location: login.php");
             exit();
         }
-	} elseif ($adminResult->num_rows > 0) {
-		$row = $adminResult->fetch_assoc();
-		if ($_POST['password'] === $row['password']) {
-			$statusText = getStatusText($row['account_status']);
+    } elseif ($adminResult->num_rows > 0) {
+        $row = $adminResult->fetch_assoc();
+        if ($_POST['password'] === $row['password']) {
+            $statusText = getStatusText($row['account_status']);
 
-			if ($row['membership_status'] === 'admin') {
-				// Admin login
-				$_SESSION['id'] = $row['id'];
-				$_SESSION['user_role'] = 'admin';
-				$_SESSION['email'] = $row['email'];
-				$_SESSION['role'] = 'admin';
-				header("location: ../ADMIN/admindashboard.php");
-				exit();
-			}
-		} else {
-			$_SESSION['login_error'] = "Incorrect email or password.";
-			header("location: login.php");
-			exit();
-		}
+            if ($row['membership_status'] === 'admin') {
+                // Admin login
+                $_SESSION['id'] = $row['admin_id'];
+                $_SESSION['user_role'] = 'admin';
+                $_SESSION['email'] = $row['email'];
+                $_SESSION['role'] = 'admin';
+                header("location: ../ADMIN/admindashboard.php");
+                exit();
+            }
+        } else {
+            $_SESSION['login_error'] = "Incorrect email or password.";
+            header("location: login.php");
+            exit();
+        }
     } else {
         $_SESSION['login_error'] = "Account not found.";
         header("location: login.php");

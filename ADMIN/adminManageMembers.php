@@ -65,10 +65,8 @@ require '../Message/PHPMailer/src/SMTP.php';
         <div class="section" id="section1">
           <div class="applicationHeader">
             <h2>Manage Members</h2>
-            <a href="#" class="btn modal-trigger" data-modal-id="<?php echo 'addAdminModal' ?>">Add Member</a>
-            <?php
-            //include('modals/addADMIN/addAdmin_modal.php');
-            ?>
+            <a href="#" class="btn modal-trigger" data-modal-id="<?php echo 'addAdminModal'; ?>">Add Member</a>
+
           </div>
           <table class="applications-table" id="table1">
             <thead>

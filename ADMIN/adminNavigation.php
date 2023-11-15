@@ -1,3 +1,7 @@
+ <?php //session_start(); 
+    ?>
+
+
  <!-----------------------------NAVIGATION-------------------------------------------------->
  <div class="container">
      <div class="navigation">
@@ -45,8 +49,11 @@
                      <span class="title modal-trigger" data-modal-id="logOutModal">Log Out</span>
 
 
+
                  </a>
+
              </li>
+
          </ul>
      </div>
  </div>

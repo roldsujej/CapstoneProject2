@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require "../database/config.php";
 //require "adminAddApplicant_process.php";
 require "session.php";
@@ -11,26 +11,6 @@ require '../Message/PHPMailer/src/Exception.php';
 require '../Message/PHPMailer/src/PHPMailer.php';
 require '../Message/PHPMailer/src/SMTP.php';
 
-$records_per_page = 10;
-
-// // Check the current page
-// if (isset($_GET['page']) && $_GET['page'] > 0) {
-//   $page = $_GET['page'];
-// } else {
-//   $page = 1;
-// }
-
-// // Calculate the offset for the query
-// $offset = ($page - 1) * $records_per_page;
-
-// // Fetch total number of records
-// $total_records = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM account_profiles"));
-
-// // Calculate the total number of pages
-// $total_pages = ceil($total_records / $records_per_page);
-
-// // Fetch records with pagination
-// $sql = mysqli_query($conn, "SELECT * FROM account_profiles ORDER BY id DESC LIMIT $offset, $records_per_page") or die(mysqli_error($conn));
 ?>
 
 
@@ -189,6 +169,7 @@ $records_per_page = 10;
                         <ion-icon name="eye-outline"></ion-icon>
                       </button>
 
+
                       <!-- Add a delete button with an onclick event -->
                       <button type="button" class="action-button deleteBtn modal-trigger" data-modal-id="<?php echo 'deleteApplicantModal' . $id ?>" data-applicant-name="<?php echo $row['firstName'] . ' ' . $row['lastName']; ?>">
                         <ion-icon name="trash-outline"></ion-icon>
@@ -207,14 +188,6 @@ $records_per_page = 10;
                       <?php
                       include('modals/decision_modals/approveOrDeny_modal.php');
                       ?>
-
-
-
-
-
-                      <!-- pwede ako mag add ng mata na action button tas dun ko nalang ishow ibang info ng applicant via modal para di siksikan table -->
-
-
 
                     </div>
                     <?php include('modals/edit_modal1.php'); ?>
@@ -355,6 +328,7 @@ $records_per_page = 10;
     unset($_SESSION['status']);
   }
   ?>
+
 
 
 
