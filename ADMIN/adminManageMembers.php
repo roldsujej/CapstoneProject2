@@ -1,5 +1,5 @@
 <?php
-require "../database/config.php";
+session_start();
 require "../database/config.php";
 //require "adminAddApplicant_process.php";
 require "session.php";
@@ -46,7 +46,7 @@ require '../Message/PHPMailer/src/SMTP.php';
         </label>
       </div>
       <div class="user">
-        <img src="/images/logo.jpg" alt="Sample pic" />
+        <img src="../images/logo.jpg" alt="Sample pic" />
       </div>
     </div>
 
@@ -239,7 +239,7 @@ require '../Message/PHPMailer/src/SMTP.php';
     </div>
     <?php
 
-    include 'modals/logout_modal.php';
+    include ('modals/logout_modal.php');
 
     ?>
 
@@ -248,6 +248,7 @@ require '../Message/PHPMailer/src/SMTP.php';
     <script src="../js/ADMIN/adminManageMembers.js"></script>
     <script src="../js/ADMIN/modal.js"></script>
     <script src="../js/ADMIN/tablePagination.js"></script>
+    <script src="../js/logout.js"></script>
     <!---------ICONS----------------------------------->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>

@@ -237,6 +237,7 @@ require '../Message/PHPMailer/src/SMTP.php';
   <script src="../js/ADMIN/adminManageApplication.js"></script>
   <script src="../js/ADMIN/modal.js"></script>
   <script src="../js/ADMIN/tablePagination.js"></script>
+  <script src="../js/logout.js"></script>
   <!---------ICONS----------------------------------->
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>

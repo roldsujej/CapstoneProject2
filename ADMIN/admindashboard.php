@@ -1,3 +1,9 @@
+<?php
+session_start();
+require "../database/config.php";
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,6 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin Dashboard</title>
   <link rel="stylesheet" href="../css/admin/admindashboard.css" />
+  <link rel="stylesheet" href="../css/admin/global.css">
   <!------------nagugulo yung card pag nakalink yung global so need adjust sa display in the cards design----->
 </head>
 
@@ -27,7 +34,7 @@
         </label>
       </div>
       <div class="user">
-        <img src="/images/logo.jpg" alt="Sample pic" />
+        <img src="../images/logo.jpg" alt="Sample pic" />
       </div>
     </div>
 
@@ -118,12 +125,13 @@
     </div>
   </div>
   <?php
-  include 'modals/logout_modal.php';
+  include ('modals/logout_modal.php');
   ?>
 
   <!---------------SCRIPT--------------------------->
 
   <script src="../js/ADMIN/modal.js"></script>
+  <script src="../js/logout.js"></script>
 
   <!---------------SCRIPT--------------------------->
   <script src="../js/admindashboard.js"></script>

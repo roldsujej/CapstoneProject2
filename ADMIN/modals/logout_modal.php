@@ -1,17 +1,6 @@
 <!-- logout modal for admin -->
 
-<?php
 
-if (isset($_POST['logOut'])) {
-    // Perform logout actions here
-    session_unset();
-    session_destroy();
-    header('location: ../Login/login.php');
-
-    exit();
-}
-
-?>
 <div class="modal-overlay" id="<?php echo 'logOutModal'; ?>">
     <div class="modal-container modal-form-size modal-sm">
         <div class="modal-header text-light">
@@ -32,7 +21,7 @@ if (isset($_POST['logOut'])) {
 
 
                     <div class="modal-footer">
-                        <button type="submit" class="modalBtn" id="logOut" name="logOut">Yes</button>
+                        <button type="button" class="modalBtn" id="logOut" name="logOut">Yes</button>
                         <button type="button" class="modalBtn cancel-button" data-modal-id="<?php echo 'logOutModal'; ?>">Cancel</button>
                     </div>
                 </form>

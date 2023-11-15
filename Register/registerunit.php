@@ -16,7 +16,7 @@
     <div class="container">
       <div class="design">
         <div class="logo">
-          <img src="images/logo.jpg" alt="" />
+          <img src="../images/logo.jpg" alt="" />
         </div>
         <!----LOGO DESIGN HERE-->
       </div>

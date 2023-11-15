@@ -58,7 +58,7 @@ session_start();
                 </label>
             </div>
             <div class="user">
-                <img src="/images/logo.jpg" alt="Sample pic" />
+                <img src="../images/logo.jpg" alt="Sample pic" />
             </div>
         </div>
 
