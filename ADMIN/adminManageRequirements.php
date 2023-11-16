@@ -63,192 +63,219 @@ require "../database/config.php";
 
     <!----------------------------------------SECTION--------------------------------------------------->
     <div class="details">
+      <ul class="navbar">
+        <li><a href="#" onclick="showSection('section1')">Manage Requirements </a></li>
+        <li><a href="#" onclick="showSection('section2')">Manage Uploaded Documents</a></li>
+      </ul>
 
 
 
       <div class="recentApplications">
-        <div class="applicationHeader">
-          <h2 class="header-with-bell">
-            Manage Requirements and Documents
-            <div class="notification-container">
-              <ion-icon name="notifications-outline" class="notification-bell"></ion-icon>
-              <span class="notification-count">0</span>
-            </div>
-          </h2>
-          <!-- when clicked redirect to a page where the uploaded documents are displayed -->
+        <div class="section" id="section1">
+          <div class="applicationHeader">
 
-          <div class="button-container">
-            <!-- button to trigger the add applicant modal -->
-            <a href="#" class="btn modal-trigger" data-modal-id="<?php echo 'requirement' ?>">
-              <ion-icon name="add"></ion-icon>
-            </a>
-            <?php
-            include('modals/addrequirement_modal.php');
-            ?>
+            <h2 class="header-with-bell">
+              Manage Requirements
+              <div class="notification-container">
+                <ion-icon name="notifications-outline" class="notification-bell"></ion-icon>
+                <span class="notification-count">0</span>
+              </div>
+            </h2>
+            <!-- when clicked redirect to a page where the uploaded documents are displayed -->
+
+            <div class="button-container">
+              <!-- button to trigger the add applicant modal -->
+              <a href="#" class="btn modal-trigger" data-modal-id="<?php echo 'requirement' ?>">
+                <ion-icon name="add"></ion-icon>
+              </a>
+              <?php
+              include('modals/addrequirement_modal.php');
+              ?>
+            </div>
+          </div>
+
+
+
+
+
+          <table class="applications-table" id="table1">
+            <thead>
+              <tr>
+                <th>Requirement ID</th>
+                <th>Requirement Name</th>
+                <th>Requirement Description</th>
+                <th>Requirement Status</th>
+                <th>Document Type</th>
+                <!-- <th>Created At</th>
+              <th>Updated At</th> -->
+
+                <th class="action-header" colspan="3">Action</th>
+
+              </tr>
+            </thead>
+
+            <tbody>
+              <?php
+              $sql = mysqli_query($conn, "SELECT * from required_documents ORDER BY document_id ASC") or die(mysqli_error($conn));
+
+              if (mysqli_num_rows($sql) > 0) {
+                while ($row = mysqli_fetch_array($sql)) {
+
+                  $document_id = $row['document_id'];
+                  $document_name = $row['document_name'];
+                  $document_description = $row['document_description'];
+                  $document_status = $row['is_required'];
+                  $creation_date = $row['created_at'];
+                  $update_date = $row['updated_at'];
+                  $document_type = $row['document_type'];
+
+
+              ?>
+                  <tr class="<?php echo $document_status === 'optional' ? 'optional-row' : ''; ?>">
+                    <td><?php echo $document_id; ?></td>
+                    <td><?php echo $document_name ?></td>
+                    <td><?php echo $document_description ?></td>
+                    <td>
+                      <span class="status <?php echo $document_status === 'required' ? 'required' : 'optional'; ?>">
+                        <?php echo strtoupper($document_status === 'required' ? 'required' : 'optional'); ?>
+                      </span>
+                    </td>
+                    <td><?php echo $document_type ?></td>
+
+                    <td>
+                      <div class="action-buttons">
+                        <button type="button" class="action-button editBtn modal-trigger" data-modal-id="<?php echo 'EditRequirement' . $document_id ?>">
+                          <ion-icon name="open-outline"></ion-icon>
+                        </button>
+
+                        <button type="button" class="action-button deleteBtn modal-trigger" data-modal-id="<?php echo 'deleteRequirementModal' . $document_id; ?>" data-document-name="<?php echo $row['document_name'] ?>">
+                          <ion-icon name="trash-outline"></ion-icon>
+                        </button>
+                        <?php include('modals/deleteRequirement_modal.php'); ?>
+                      </div>
+                      <?php include('modals/editRequirement_modal.php'); ?>
+                      <?php include('modals/view_modal1.php'); ?>
+                    </td>
+                  </tr>
+
+              <?php
+
+                }
+              } else {
+                echo "Record not Found";
+              }
+              ?>
+            </tbody>
+
+
+
+
+          </table>
+          <div class="pagination">
+            <!-- the pages are automatically added using js -->
           </div>
         </div>
 
-        <div>
-          <ul class="navbar">
-            <li><a href="#" onclick="showTable('table1')">View Requirements</a></li>
-            <li><a href="#" onclick="showTable('table2')">View Documents</a></li>
-          </ul>
-        </div>
 
+        <div class="section" id="section2" style="display: none;">
+          <div class="applicationHeader">
+            <h2>Manage Uploaded Documents</h2>
 
-
-
-
-
-        <table class="applications-table" id="table1">
-          <thead>
-            <tr>
-              <th>Requirement ID</th>
-              <th>Requirement Name</th>
-              <th>Requirement Description</th>
-              <th>Requirement Status</th>
-              <th>Document Type</th>
-              <!-- <th>Created At</th>
-              <th>Updated At</th> -->
-
-              <th class="action-header" colspan="3">Action</th>
-
-            </tr>
-          </thead>
-
-          <tbody>
+            <!-- button to trigger the add applicant modal -->
+            <a href="#" class="btn modal-trigger" data-modal-id="<?php echo 'addAdminModal' ?>">Add Admin</a>
             <?php
-            $sql = mysqli_query($conn, "SELECT * from required_documents ORDER BY document_id ASC") or die(mysqli_error($conn));
-
-            if (mysqli_num_rows($sql) > 0) {
-              while ($row = mysqli_fetch_array($sql)) {
-
-                $document_id = $row['document_id'];
-                $document_name = $row['document_name'];
-                $document_description = $row['document_description'];
-                $document_status = $row['is_required'];
-                $creation_date = $row['created_at'];
-                $update_date = $row['updated_at'];
-                $document_type = $row['document_type'];
-
-
+            include('modals/addADMIN/addAdmin_modal.php');
             ?>
-                <tr class="<?php echo $document_status === 'optional' ? 'optional-row' : ''; ?>">
-                  <td><?php echo $document_id; ?></td>
-                  <td><?php echo $document_name ?></td>
-                  <td><?php echo $document_description ?></td>
-                  <td>
-                    <span class="status <?php echo $document_status === 'required' ? 'required' : 'optional'; ?>">
-                      <?php echo strtoupper($document_status === 'required' ? 'required' : 'optional'); ?>
-                    </span>
-                  </td>
-                  <td><?php echo $document_type ?></td>
+          </div>
+          <table class="applications-table" id="table2">
+            <thead>
+              <tr>
+                <!-- <th>Document ID</th> -->
+                <th>Applicant ID</th>
+                <th>Uploader</th>
+                <th>Document Name</th>
+                <th>File Name</th>
+                <th>Upload Date</th>
+                <th class="action-header" colspan="3">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              // $uploadedDocsQuery = "SELECT ud.id as doc_id, ud.document_id, ud.file_name, ud.file_path, ud.upload_date, ap.firstName, ap.lastName, r.document_name 
+              //       FROM uploaded_documents ud 
+              //       JOIN account_profiles ap ON ud.applicant_id = ap.id
+              //       JOIN required_documents r ON ud.document__id = r.document_id";
 
-                  <td>
-                    <div class="action-buttons">
-                      <button type="button" class="action-button editBtn modal-trigger" data-modal-id="<?php echo 'EditRequirement' . $document_id ?>">
-                        <ion-icon name="open-outline"></ion-icon>
-                      </button>
-
-                      <button type="button" class="action-button deleteBtn modal-trigger" data-modal-id="<?php echo 'deleteRequirementModal' . $document_id; ?>" data-document-name="<?php echo $row['document_name'] ?>">
-                        <ion-icon name="trash-outline"></ion-icon>
-                      </button>
-                      <?php include('modals/deleteRequirement_modal.php'); ?>
-                    </div>
-                    <?php include('modals/editRequirement_modal.php'); ?>
-                    <?php include('modals/view_modal1.php'); ?>
-                  </td>
-                </tr>
-
-            <?php
-
-              }
-            } else {
-              echo "Record not Found";
-            }
-            ?>
-          </tbody>
-
-
-
-
-        </table>
-
-
-
-        <!-- ================================================UPLOADED DOCUMENTS TABLE=========================== -->
-        <table class="applications-table " id="table2" style="display: none;">
-          <thead>
-            <tr>
-              <!-- <th>Document ID</th> -->
-              <th>Applicant ID</th>
-              <th>Uploader</th>
-              <th>Document Name</th>
-              <th>File Name</th>
-              <th>Upload Date</th>
-              <th class="action-header" colspan="3">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php
-            // $uploadedDocsQuery = "SELECT ud.id as doc_id, ud.document_id, ud.file_name, ud.file_path, ud.upload_date, ap.firstName, ap.lastName, r.document_name 
-            //       FROM uploaded_documents ud 
-            //       JOIN account_profiles ap ON ud.applicant_id = ap.id
-            //       JOIN required_documents r ON ud.document__id = r.document_id";
-
-            $uploadedDocsQuery = "SELECT ud.id as doc_id, ud.applicant_id, ud.document_id, ud.file_name, ud.file_path, ud.upload_date, ap.id, ap.firstName, ap.lastName, r.document_name
+              $uploadedDocsQuery = "SELECT ud.id as doc_id, ud.applicant_id, ud.document_id, ud.file_name, ud.file_path, ud.upload_date, ap.id, ap.firstName, ap.lastName, r.document_name
                       FROM uploaded_documents ud 
                       JOIN account_profiles ap ON ud.applicant_id = ap.id
                       JOIN required_documents r ON ud.document_id = r.document_id";
 
-            $uploadedDocsResult = $conn->query($uploadedDocsQuery);
+              $uploadedDocsResult = $conn->query($uploadedDocsQuery);
 
-            if ($uploadedDocsResult->num_rows > 0) {
-              while ($row = $uploadedDocsResult->fetch_assoc()) {
-                $docId = $row['doc_id'];
-                $targetPath = 'http://localhost/CapstoneProject2/Applicant/uploads/applicant_uploads/' . $row['file_name'];
+              if ($uploadedDocsResult->num_rows > 0) {
+                while ($row = $uploadedDocsResult->fetch_assoc()) {
+                  $docId = $row['doc_id'];
+                  $targetPath = 'http://localhost/CapstoneProject2/Applicant/uploads/applicant_uploads/' . $row['file_name'];
 
-            ?>
-                <tr>
-                  <td><?php echo $row['id'];  // pwede to tanggalin if ever di need inadd ko lng pra di nakakalito
-                      ?></td>
-                  <td><?php echo $row['firstName'] . ' ' . $row['lastName'] ?></td>
-                  <td><?php echo $row['document_name'] ?></td>
-                  <td><?php echo $row['file_name']  ?></td>
-                  <td><?php echo $row['upload_date'] ?></td>
-                  <td>
-                    <div class="action-buttons">
-                      <button type="button" class="action-button viewBtn modal-trigger" data-modal-id="<?php echo 'viewDocumentModal' . $row['doc_id']; ?>">
-                        <ion-icon name="eye-outline"></ion-icon>
-                      </button>
+              ?>
+                  <tr>
+                    <td><?php echo $row['id'];  // pwede to tanggalin if ever di need inadd ko lng pra di nakakalito
+                        ?></td>
+                    <td><?php echo $row['firstName'] . ' ' . $row['lastName'] ?></td>
+                    <td><?php echo $row['document_name'] ?></td>
+                    <td><?php echo $row['file_name']  ?></td>
+                    <td><?php echo $row['upload_date'] ?></td>
+                    <td>
+                      <div class="action-buttons">
+                        <button type="button" class="action-button viewBtn modal-trigger" data-modal-id="<?php echo 'viewDocumentModal' . $row['doc_id']; ?>">
+                          <ion-icon name="eye-outline"></ion-icon>
+                        </button>
 
-                      <button type="button" class="action-button validateBtn" onclick="validateDocument(<?php echo $row['doc_id']; ?>)">
-                        Validate
-                      </button>
+                        <button type="button" class="action-button validateBtn" onclick="validateDocument(<?php echo $row['doc_id']; ?>)">
+                          Validate
+                        </button>
 
-                      <button type="button" class="action-button deleteBtn modal-trigger" data-modal-id="<?php echo 'deleteDocumentModal' . $row['doc_id']; ?>">
-                        <ion-icon name="trash-outline"></ion-icon>
-                      </button>
-                    </div>
+                        <button type="button" class="action-button deleteBtn modal-trigger" data-modal-id="<?php echo 'deleteDocumentModal' . $row['doc_id']; ?>">
+                          <ion-icon name="trash-outline"></ion-icon>
+                        </button>
+                      </div>
 
-                    <?php //include('modals/deleteDocument_modal.php'); 
-                    ?>
-                    <?php include('modals/documents/viewDocument_modal.php');
-                    ?>
-                  </td>
-                </tr>
-            <?php
+                      <?php //include('modals/deleteDocument_modal.php'); 
+                      ?>
+                      <?php include('modals/documents/viewDocument_modal.php');
+                      ?>
+                    </td>
+                  </tr>
+              <?php
+                }
+              } else {
+                echo "Record not Found";
               }
-            } else {
-              echo "Record not Found";
-            }
-            ?>
-          </tbody>
-        </table>
+              ?>
+            </tbody>
+          </table>
+          <div class="pagination">
+            <!-- the pages are automatically added using js -->
+          </div>
 
-        <div class="pagination">
-          <!-- the pages are automatically added using js -->
+
+
+
         </div>
+
+
+
+
+
+
+
+
+
+        <!-- ================================================UPLOADED DOCUMENTS TABLE=========================== -->
+
+
+
 
       </div>
     </div>

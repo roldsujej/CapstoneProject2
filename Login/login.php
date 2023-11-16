@@ -38,7 +38,8 @@ if (isset($_SESSION['id'])) {
                 // Handle role 1
                 // Redirect or perform specific actions for role 1
                 // Verified email
-                header('location: ../APPLICANT/applicantDashboard.php');
+                //Account being review do not let them log in
+                header('location: /landing_pages/verify_success.php');
                 break;
 
             case '2':
@@ -106,7 +107,7 @@ if (isset($_POST['login'])) {
                 $_SESSION['email'] = $row['email'];
                 $_SESSION['role'] = $row['status'];
 
-                header("location: ../Applicant/applicantDashboard.php");
+                header("location: landing_pages/verify_success.php");
                 exit();
             } elseif ($statusText === "Account Accepted") {
 
@@ -127,35 +128,43 @@ if (isset($_POST['login'])) {
                 $_SESSION['role'] = $row['status'];
 
                 header("location: ../MEMBER/memberDashboard.php");
-            }
-        } else {
-            $_SESSION['login_error'] = "Incorrect email or password.";
-            header("location: login.php");
-            exit();
-        }
-    } elseif ($adminResult->num_rows > 0) {
-        $row = $adminResult->fetch_assoc();
-        if ($_POST['password'] === $row['password']) {
-            $statusText = getStatusText($row['account_status']);
-
-            if ($row['membership_status'] === 'admin') {
-                // Admin login
-                $_SESSION['id'] = $row['admin_id'];
-                $_SESSION['user_role'] = 'admin';
+            } elseif ($statusText === "Application Declined") {
+                $_SESSION['fullName'] = $row['firstName'] . ' ' . $row['lastName'];
+                $_SESSION['id'] = $row['id'];
+                $_SESSION['user_role'] = 'member';
                 $_SESSION['email'] = $row['email'];
-                $_SESSION['role'] = 'admin';
-                header("location: ../ADMIN/admindashboard.php");
+                $_SESSION['role'] = $row['status'];
+                header("location: landing_pages/application_declined.php");
+                exit();
+            } else {
+                $_SESSION['login_error'] = "Incorrect email or password.";
+                header("location: login.php");
+                exit();
+            }
+        } elseif ($adminResult->num_rows > 0) {
+            $row = $adminResult->fetch_assoc();
+            if ($_POST['password'] === $row['password']) {
+                $statusText = getStatusText($row['account_status']);
+
+                if ($row['membership_status'] === 'admin') {
+                    // Admin login
+                    $_SESSION['id'] = $row['admin_id'];
+                    $_SESSION['user_role'] = 'admin';
+                    $_SESSION['email'] = $row['email'];
+                    $_SESSION['role'] = 'admin';
+                    header("location: ../ADMIN/admindashboard.php");
+                    exit();
+                }
+            } else {
+                $_SESSION['login_error'] = "Incorrect email or password.";
+                header("location: login.php");
                 exit();
             }
         } else {
-            $_SESSION['login_error'] = "Incorrect email or password.";
+            $_SESSION['login_error'] = "Account not found.";
             header("location: login.php");
             exit();
         }
-    } else {
-        $_SESSION['login_error'] = "Account not found.";
-        header("location: login.php");
-        exit();
     }
 }
 

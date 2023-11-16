@@ -160,7 +160,6 @@ require '../Message/PHPMailer/src/SMTP.php';
 
 
           </table>
-
           <!-- Display pagination -->
           <div class="pagination">
             <!-- the pages are automatically added using js -->

@@ -71,15 +71,15 @@ if (isset($_POST['submit'])) {
 
         // sms is being delivered but not received 
 
-        $message = $twilio->messages
-          ->create(
-            $number, // to
-            array(
-              "from" => $twilio_number,
-              "body" => 'Your OTP is: ' . $otp
-            )
-          );
-        echo 'Message sent!';
+        // $message = $twilio->messages
+        //   ->create(
+        //     $number, // to
+        //     array(
+        //       "from" => $twilio_number,
+        //       "body" => 'Your OTP is: ' . $otp
+        //     )
+        //   );
+        // echo 'Message sent!';
 
         //email send
         $mail = new PHPMailer;

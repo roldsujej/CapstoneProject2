@@ -12,7 +12,7 @@ function getStatusText($statusCode)
         case 3:
             return "Member";
         case 4:
-            return "Application Denied";
+            return "Application Declined";
         default:
             return "Unknown Status";
     }
