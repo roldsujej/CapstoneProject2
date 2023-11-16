@@ -1,3 +1,3 @@
 function redirectToLogin() {
-  window.location.href = "../../Login/login.php"; // Replace with the actual path to your login page
+  window.location.href = "../../logout.php"; // Replace with the actual path to your login page
 }

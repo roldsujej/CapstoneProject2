@@ -10,7 +10,6 @@
 
 <body>
     <div class="container">
-        <button type="submit" class="btn">Submit</button>
         <div class="popup">
             <img src="../../images/capedalogo.png" />
             <h2><b>Thank you!</b></h2>

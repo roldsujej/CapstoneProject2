@@ -216,7 +216,7 @@ require "../database/config.php";
               if ($uploadedDocsResult->num_rows > 0) {
                 while ($row = $uploadedDocsResult->fetch_assoc()) {
                   $docId = $row['doc_id'];
-                  $targetPath = 'http://localhost/CapstoneProject2/Applicant/uploads/applicant_uploads/' . $row['file_name'];
+                  $targetPath = '../APPLICANT/uploads/' . $row['file_name'];
 
               ?>
                   <tr>

@@ -39,7 +39,7 @@ if (isset($_SESSION['id'])) {
                 // Redirect or perform specific actions for role 1
                 // Verified email
                 //Account being review do not let them log in
-                header('location: /landing_pages/verify_success.php');
+                header('location: landing_pages/verify_success.php');
                 break;
 
             case '2':
