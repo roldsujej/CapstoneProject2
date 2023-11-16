@@ -15,19 +15,19 @@ require '../Message/PHPMailer/src/Exception.php';
 require '../Message/PHPMailer/src/PHPMailer.php';
 require '../Message/PHPMailer/src/SMTP.php';
 
-use Twilio\Rest\Client;
+// use Twilio\Rest\Client;
 
 
 
 
 
-// require '../vendor/autoload.php'; // This is the Twilio PHP library path
+// // require '../vendor/autoload.php'; // This is the Twilio PHP library path
 
-// Your Twilio credentials
-$account_sid = 'AC5a005cccf82ff29e220e999e34c6a3cc';
-$auth_token = 'c9811fd936f99ac1c6b9007fa3c6843b';
-$twilio_number = '+12563048891';
-$twilio = new Client($account_sid, $auth_token);
+// // Your Twilio credentials
+// $account_sid = 'AC5a005cccf82ff29e220e999e34c6a3cc';
+// $auth_token = 'c9811fd936f99ac1c6b9007fa3c6843b';
+// $twilio_number = '+12563048891';
+// $twilio = new Client($account_sid, $auth_token);
 
 
 if (isset($_POST['submit'])) {
@@ -71,15 +71,15 @@ if (isset($_POST['submit'])) {
 
         // sms is being delivered but not received 
 
-        // $message = $twilio->messages
-        //   ->create(
-        //     $number, // to
-        //     array(
-        //       "from" => $twilio_number,
-        //       "body" => 'Your OTP is: ' . $otp
-        //     )
-        //   );
-        // echo 'Message sent!';
+        $message = $twilio->messages
+          ->create(
+            $number, // to
+            array(
+              "from" => $twilio_number,
+              "body" => 'Your OTP is: ' . $otp
+            )
+          );
+        echo 'Message sent!';
 
         //email send
         $mail = new PHPMailer;
