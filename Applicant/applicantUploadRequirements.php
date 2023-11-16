@@ -28,19 +28,6 @@ session_start();
     include 'applicantNavigation.php';
     ?>
 
-
-    <!-- ------------------------------MODALS----------------------------------- -->
-
-    <!-- <div id="logOutModal" class="modal">
-        <div class="modal-content">
-            <span class="close" id="closeModal">&times;</span>
-            <h2>Confirmation</h2>
-            <p>Are you sure you want to log out?</p>
-            <button id="confirmLogOut">Yes</button>
-            <button id="cancelLogOut">No</button>
-        </div>
-    </div> -->
-
     <!-------------------------MAIN---------------------------->
     <div class="main">
         <div class="topbar">
@@ -214,11 +201,15 @@ session_start();
 
 
     </div>
+  <?php
+  include('modals/logout_modal.php');
+  ?>
 
     <!---------------SCRIPT--------------------------->
     <script src="../js/APPLICANT/applicantDashboard.js"></script>
     <script src="../js/ADMIN/tablePagination.js"></script>
     <script src="../js/ADMIN/modal.js"></script>
+	<script src="../js/logout.js"></script>
 
     <!---------ICONS----------------------------------->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>

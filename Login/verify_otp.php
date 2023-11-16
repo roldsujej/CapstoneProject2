@@ -51,9 +51,8 @@ if (isset($_POST['submit'])) {
             $updateStmt->bind_param("si", $email, $id);
 
             if ($updateStmt->execute()) {
-                $_SESSION['status'] = "You have successfully verified your profile";
-                $_SESSION['status_code'] = "success";
-                header("Location: ../logout.php");
+				$_SESSION['role'] = 1;
+                header("Location: ../Login/login.php");
                 exit();
             } else {
                 $_SESSION['msgError'] = "Database error: " . $conn->error;
