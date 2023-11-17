@@ -260,11 +260,11 @@ if (isset($_POST['submit'])) {
 
           <span class="gender-title">Gender <span class="guide">*required</span></span>
           <div class="gender-category">
-            <input type="radio" name="gender" id="male" />
+            <input type="radio" name="gender" id="male" value="male" />
             <label for="gender">Male</label>
-            <input type="radio" name="gender" id="female" />
+            <input type="radio" name="gender" id="female" value="female" />
             <label for="gender">Female</label>
-            <input type="radio" name="gender" id="other" />
+            <input type="radio" name="gender" id="other" value="other" />
             <label for="gender">Other</label>
           </div>
         </div>
