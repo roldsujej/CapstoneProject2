@@ -12,7 +12,7 @@
             <div class="modal-content">
                 <?php
                 // Debugging
-                var_dump($targetPath);
+                // var_dump($targetPath);
                 ?>
 
                 <iframe src="<?php echo $targetPath; ?>" width="100%" height="600px"></iframe>
