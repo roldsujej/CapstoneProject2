@@ -17,7 +17,13 @@ require '../Message/PHPMailer/src/SMTP.php';
 
 // use Twilio\Rest\Client;
 
-
+function calculateAge($birthdate)
+{
+  $currentDate = new DateTime();
+  $birthdate = new DateTime($birthdate);
+  $age = $currentDate->diff($birthdate)->y;
+  return $age;
+}
 
 
 
@@ -31,19 +37,32 @@ require '../Message/PHPMailer/src/SMTP.php';
 
 
 if (isset($_POST['submit'])) {
-  $countryCode = '+63';
+  // $countryCode = '+63';
   $fname = sanitize($conn, $_POST["firstName"]);
   $lname = sanitize($conn, $_POST["lastName"]);
-  $number = sanitize($conn, $countryCode . $_POST["cpNumber"]);
+  $number = sanitize($conn, $_POST["cpNumber"]);
   // $address = sanitize($conn, $_POST["address"]);
   $birthday = sanitize($conn, $_POST["birthday"]);
+  $age = calculateAge($birthday);
   $blk = sanitize($conn, $_POST["blk"]);
   $lot = sanitize($conn, $_POST["lot"]);
   $st = sanitize($conn, $_POST["st"]);
   $brgy = sanitize($conn, $_POST["brgy"]);
   $city = sanitize($conn, $_POST["city"]);
   $province = sanitize($conn, $_POST["province"]);
-  $gender = sanitize($conn, $_POST["gender"]);
+
+  $selectedGender = $_POST["gender"];
+  if ($selectedGender == "male") {
+    $gender = "Male";
+  } elseif ($selectedGender == "female") {
+    $gender = "Female";
+  } elseif ($selectedGender == "other") {
+    $gender = "Other";
+  } else {
+    // Default to some value or handle the case when no radio button is selected
+    $gender = "Not specified";
+  }
+  $gender = sanitize($conn, $gender);
   $email = sanitize($conn, $_POST["email"]);
   $password = sanitize($conn, $_POST["password"]);
   $cpassword = sanitize($conn, $_POST["cpassword"]);
@@ -68,9 +87,9 @@ if (isset($_POST['submit'])) {
     $_SESSION['passwordError'] = "Passwords don't match";
     $_SESSION['passwordErrorTimestamp'] = time(); // Store the timestamp
   } else {
-    $insertQuery = $conn->prepare("INSERT INTO `account_profiles` (`firstName`, `lastName`, `cpNumber`,`birthday`,  `block`, `lot`, `street`, `barangay`, `city`, `province`, `gender`, `email`, `password`, `otp`, `otp_exp`, `status`,  `user_role`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+    $insertQuery = $conn->prepare("INSERT INTO `account_profiles` (`firstName`, `lastName`, `cpNumber`,`birthday`,`age`,  `block`, `lot`, `street`, `barangay`, `city`, `province`, `gender`, `email`, `password`, `otp`, `otp_exp`, `status`,  `user_role`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
-    $insertQuery->bind_param("ssssssssssssssssi", $fname, $lname, $number, $birthday, $blk, $lot, $st, $brgy, $city, $province, $gender, $email, $hashedPassword, $otp, $otp_expiration, $status, $user_role);
+    $insertQuery->bind_param("sssssssssssssssssi", $fname, $lname, $number, $birthday, $age, $blk, $lot, $st, $brgy, $city, $province, $gender, $email, $hashedPassword, $otp, $otp_expiration, $status, $user_role);
 
 
     if ($insertQuery->execute()) {
@@ -205,35 +224,37 @@ if (isset($_POST['submit'])) {
 
           <div class="input-box">
             <label for="phone number">Mobile Number<span class="guide">*make sure that your sim is registered</span></label>
-            <input type="text" placeholder="+63 XXXXXXXXX" name="cpNumber" id="phoneNumber" maxlength="13" required pattern="[0-9]+" oninput="validatePhoneNumber()" />
+            <input type="text" placeholder="+63 XXXXXXXXX" name="cpNumber" id="phoneNumber" maxlength="13" required pattern="\+?[0-9]+" oninput="validatePhoneNumber()" />
             <span id="phoneNumberError" class="error-message"></span>
           </div>
           <div class="input-box">
-            <label for="birthday">Birthday<span class="guide">*required</span></label>
-            <input type="date" name="birthday" required />
+            <label for="birthday">Birthday<span class="guide">*ages under 18 years are not elligible to apply</span></label>
+            <input type="date" name="birthday" id="birthday" required oninput="validateAge()" />
+            <span id="ageError" class="error-message"></span>
+
           </div>
-          <div class="input-box">
+          <!-- <div class="input-box">
             <label for=" age">Age</label>
             <input type="text" placeholder="age" name="age" required />
-          </div>
+          </div> -->
           <div class="input-box address-box">
             <label for="blk">Block</label>
-            <input type="text" placeholder="Block" name="blk" required />
+            <input type="text" placeholder="Block" name="blk" />
 
             <label for="lot">Lot</label>
-            <input type="text" placeholder="Lot" name="lot" required />
+            <input type="text" placeholder="Lot" name="lot" />
 
             <label for="st">Street</label>
-            <input type="text" placeholder="Street" name="st" required />
+            <input type="text" placeholder="Street" name="st" />
 
             <label for="brgy">Barangay</label>
-            <input type="text" placeholder="Barangay" name="brgy" required />
+            <input type="text" placeholder="Barangay" name="brgy" />
 
             <label for="city">City</label>
-            <input type="text" placeholder="City" name="city" required />
+            <input type="text" placeholder="City" name="city" />
 
             <label for="province">Province</label>
-            <input type="text" placeholder="Province" name="province" required />
+            <input type="text" placeholder="Province" name="province" />
           </div>
 
           <span class="gender-title">Gender <span class="guide">*required</span></span>
@@ -288,6 +309,7 @@ if (isset($_POST['submit'])) {
 
   <script src="../js/register/register.js"></script>
   <script src="../js/register/validatePhoneNumber.js"></script>
+  <script src="../js/register/validateAge.js"></script>
 </body>
 
 
