@@ -32,10 +32,18 @@ require '../Message/PHPMailer/src/SMTP.php';
 
 if (isset($_POST['submit'])) {
   $countryCode = '+63';
-  $fname = sanitize($conn, $_POST["fname"]);
-  $lname = sanitize($conn, $_POST["lname"]);
-  $number = sanitize($conn, $countryCode . $_POST["phoneNumber"]);
-  $address = sanitize($conn, $_POST["address"]);
+  $fname = sanitize($conn, $_POST["firstName"]);
+  $lname = sanitize($conn, $_POST["lastName"]);
+  $number = sanitize($conn, $countryCode . $_POST["cpNumber"]);
+  // $address = sanitize($conn, $_POST["address"]);
+  $birthday = sanitize($conn, $_POST["birthday"]);
+  $blk = sanitize($conn, $_POST["blk"]);
+  $lot = sanitize($conn, $_POST["lot"]);
+  $st = sanitize($conn, $_POST["st"]);
+  $brgy = sanitize($conn, $_POST["brgy"]);
+  $city = sanitize($conn, $_POST["city"]);
+  $province = sanitize($conn, $_POST["province"]);
+  $gender = sanitize($conn, $_POST["gender"]);
   $email = sanitize($conn, $_POST["email"]);
   $password = sanitize($conn, $_POST["password"]);
   $cpassword = sanitize($conn, $_POST["cpassword"]);
@@ -60,8 +68,10 @@ if (isset($_POST['submit'])) {
     $_SESSION['passwordError'] = "Passwords don't match";
     $_SESSION['passwordErrorTimestamp'] = time(); // Store the timestamp
   } else {
-    $insertQuery = $conn->prepare("INSERT INTO `account_profiles` (`firstName`, `lastName`, `cpNumber`, `address`, `email`, `password`, `otp`, `otp_exp`, `status`,  `user_role`) VALUES (?,?,?,?,?,?,?,?,?,?)");
-    $insertQuery->bind_param("ssssssssii", $fname, $lname, $number, $address, $email, $hashedPassword, $otp, $otp_expiration, $status,  $user_role);
+    $insertQuery = $conn->prepare("INSERT INTO `account_profiles` (`firstName`, `lastName`, `cpNumber`,`birthday`,  `block`, `lot`, `street`, `barangay`, `city`, `province`, `gender`, `email`, `password`, `otp`, `otp_exp`, `status`,  `user_role`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+
+    $insertQuery->bind_param("ssssssssssssssssi", $fname, $lname, $number, $birthday, $blk, $lot, $st, $brgy, $city, $province, $gender, $email, $hashedPassword, $otp, $otp_expiration, $status, $user_role);
+
 
     if ($insertQuery->execute()) {
       try {
@@ -71,15 +81,15 @@ if (isset($_POST['submit'])) {
 
         // sms is being delivered but not received 
 
-        $message = $twilio->messages
-          ->create(
-            $number, // to
-            array(
-              "from" => $twilio_number,
-              "body" => 'Your OTP is: ' . $otp
-            )
-          );
-        echo 'Message sent!';
+        // $message = $twilio->messages
+        //   ->create(
+        //     $number, // to
+        //     array(
+        //       "from" => $twilio_number,
+        //       "body" => 'Your OTP is: ' . $otp
+        //     )
+        //   );
+        // echo 'Message sent!';
 
         //email send
         $mail = new PHPMailer;
@@ -165,130 +175,106 @@ if (isset($_POST['submit'])) {
   <title>CAPEDA | Registration </title>
 
   <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/register/register.css" />
+  <!-- <link rel="stylesheet" href="../css/register/register.css" /> -->
+  <link rel="stylesheet" href="../css/register/registerv2.css" />
+  <link rel="stylesheet" href="../css/globals/errorMessages.css" />
   <!-- <link rel="stylesheet" href="../css/admin/global.css"> -->
 
 </head>
 
 <body>
+
   <div class="container">
-    <div class="logo">
-      <!-- <img src="../images/capedalogo.png" alt="" /> -->
+    <form action="" method="post">
+      <h2>Registration</h2>
+      <div class="content">
+        <!-- Personal Information Card -->
+        <div class="card">
+          <h3>Personal Information</h3>
 
-      <div class="card">
-        <header class="title">
-          <h3 class="title">Please read the instruction before submitting!</h3>
-        </header>
+          <div class="input-box">
+            <label for=" first name">First name <span class="guide">*required</span></label>
+            <input type="text" placeholder="e.g., Juan" name="firstName" required />
+          </div>
+          <div class="input-box">
+            <label for=" last name">Last name <span class="guide">*required</span></label>
+            <input type="text" placeholder="e.g., Dela Cruz" name="lastName" required />
 
-        <div class="card-body">
-          <h4 class="card-title">Before you register make sure you have the requirements below:</h4>
+          </div>
 
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">Active Email Account</li>
-            <!-- <li class="list-group-item">Barangay Clearance</li>
-            <li class="list-group-item">2x2 Picture</li>
-            <li class="list-group-item">Valid ID</li> -->
 
-          </ul>
+          <div class="input-box">
+            <label for="phone number">Mobile Number<span class="guide">*make sure that your sim is registered</span></label>
+            <input type="text" placeholder="+63 XXXXXXXXX" name="cpNumber" id="phoneNumber" maxlength="13" required pattern="[0-9]+" oninput="validatePhoneNumber()" />
+            <span id="phoneNumberError" class="error-message"></span>
+          </div>
+          <div class="input-box">
+            <label for="birthday">Birthday<span class="guide">*required</span></label>
+            <input type="date" name="birthday" required />
+          </div>
+          <div class="input-box">
+            <label for=" age">Age</label>
+            <input type="text" placeholder="age" name="age" required />
+          </div>
+          <div class="input-box address-box">
+            <label for="blk">Block</label>
+            <input type="text" placeholder="Block" name="blk" required />
+
+            <label for="lot">Lot</label>
+            <input type="text" placeholder="Lot" name="lot" required />
+
+            <label for="st">Street</label>
+            <input type="text" placeholder="Street" name="st" required />
+
+            <label for="brgy">Barangay</label>
+            <input type="text" placeholder="Barangay" name="brgy" required />
+
+            <label for="city">City</label>
+            <input type="text" placeholder="City" name="city" required />
+
+            <label for="province">Province</label>
+            <input type="text" placeholder="Province" name="province" required />
+          </div>
+
+          <span class="gender-title">Gender <span class="guide">*required</span></span>
+          <div class="gender-category">
+            <input type="radio" name="gender" id="male" />
+            <label for="gender">Male</label>
+            <input type="radio" name="gender" id="female" />
+            <label for="gender">Female</label>
+            <input type="radio" name="gender" id="other" />
+            <label for="gender">Other</label>
+          </div>
         </div>
 
+        <!-- Account Information Card -->
+        <div class="card">
+          <h3>Account Information</h3>
 
+          <div class="input-box">
+            <label for="email">Email<span class="guide">*make sure you have active gmail account</span></label>
+            <input type="email" placeholder="Enter your active email" name="email" required />
+          </div>
+          <div class="input-box password-box">
+            <label for="password">Password</label>
+            <input type="password" placeholder="Enter Password" name="password" required />
+
+            <label for="Confirm password">Confirm Password</label>
+            <input type="password" placeholder="Re-enter Password" name="cpassword" required />
+          </div>
+        </div>
+
+        <!-- Button Container -->
+        <div class="button-container">
+          <button type="submit" name="submit">Register</button>
+        </div>
+
+        <!-- Login Link -->
+        <div class="login-link">
+          <span class="login">Already have an account? <a href="../Login/login.php">Click here to log in</a></span>
+        </div>
       </div>
-    </div>
-    <!----LOGO DESIGN HERE-->
-
-
-    <div class="login">
-      <form name="registration_form" onsubmit="return validation()" method="POST">
-        <header class="title">
-          <h3 class="title">WELCOME APPLICANT!</h3>
-        </header>
-
-
-        <p class="phpError" id="phpErrorMsg"><?php echo $errorMsg; ?></p>
-
-        <?php
-
-
-
-
-        if (!empty($errorMsg)) {
-          echo '<script>
-             var errorMsgContainer = document.getElementById("phpErrorMsg");
-             setTimeout(function() {
-                 errorMsgContainer.innerHTML = ""; // Clear the error message after 5 seconds
-             }, 5000); // 5000 milliseconds = 5 seconds
-          </script>';
-        }
-
-
-
-        ?>
-        <div class="loginBody">
-
-          <div class="text-input">
-            <i class="ri-user-fill"></i>
-            <input type="text" name="fname" id="fname" placeholder="Enter your first name" required onkeypress="return /[a-z\-\ ]/i.test(event.key)" />
-          </div>
-          <p class="error" id="fNameError"><?php echo isset($_SESSION['fnameError']) ? $_SESSION['fnameError'] : ''; ?></p>
-          <div class="text-input">
-            <i class="ri-user-fill"></i>
-            <input type="text" name="lname" id="lname" placeholder="Enter your last name" required onkeypress="return /[a-z\-\ ]/i.test(event.key)" />
-          </div>
-          <p class="error" id="lNameError"><?php echo isset($_SESSION['lNameError']) ? $_SESSION['lNameError'] : ''; ?></p>
-          <div class="text-input">
-            <i class="ri-user-fill"></i>
-            <select name="countryCode" id="countryCode">
-              <option value="+63" selected>+63</option>
-              <!-- Add more options for other countries if needed -->
-            </select>
-            <input type="tel" name="phoneNumber" id="phoneNumber" placeholder="9XXXXXXXXX" required oninput="validatePhoneNumber()" />
-          </div>
-          <div id="phoneNumberError" class="error"></div>
-
-          <div class="text-input">
-            <i class="ri-map-pin-line"></i>
-            <input type="text" placeholder="Address" name="address" id="address" required />
-          </div>
-          <p class="error" id="addressError"><?php echo isset($_SESSION['addressError']) ? $_SESSION['addressError'] : ''; ?></p>
-
-          <div class="text-input">
-            <i class="ri-mail-line"></i>
-            <input type="email" placeholder="Email" name="email" id="email" required />
-          </div>
-          <p class="error" id="emailError"><?php echo isset($_SESSION['emailError']) ? $_SESSION['emailError'] : ''; ?></p>
-
-          <div class="text-input">
-            <i class="ri-lock-fill"></i>
-            <input type="password" placeholder="Password" name="password" id="password" />
-          </div>
-
-
-          <div class="text-input">
-            <i class="ri-lock-fill"></i>
-            <input type="password" placeholder="Confirm Password" name="cpassword" id="cpassword" />
-          </div>
-
-          <p class="error" id="passwordError"><?php echo isset($_SESSION['passwordError']) ? $_SESSION['passwordError'] : ''; ?></p>
-
-
-
-
-        </div>
-
-
-        <div class="registerBtn">
-          <button class="register-btn" type="submit" name="submit">REGISTER</button>
-        </div>
-
-        <div class="create">
-          <a href="registerunit.php">Register your PEDICAB here</a>
-          <i class="ri-arrow-right-fill"></i>
-        </div>
-      </form>
-    </div>
-
-
+    </form>
   </div>
 
 
@@ -301,6 +287,7 @@ if (isset($_POST['submit'])) {
 
 
   <script src="../js/register/register.js"></script>
+  <script src="../js/register/validatePhoneNumber.js"></script>
 </body>
 
 

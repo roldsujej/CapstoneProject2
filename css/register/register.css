@@ -160,6 +160,7 @@ a.forgot {
   background: white;
   overflow: hidden;
   padding: 0.5rem;
+  margin: auto;
 }
 .logo {
   display: flex;

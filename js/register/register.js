@@ -37,19 +37,3 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 5000); // 5000 milliseconds = 5 seconds
   }
 });
-
-function validatePhoneNumber() {
-  const phoneNumberInput = document.getElementById("phoneNumber");
-  const phoneNumberError = document.getElementById("phoneNumberError");
-  const selectedCountryCode = document.getElementById("countryCode").value;
-
-  // Regular expression to match a valid Philippine mobile number
-  const regex = /^9\d{9}$/;
-
-  if (!regex.test(phoneNumberInput.value)) {
-    phoneNumberError.textContent =
-      "Please enter a valid mobile number from the Philippines.";
-  } else {
-    phoneNumberError.textContent = "";
-  }
-}

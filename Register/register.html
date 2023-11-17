@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration</title>
+    <link rel="stylesheet" href="../css/register/registerv2.css" />
+  </head>
+  <body>
+    <div class="container">
+      <form action="" method="post">
+        <h2>Registration</h2>
+        <div class="content">
+          <div class="input-box">
+            <label for=" first name">First name</label>
+            <input
+              type="text"
+              placeholder="Enter first name"
+              name="firstName"
+              required
+            />
+          </div>
+          <div class="input-box">
+            <label for=" last name">Last name</label>
+            <input
+              type="text"
+              placeholder="Enter last name"
+              name="lastName"
+              required
+            />
+          </div>
+          <div class="input-box">
+            <label for="phone number">Mobile Number</label>
+            <input
+              type="text"
+              placeholder="+63XXXXXXXXXXXXXX"
+              name="cpNumber"
+              required
+            />
+          </div>
+          <div class="input-box">
+            <label for="birthday">Birthday</label>
+            <input
+              type="text"
+              placeholder="Enter first name"
+              name="birthday"
+              required
+            />
+          </div>
+          <div class="input-box">
+            <label for=" age">Age</label>
+            <input type="text" placeholder="age" name="age" required />
+          </div>
+          <div class="input-box address-box">
+            <label for="address">Address</label>
+            <div class="address-inputs">
+              <input type="text" placeholder="Blk" name="blk" required />
+              <input type="text" placeholder="Lot" name="lot" required />
+              <input type="text" placeholder="Street" name="st" required />
+              <input type="text" placeholder="Barangay" name="brgy" required />
+              <input type="text" placeholder="City" name="city" required />
+              <input
+                type="text"
+                placeholder="Province"
+                name="province"
+                required
+              />
+            </div>
+          </div>
+          <!-- Account information -->
+          <div class="input-box">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              placeholder="Enter your active email"
+              name="email"
+              required
+            />
+          </div>
+          <div class="input-box">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              placeholder="Enter Password"
+              name="password"
+              required
+            />
+          </div>
+          <div class="input-box">
+            <label for="Confirm password">Confirm Password</label>
+            <input
+              type="password"
+              placeholder="Re-enter Password"
+              name="cpassword"
+              required
+            />
+          </div>
+          <span class="gender-title">Gender</span>
+          <div class="gender-category">
+            <input type="radio" name="gender" id="male" />
+            <label for="gender">Male</label>
+            <input type="radio" name="gender" id="female" />
+            <label for="gender">Female</label>
+            <input type="radio" name="gender" id="other" />
+            <label for="gender">Other</label>
+          </div>
+          <div class="button-container">
+            <button type="submit">Register</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
