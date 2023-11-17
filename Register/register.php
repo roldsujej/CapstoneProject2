@@ -43,6 +43,7 @@ if (isset($_POST['submit'])) {
   $number = sanitize($conn, $_POST["cpNumber"]);
   // $address = sanitize($conn, $_POST["address"]);
   $birthday = sanitize($conn, $_POST["birthday"]);
+  //di na manual ilalagay ng user magcacalculate na agad depende sa birthday
   $age = calculateAge($birthday);
   $blk = sanitize($conn, $_POST["blk"]);
   $lot = sanitize($conn, $_POST["lot"]);
