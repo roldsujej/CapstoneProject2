@@ -193,9 +193,7 @@ require "../database/config.php";
                 <!-- <th>Document ID</th> -->
                 <th>Applicant ID</th>
                 <th>Uploader</th>
-                <th>Document Name</th>
-                <th>File Name</th>
-                <th>Upload Date</th>
+
                 <th class="action-header" colspan="3">Action</th>
               </tr>
             </thead>
@@ -206,43 +204,55 @@ require "../database/config.php";
               //       JOIN account_profiles ap ON ud.applicant_id = ap.id
               //       JOIN required_documents r ON ud.document__id = r.document_id";
 
-              $uploadedDocsQuery = "SELECT ud.id as doc_id, ud.applicant_id, ud.document_id, ud.file_name, ud.file_path, ud.upload_date, ap.id, ap.firstName, ap.lastName, r.document_name
-                      FROM uploaded_documents ud 
-                      JOIN account_profiles ap ON ud.applicant_id = ap.id
-                      JOIN required_documents r ON ud.document_id = r.document_id";
+              // $uploadedDocsQuery = "SELECT ud.id as doc_id, ud.applicant_id, ud.document_id, ud.file_name, ud.file_path, ud.upload_date, ap.id, ap.firstName, ap.lastName, r.document_name
+              //         FROM uploaded_documents ud 
+              //         JOIN account_profiles ap ON ud.applicant_id = ap.id
+              //         JOIN required_documents r ON ud.document_id = r.document_id";
+
+              $uploadedDocsQuery = "SELECT ud.id as doc_id, ud.applicant_id, ud.file_name, ud.file_path, ud.upload_date, ap.id, ap.firstName, ap.lastName
+              FROM uploaded_documents ud 
+              JOIN account_profiles ap ON ud.applicant_id = ap.id";
 
               $uploadedDocsResult = $conn->query($uploadedDocsQuery);
 
               if ($uploadedDocsResult->num_rows > 0) {
                 while ($row = $uploadedDocsResult->fetch_assoc()) {
+                  $applicantName =  $row['firstName'] . "" . $row['lastName'];
                   $docId = $row['doc_id'];
+                  $filename
+                    = $row['file_name'];
+                  $apID = $row['applicant_id'];
                   $targetPath = '../APPLICANT/uploads/' . $row['file_name'];
 
               ?>
                   <tr>
-                    <td><?php echo $row['id'];  // pwede to tanggalin if ever di need inadd ko lng pra di nakakalito
+                    <td><?php echo $row['applicant_id'];  // pwede to tanggalin if ever di need inadd ko lng pra di nakakalito
                         ?></td>
                     <td><?php echo $row['firstName'] . ' ' . $row['lastName'] ?></td>
-                    <td><?php echo $row['document_name'] ?></td>
-                    <td><?php echo $row['file_name']  ?></td>
-                    <td><?php echo $row['upload_date'] ?></td>
+
                     <td>
                       <div class="action-buttons">
                         <button type="button" class="action-button viewBtn modal-trigger" data-modal-id="<?php echo 'viewDocumentModal' . $row['doc_id']; ?>">
                           <ion-icon name="eye-outline"></ion-icon>
                         </button>
 
-                        <button type="button" class="action-button validateBtn" onclick="validateDocument(<?php echo $row['doc_id']; ?>)">
+                        <!-- <button type="button" class="action-button validateBtn" onclick="validateDocument(<?php //echo $row['doc_id']; 
+                                                                                                                ?>)">
+                          Validate
+                        </button> -->
+
+                        <button type="button" class="action-button validateBtn modal-trigger" data-modal-id="<?php echo 'validateDocumentModal' . $row['applicant_id']; ?>">
                           Validate
                         </button>
+                        <?php include('modals/documents/validateDocument_modal.php');
+                        ?>
 
                         <button type="button" class="action-button deleteBtn modal-trigger" data-modal-id="<?php echo 'deleteDocumentModal' . $row['doc_id']; ?>">
                           <ion-icon name="trash-outline"></ion-icon>
                         </button>
                       </div>
 
-                      <?php //include('modals/deleteDocument_modal.php'); 
-                      ?>
+
                       <?php include('modals/documents/viewDocument_modal.php');
                       ?>
                     </td>
@@ -289,6 +299,7 @@ require "../database/config.php";
   <script src="../js/ADMIN/adminManageRequirements.js"></script>
   <script src="../js/ADMIN/modal.js"></script>
   <script src="../js/ADMIN/tablePagination.js"></script>
+  <script src="../js/ADMIN/adminValidateDocuments.js"></script>
   <script src="../js/logout.js"></script>
   <!---------ICONS----------------------------------->
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -296,7 +307,9 @@ require "../database/config.php";
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 
-
+  <script>
+    let documents = <?php echo json_encode($uploadedDocsResult->fetch_all(MYSQLI_ASSOC)); ?>;
+  </script>
 
 
 

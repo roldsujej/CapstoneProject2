@@ -23,7 +23,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Applicant Dashboard</title>
     <link rel="stylesheet" href="../css/applicant/applicantDashboard.css" />
-    <link rel="stylesheet" href="../css/admin/global.css">
+    <!-- <link rel="stylesheet" href="../css/admin/global.css"> -->
 </head>
 
 <body>
@@ -98,14 +98,14 @@ session_start();
 
 
     </div>
-  <?php
-  include('modals/logout_modal.php');
-  ?>
+    <?php
+    include('modals/logout_modal.php');
+    ?>
 
     <!---------------SCRIPT--------------------------->
     <script src="../js/APPLICANT/applicantDashboard.js"></script>
     <script src="../js/ADMIN/modal.js"></script>
-	<script src="../js/logout.js"></script>
+    <script src="../js/logout.js"></script>
     <!---------ICONS----------------------------------->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>

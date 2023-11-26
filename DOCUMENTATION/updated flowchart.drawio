@@ -1,0 +1,275 @@
+<mxfile host="app.diagrams.net" modified="2023-11-26T00:56:21.298Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="OLpHG0wPK_zN2hM1MJoN" version="22.1.4" type="device">
+  <diagram name="Page-1" id="F7nfaSFL45iesH4Vy4sR">
+    <mxGraphModel dx="2154" dy="727" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="FuTdGhCMeC5DyDxwc9Uz-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="410" y="260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-1" value="Start" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="350" y="120" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-2" value="&lt;font face=&quot;Verdana&quot; style=&quot;font-size: 15px;&quot;&gt;UPDATED SYSTEM FLOWCHART&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="270" y="58" width="260" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-52" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="FuTdGhCMeC5DyDxwc9Uz-4" target="FuTdGhCMeC5DyDxwc9Uz-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-4" value="Login" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="350" y="260" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="FuTdGhCMeC5DyDxwc9Uz-5">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="170" y="520" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="FuTdGhCMeC5DyDxwc9Uz-5">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="690" y="520" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-5" value="Have account?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="355" y="360" width="110" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-8" value="NO" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="180" y="388" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-9" value="YES" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="630" y="388" width="50" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="FuTdGhCMeC5DyDxwc9Uz-10">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="170" y="650" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-10" value="Request for Account Registration" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="110" y="520" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="FuTdGhCMeC5DyDxwc9Uz-12">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="170" y="780" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-12" value="Fill up registration form" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="650" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="FuTdGhCMeC5DyDxwc9Uz-14">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="170" y="920" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-14" value="Submit&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="110" y="780" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="FuTdGhCMeC5DyDxwc9Uz-16" target="FuTdGhCMeC5DyDxwc9Uz-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-16" value="Verify Email using OTP Code" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="110" y="920" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="FuTdGhCMeC5DyDxwc9Uz-17">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="50" y="1160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-17" value="Verification success?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="120" y="1030" width="100" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-21" value="YES" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1060" width="50" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-22" value="NO" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="230" y="1060" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1.058;entryY=0.467;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="FuTdGhCMeC5DyDxwc9Uz-17" target="FuTdGhCMeC5DyDxwc9Uz-16">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="290" y="1080" />
+              <mxPoint x="290" y="948" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="FuTdGhCMeC5DyDxwc9Uz-24">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="50" y="1280" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-24" value="Wait for admin approval of account application" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-10" y="1160" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="FuTdGhCMeC5DyDxwc9Uz-26">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-170" y="1410" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.583;entryY=0.017;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="FuTdGhCMeC5DyDxwc9Uz-26" target="FuTdGhCMeC5DyDxwc9Uz-33">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="230" y="1400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-26" value="Application accepted?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-5" y="1280" width="110" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-55" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="FuTdGhCMeC5DyDxwc9Uz-30">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-170" y="1550" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-30" value="Access to applicant dashboard" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-230" y="1410" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-31" value="YES" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="-165" y="1300" width="50" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-32" value="NO" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="180" y="1300" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="FuTdGhCMeC5DyDxwc9Uz-33">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="220" y="1540" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-33" value="Notify user about the declination details through email" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="160" y="1410" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-35" value="Saved to archived registration" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" vertex="1" parent="1">
+          <mxGeometry x="185" y="1640" width="70" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-37" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="FuTdGhCMeC5DyDxwc9Uz-36">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="550" y="760" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-40" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="FuTdGhCMeC5DyDxwc9Uz-36" target="FuTdGhCMeC5DyDxwc9Uz-39">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-36" value="Is the user admin?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="620" y="520" width="140" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-42" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="FuTdGhCMeC5DyDxwc9Uz-39">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1000" y="575" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-46" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="FuTdGhCMeC5DyDxwc9Uz-39">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="880" y="760" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-39" value="Is the user applicant?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="810" y="520" width="140" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-41" value="NO" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="760" y="550" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-43" value="NO" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="950" y="550" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-44" value="YES" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="545" y="548" width="50" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-45" value="Access to admin dashboard" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="490" y="760" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-47" value="Access to applicant dashboard" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="820" y="760" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-48" value="YES" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;rotation=-90;" vertex="1" parent="1">
+          <mxGeometry x="840" y="670" width="50" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-50" value="Access to member dashboard" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="540" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-53" value="Account application declined page" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="160" y="1540" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-54" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="FuTdGhCMeC5DyDxwc9Uz-53" target="FuTdGhCMeC5DyDxwc9Uz-35">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-57" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="FuTdGhCMeC5DyDxwc9Uz-56">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-170" y="1670" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-56" value="Upload require documents" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-230" y="1550" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-59" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="FuTdGhCMeC5DyDxwc9Uz-58">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-170" y="1780" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-58" value="Wait for admin validation of the uploaded requirements" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-230" y="1670" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-61" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="FuTdGhCMeC5DyDxwc9Uz-60">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-340" y="1960" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-62" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="FuTdGhCMeC5DyDxwc9Uz-60" target="FuTdGhCMeC5DyDxwc9Uz-56">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="20" y="1825" />
+              <mxPoint x="20" y="1580" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-60" value="Documents valid?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-230" y="1780" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-63" value="NO" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="-70" y="1800" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-64" value="RE-UPLOAD DOCUMENTS WITH PROBLEMS" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;rotation=90;" vertex="1" parent="1">
+          <mxGeometry x="-110" y="1685" width="280" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-65" value="YES" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="-340" y="1800" width="50" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-68" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="FuTdGhCMeC5DyDxwc9Uz-66">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-340" y="2090" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-66" value="Schedule an appointment for payment settling" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-400" y="1960" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-67" value="&lt;font color=&quot;#ff0000&quot;&gt;Billing system is out of scope of the system&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-210" y="1975" width="170" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-70" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="FuTdGhCMeC5DyDxwc9Uz-69">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-490" y="2230" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-71" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="FuTdGhCMeC5DyDxwc9Uz-69" target="FuTdGhCMeC5DyDxwc9Uz-66">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-200" y="2220" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-230" y="2135" />
+              <mxPoint x="-230" y="1990" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-69" value="Payment settled?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-400" y="2090" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-75" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="FuTdGhCMeC5DyDxwc9Uz-72">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-490" y="2340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-72" value="Update the account to member" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-550" y="2230" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FuTdGhCMeC5DyDxwc9Uz-76" value="Saved applicant details to member table" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-550" y="2340" width="120" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -158,9 +158,9 @@ session_start();
 
 
 
-                                            <button type="button" class="action-button deleteBtn modal-trigger" data-modal-id="<?php echo 'deleteRequirementModal' . $document_id; ?>" data-document-name="<?php echo $row['document_name'] ?>">
+                                            <!-- <button type="button" class="action-button deleteBtn modal-trigger" data-modal-id="<?php echo 'deleteRequirementModal' . $document_id; ?>" data-document-name="<?php echo $row['document_name'] ?>">
                                                 <ion-icon name="trash-outline"></ion-icon>
-                                            </button>
+                                            </button> -->
                                             <?php //include('modals/deleteRequirement_modal.php'); 
                                             ?>
                                         </div>
@@ -202,15 +202,15 @@ session_start();
 
 
     </div>
-  <?php
-  include('modals/logout_modal.php');
-  ?>
+    <?php
+    include('modals/logout_modal.php');
+    ?>
 
     <!---------------SCRIPT--------------------------->
     <script src="../js/APPLICANT/applicantDashboard.js"></script>
     <script src="../js/ADMIN/tablePagination.js"></script>
     <script src="../js/ADMIN/modal.js"></script>
-	<script src="../js/logout.js"></script>
+    <script src="../js/logout.js"></script>
 
     <!---------ICONS----------------------------------->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>

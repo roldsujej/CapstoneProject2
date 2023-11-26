@@ -12,7 +12,7 @@ require "../database/config.php";
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin Dashboard</title>
   <link rel="stylesheet" href="../css/admin/admindashboard.css" />
-  <link rel="stylesheet" href="../css/admin/global.css">
+  <!-- <link rel="stylesheet" href="../css/admin/global.css"> -->
   <!------------nagugulo yung card pag nakalink yung global so need adjust sa display in the cards design----->
 </head>
 
@@ -125,7 +125,7 @@ require "../database/config.php";
     </div>
   </div>
   <?php
-  include ('modals/logout_modal.php');
+  include('modals/logout_modal.php');
   ?>
 
   <!---------------SCRIPT--------------------------->

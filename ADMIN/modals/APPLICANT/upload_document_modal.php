@@ -1,5 +1,40 @@
 <?php
+if (isset($_POST['upload'])) {
+    $documentId = $_POST['documentId'];
+    $applicantId = $_SESSION['id'];  // Replace this with the actual applicant ID
 
+    $uploadDirectory = 'D:/xampp/htdocs/CapstoneProject2/Applicant/uploads/';
+
+    // Get the uploaded file details
+    $fileName = basename($_FILES['uploadedFile']['name']);
+    $fileTmpName = $_FILES['uploadedFile']['tmp_name'];
+
+    // Check if the file is a PDF or an image (you can adjust this condition based on your requirements)
+    $allowedExtensions = ['pdf', 'jpg', 'jpeg', 'png', 'gif'];
+    $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+
+    if (in_array($fileExtension, $allowedExtensions)) {
+        // Generate a unique name for the file to avoid overwriting
+        $newFileName = uniqid('uploaded_') . '.' . $fileExtension;
+        $targetPath = $uploadDirectory . $newFileName;
+
+        // Move the uploaded file to the target path
+        if (move_uploaded_file($fileTmpName, $targetPath)) {
+            // Insert information into the database
+            $stmt = $conn->prepare("INSERT INTO uploaded_documents (applicant_id, document_id, file_name, file_path) VALUES (?, ?, ?, ?)");
+            $stmt->bind_param("iiss", $applicantId, $documentId, $newFileName, $targetPath);
+            $stmt->execute();
+            $stmt->close();
+            $conn->close();
+
+            echo 'File uploaded successfully!';
+        } else {
+            echo 'Failed to move the uploaded file.';
+        }
+    } else {
+        echo 'Invalid file format. Only PDF and image files are allowed.';
+    }
+}
 
 ?>
 
