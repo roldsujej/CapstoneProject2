@@ -179,7 +179,11 @@ if (isset($_POST['login'])) {
     <link rel="icon" href="../images/capedalogo.png" type="image/x-icon">
     <title>CAPEDA | Login</title>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/register/registerv2.css" />
+    <link rel="stylesheet" href="../css/globals/errorMessages.css" />
     <link rel="stylesheet" href="../css/login/login.css" />
+    <link rel="stylesheet" href="../css/admin/global.css">
+
     <!-- <link rel="stylesheet" href="../css/login.css" /> -->
 </head>
 
@@ -211,11 +215,18 @@ if (isset($_POST['login'])) {
                 </div>
             </form>
             <div class="create">
-                <a href="../Register/register.php">Apply for membership</a>
+                <a href="#" class="modal-trigger" data-modal-id="<?php echo 'registrationModal' ?>">Apply for Membership</a>
+                <!-- <a href="../Register/register.php">Apply for membership</a> -->
                 <i class="ri-arrow-right-fill"></i>
+                <?php include "modal/signup_modal.php" ?>
             </div>
         </div>
     </div>
+
+    <script src="../js/ADMIN/modal.js"></script>
+    <script src="../js/register/register.js"></script>
+    <script src="../js/register/validatePhoneNumber.js"></script>
+    <script src="../js/register/validateAge.js"></script>
 </body>
 
 </html>
